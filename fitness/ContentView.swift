@@ -20,13 +20,7 @@ struct ContentView: View {
     }
     
     private let doSomething: () -> Void = {
-        let headers: HTTPHeaders = [
-            HTTPHeader.authorization("Token ")
-        ]
-        AF.request("https://wger.de/api/v2/userprofile/", method: .get, headers: headers)
-            .responseJSON { response in
-                debugPrint(response)
-        }
+        
         return
     }
 }
