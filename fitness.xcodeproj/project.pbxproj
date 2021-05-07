@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		787012EF26407C85007D5694 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 787012EE26407C85007D5694 /* SwiftLintFramework */; };
 		787012F12640EC65007D5694 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F02640EC65007D5694 /* Net.swift */; };
 		787012F42640EDA6007D5694 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F32640EDA6007D5694 /* UserProfile.swift */; };
+		787012F62644EEB5007D5694 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F52644EEB5007D5694 /* Page.swift */; };
+		787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F72644EF84007D5694 /* DayOfTheWeek.swift */; };
+		787012FA2644F365007D5694 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F92644F365007D5694 /* Language.swift */; };
 		B45F4AA2263F5FF30095AE10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */; };
 		B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F4AA3263F5FF30095AE10 /* SceneDelegate.swift */; };
 		B45F4AA6263F5FF30095AE10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45F4AA5263F5FF30095AE10 /* ContentView.swift */; };
@@ -22,6 +24,9 @@
 /* Begin PBXFileReference section */
 		787012F02640EC65007D5694 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Net.swift; path = fitness/Net/Net.swift; sourceTree = SOURCE_ROOT; };
 		787012F32640EDA6007D5694 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		787012F52644EEB5007D5694 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		787012F72644EF84007D5694 /* DayOfTheWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfTheWeek.swift; sourceTree = "<group>"; };
+		787012F92644F365007D5694 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		B45F4A9E263F5FF30095AE10 /* fitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B45F4AA3263F5FF30095AE10 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				787012EF26407C85007D5694 /* SwiftLintFramework in Frameworks */,
 				B45F4AB7263F72D70095AE10 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				787012F32640EDA6007D5694 /* UserProfile.swift */,
+				787012F52644EEB5007D5694 /* Page.swift */,
+				787012F72644EF84007D5694 /* DayOfTheWeek.swift */,
+				787012F92644F365007D5694 /* Language.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -119,7 +126,6 @@
 			name = fitness;
 			packageProductDependencies = (
 				B45F4AB6263F72D70095AE10 /* Alamofire */,
-				787012EE26407C85007D5694 /* SwiftLintFramework */,
 			);
 			productName = fitness;
 			productReference = B45F4A9E263F5FF30095AE10 /* fitness.app */;
@@ -132,7 +138,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Ortiz;
 				TargetAttributes = {
 					B45F4A9D263F5FF30095AE10 = {
@@ -151,7 +157,6 @@
 			mainGroup = B45F4A95263F5FF30095AE10;
 			packageReferences = (
 				B45F4AB5263F72D70095AE10 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				787012ED26407C85007D5694 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = B45F4A9F263F5FF30095AE10 /* Products */;
 			projectDirPath = "";
@@ -182,7 +187,10 @@
 			files = (
 				B45F4AA2263F5FF30095AE10 /* AppDelegate.swift in Sources */,
 				B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */,
+				787012F62644EEB5007D5694 /* Page.swift in Sources */,
+				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
+				787012FA2644F365007D5694 /* Language.swift in Sources */,
 				B45F4AA6263F5FF30095AE10 /* ContentView.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 			);
@@ -228,6 +236,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -288,6 +297,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -380,14 +390,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		787012ED26407C85007D5694 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.43.1;
-			};
-		};
 		B45F4AB5263F72D70095AE10 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -399,11 +401,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		787012EE26407C85007D5694 /* SwiftLintFramework */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 787012ED26407C85007D5694 /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = SwiftLintFramework;
-		};
 		B45F4AB6263F72D70095AE10 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B45F4AB5263F72D70095AE10 /* XCRemoteSwiftPackageReference "Alamofire" */;

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Alamofire
+import Combine
 
 struct ContentView: View {
     var body: some View {
@@ -19,9 +20,27 @@ struct ContentView: View {
         }
     }
     
+    private var disposables: Set<AnyCancellable> = []
+    
     private let doSomething: () -> Void = {
+        let net = Net1()
+        net.getLanguages().responseDecodable(of: Page<Language>.self) { print($0) }
         
-        return
+        
+//        net.getUserProfileOldSchool()
+        
+//        net.getUserProfile().sink { error in
+//            print(error)
+//        } receiveValue: { profile in
+//            print("Publisher Success: \(profile)")
+//        }.store(in: &disposables)
+
+//        let sub = net.getUserProfile()
+//            .sink(receiveCompletion: { print ("completion: \($0)") },
+//                      receiveValue: { print ("value: \($0)") })
+//        sub.cancel()
+        
+        
     }
 }
 
