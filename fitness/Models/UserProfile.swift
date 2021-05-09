@@ -12,34 +12,58 @@ struct UserProfile: Decodable {
 
     let user: Int
     let gym: String?
-    let is_temporary: Bool
-    let show_comments: Bool
-    let show_english_ingredients: Bool
-    let workout_reminder_active: Bool
-    let workout_reminder: Int
-    let workout_duration: Int
-    let last_workout_notification: String?
-    let notification_language:Int
-    let timer_active: Bool
+    let isTemporary: Bool
+    let showComments: Bool
+    let showEnglishIngredients: Bool
+    let workoutReminderActive: Bool
+    let workoutReminder: Int
+    let workoutDuration: Int
+    let lastWorkoutNotification: String?
+    let notificationLanguage: Int
+    let timerActive: Bool
     let age: String?
     let birthdate: String?
     let height: String?
     let gender: String
-    let sleep_hours: Int
-    let work_hours: Int
-    let work_intensity: String
-    let sport_hours: Int
-    let sport_intensity: String
-    let freetime_hours: Int
-    let freetime_intensity: String
+    let sleepHours: Int
+    let workHours: Int
+    let workIntensity: String
+    let sportHours: Int
+    let sportIntensity: String
+    let freetimeHours: Int
+    let freetimeIntensity: String
     let calories: Int
-    let weight_unit: String
-    let ro_access: Bool
-    let num_days_weight_reminder: Int
+    let weightUnit: String
+    let roAccess: Bool
+    let numDaysWeightReminder: Int
+
+    enum CodingKeys: String, CodingKey {
+        case user, gym, age, birthdate, height, gender, calories
+
+        case isTemporary = "is_temporary"
+        case showComments = "show_comments"
+        case showEnglishIngredients = "show_english_ingredients"
+        case workoutReminderActive = "workout_reminder_active"
+        case workoutReminder = "workout_reminder"
+        case workoutDuration = "workout_duration"
+        case lastWorkoutNotification = "last_workout_notification"
+        case notificationLanguage = "notification_language"
+        case timerActive = "timer_active"
+        case sleepHours = "sleep_hours"
+        case workHours = "work_hours"
+        case workIntensity = "work_intensity"
+        case sportHours = "sport_hours"
+        case sportIntensity = "sport_intensity"
+        case freetimeHours = "freetime_hours"
+        case freetimeIntensity = "freetime_intensity"
+        case weightUnit = "weight_unit"
+        case roAccess = "ro_access"
+        case numDaysWeightReminder = "num_days_weight_reminder"
+    }
 }
 
 struct UserProfiles: Decodable {
-    
+
     let count: Int
     let next: Int?
     let previous: Int?

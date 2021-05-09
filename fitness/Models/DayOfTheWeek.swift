@@ -11,7 +11,7 @@ import Foundation
 struct DayOfTheWeek: Codable {
 
     let day: String
-    
+
     enum CodingKeys: String, CodingKey {
         case day = "day_of_week"
     }

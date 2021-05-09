@@ -12,7 +12,7 @@ struct Language: Codable {
 
     let shortName: String
     let fullName: String
-    
+
     enum CodingKeys: String, CodingKey {
         case shortName = "short_name"
         case fullName = "full_name"

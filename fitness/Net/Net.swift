@@ -17,7 +17,7 @@ protocol NetBase {
     var baseURL: String { get }
 }
 
-struct Net1: NetBase {
+struct Net: NetBase {
     let authorization = "Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e"
     let baseURL = "https://wger.de/api/v2/"
 }
@@ -25,24 +25,26 @@ struct Net1: NetBase {
 enum Router: URLRequestConvertible {
     case getDaysOfTheWeek
     case getLanguages
-    
+    case getLicense
+
     var baseURL: URL {
         return URL(string: "https://wger.de/api/v2/")!
     }
-    
+
     var method: HTTPMethod {
         switch self {
-        case .getDaysOfTheWeek, .getLanguages: return .get
+        case .getDaysOfTheWeek, .getLanguages, .getLicense: return .get
         }
     }
-    
+
     var path: String {
         switch self {
         case .getDaysOfTheWeek: return "daysofweek"
         case .getLanguages: return "language"
+        case .getLicense: return "license"
         }
     }
-    
+
     func asURLRequest() throws -> URLRequest {
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
@@ -50,7 +52,7 @@ enum Router: URLRequestConvertible {
         request.headers = [
             HTTPHeader.authorization("Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e")
         ]
-        
+
         return request
     }
 }
@@ -114,33 +116,43 @@ protocol NetSchedule {
 // MARK: - DaysOfTheWeek
 
 protocol NetDaysOfTheWeek {
-    func getDaysOfTheWeek() -> DataRequest
+    func getDaysOfTheWeek() -> DataResponsePublisher<Page<DayOfTheWeek>>
 }
 
-extension Net1: NetDaysOfTheWeek {
-    func getDaysOfTheWeek() -> DataRequest {
+extension Net: NetDaysOfTheWeek {
+    func getDaysOfTheWeek() -> DataResponsePublisher<Page<DayOfTheWeek>> {
         return AF.request(Router.getDaysOfTheWeek)
             .validate()
-            .responseDecodable(of: Page<DayOfTheWeek>.self) { _ in }
+            .publishDecodable(type: Page<DayOfTheWeek>.self)
     }
 }
 
 // MARK: - Languages
 
 protocol NetLanguages {
-    func getLanguages() -> DataRequest
+    func getLanguages() -> DataResponsePublisher<Page<Language>>
 }
 
-extension Net1: NetLanguages {
-    func getLanguages() -> DataRequest {
+extension Net: NetLanguages {
+    func getLanguages() -> DataResponsePublisher<Page<Language>> {
         return AF.request(Router.getLanguages)
             .validate()
-            .responseDecodable(of: Page<Language>.self) { _ in }
+            .publishDecodable(type: Page<Language>.self)
     }
 }
 
+// MARK: - License
+
 protocol NetLicense {
-    func getLicense() -> DataRequest
+    func getLicense() -> DataResponsePublisher<Page<License>>
+}
+
+extension Net: NetLicense {
+    func getLicense() -> DataResponsePublisher<Page<License>> {
+        return AF.request(Router.getLicense)
+            .validate()
+            .publishDecodable(type: Page<License>.self)
+    }
 }
 
 protocol NetUserProfile {
@@ -234,31 +246,4 @@ protocol NetWeightEntry {
     func getWeightEntry() -> DataRequest
     // requires date, weight
     func creatWeightEntry() -> DataRequest
-}
-
-struct Net {
-    
-    let authorization = HTTPHeader.authorization("Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e")
-    
-    func getUserProfile() -> AnyPublisher<UserProfile, AFError> {
-        let headers: HTTPHeaders = [
-            authorization
-        ]
-        return AF.request("https://wger.de/api/v2/userprofile/", headers: headers)
-            .validate()
-            .publishDecodable(type: UserProfile.self)
-//            .result()
-            .value()
-    }
-    
-    func getUserProfileOldSchool() -> DataRequest {
-        let headers: HTTPHeaders = [
-            authorization
-        ]
-        return AF.request("https://wger.de/api/v2/userprofile/", headers: headers)
-            .validate()
-            .responseDecodable(of: UserProfiles.self) { response in
-                print(response)
-            }
-    }
 }

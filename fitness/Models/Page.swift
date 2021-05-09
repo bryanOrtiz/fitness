@@ -9,7 +9,7 @@
 import Foundation
 
 struct Page<T: Decodable>: Decodable {
-    
+
     let count: Int
     let next: Int?
     let previous: Int?
