@@ -61,11 +61,3 @@ struct UserProfile: Decodable {
         case numDaysWeightReminder = "num_days_weight_reminder"
     }
 }
-
-struct UserProfiles: Decodable {
-
-    let count: Int
-    let next: Int?
-    let previous: Int?
-    let results: [UserProfile]
-}

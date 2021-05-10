@@ -26,6 +26,15 @@ enum Router: URLRequestConvertible {
     case getDaysOfTheWeek
     case getLanguages
     case getLicense
+    case getUserProfile
+    case getSettingRepetitionUnit
+    case getSettingWeightUnit
+    case getExerciseInfo
+    case getExercise
+    case getEquipment
+    case getExerciseCategory
+    case getExerciseComment
+    case getMuscle
 
     var baseURL: URL {
         return URL(string: "https://wger.de/api/v2/")!
@@ -33,7 +42,18 @@ enum Router: URLRequestConvertible {
 
     var method: HTTPMethod {
         switch self {
-        case .getDaysOfTheWeek, .getLanguages, .getLicense: return .get
+        case .getDaysOfTheWeek,
+             .getLanguages,
+             .getLicense,
+             .getUserProfile,
+             .getSettingRepetitionUnit,
+             .getSettingWeightUnit,
+             .getExerciseInfo,
+             .getExercise,
+             .getEquipment,
+             .getExerciseCategory,
+             .getExerciseComment,
+             .getMuscle: return .get
         }
     }
 
@@ -42,6 +62,15 @@ enum Router: URLRequestConvertible {
         case .getDaysOfTheWeek: return "daysofweek"
         case .getLanguages: return "language"
         case .getLicense: return "license"
+        case .getUserProfile: return "userprofile"
+        case .getSettingRepetitionUnit: return "setting-repetitionunit"
+        case .getSettingWeightUnit: return "setting-weightunit"
+        case .getExerciseInfo: return "exerciseinfo"
+        case .getExercise: return "exercise"
+        case .getEquipment: return "equipment"
+        case .getExerciseCategory: return "exercisecategory"
+        case .getExerciseComment: return "exercisecomment"
+        case .getMuscle: return "muscle"
         }
     }
 
@@ -155,33 +184,105 @@ extension Net: NetLicense {
     }
 }
 
+// MARK: - User Profile
+
 protocol NetUserProfile {
-    func getUserProfile() -> DataRequest
+    func getUserProfile() -> DataResponsePublisher<Page<UserProfile>>
 }
 
-protocol NetSettingRepitionUnit {
-    func getSettingRepitionUnit() -> DataRequest
+extension Net: NetUserProfile {
+    func getUserProfile() -> DataResponsePublisher<Page<UserProfile>> {
+        return AF.request(Router.getUserProfile)
+            .validate()
+            .publishDecodable(type: Page<UserProfile>.self)
+    }
 }
+
+// MARK: - Repition Unit
+
+protocol NetSettingRepetitionUnit {
+    func getSettingRepetitioUnit() -> DataResponsePublisher<Page<SettingsRepetitionUnit>>
+}
+
+extension Net: NetSettingRepetitionUnit {
+    func getSettingRepetitioUnit() -> DataResponsePublisher<Page<SettingsRepetitionUnit>> {
+        return AF.request(Router.getSettingRepetitionUnit)
+            .validate()
+            .publishDecodable(type: Page<SettingsRepetitionUnit>.self)
+    }
+}
+
+// MARK: - Weight Unit
 
 protocol NetSettingWeightUnit {
-    func getSettingWeightUnit() -> DataRequest
+    func getSettingWeightUnit() -> DataResponsePublisher<Page<SettingsWeightUnit>>
 }
+
+extension Net: NetSettingWeightUnit {
+    func getSettingWeightUnit() -> DataResponsePublisher<Page<SettingsWeightUnit>> {
+        return AF.request(Router.getSettingWeightUnit)
+            .validate()
+            .publishDecodable(type: Page<SettingsWeightUnit>.self)
+    }
+}
+
+// MARK: - Exercise Info
 
 protocol NetExerciseInfo {
-    func getExerciseInfo() -> DataRequest
+    func getExerciseInfo() -> DataResponsePublisher<Page<ExerciseInfo>>
 }
+
+extension Net: NetExerciseInfo {
+    func getExerciseInfo() -> DataResponsePublisher<Page<ExerciseInfo>> {
+        return AF.request(Router.getExerciseInfo)
+            .validate()
+            .publishDecodable(type: Page<ExerciseInfo>.self)
+    }
+}
+
+// MARK: - Exercise
 
 protocol NetExercise {
-    func getExercise() -> DataRequest
+    func getExercise() -> DataResponsePublisher<Page<Exercise>>
 }
+
+extension Net: NetExercise {
+    func getExercise() -> DataResponsePublisher<Page<Exercise>> {
+        return AF.request(Router.getExercise)
+            .validate()
+            .publishDecodable(type: Page<Exercise>.self)
+    }
+}
+
+// MARK: - Equipment
 
 protocol NetEquipment {
-    func getEquipment() -> DataRequest
+    func getEquipment() -> DataResponsePublisher<Page<Equipment>>
 }
 
-protocol NetExerciseCategory {
-    func getExerciseCategory() -> DataRequest
+extension Net: NetEquipment {
+    func getEquipment() -> DataResponsePublisher<Page<Equipment>> {
+        return AF.request(Router.getEquipment)
+            .validate()
+            .publishDecodable(type: Page<Equipment>.self)
+    }
 }
+
+// MARK: - Exercise Category
+
+protocol NetExerciseCategory {
+    func getExerciseCategory() -> DataResponsePublisher<Page<ExerciseCategory>>
+}
+
+extension Net: NetExerciseCategory {
+    func getExerciseCategory() -> DataResponsePublisher<Page<ExerciseCategory>> {
+        return AF.request(Router.getExerciseCategory)
+            .validate()
+            .publishDecodable(type: Page<ExerciseCategory>.self)
+    }
+}
+
+// MARK: - Exercise Image
 
 protocol NetExerciseImage {
     func getExerciseImage() -> DataRequest
@@ -189,12 +290,32 @@ protocol NetExerciseImage {
     func createExerciseImage() -> DataRequest
 }
 
+// MARK: - Exercise Comment
+
 protocol NetExerciseComment {
-    func getExerciseComment() -> DataRequest
+    func getExerciseComment() -> DataResponsePublisher<Page<ExerciseComment>>
 }
 
+extension Net: NetExerciseComment {
+    func getExerciseComment() -> DataResponsePublisher<Page<ExerciseComment>> {
+        return AF.request(Router.getExerciseComment)
+            .validate()
+            .publishDecodable(type: Page<ExerciseComment>.self)
+    }
+}
+
+// MARK: - Muscle
+
 protocol NetMuscle {
-    func getMuscle() -> DataRequest
+    func getMuscle() -> DataResponsePublisher<Page<Muscle>>
+}
+
+extension Net: NetMuscle {
+    func getMuscle() -> DataResponsePublisher<Page<Muscle>> {
+        return AF.request(Router.getMuscle)
+            .validate()
+            .publishDecodable(type: Page<Muscle>.self)
+    }
 }
 
 protocol NetIngredient {
