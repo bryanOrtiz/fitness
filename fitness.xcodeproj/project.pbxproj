@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
+		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
+		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
+		783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D3264AF9A0000D79AF /* IngredientWeightUnit.swift */; };
+		783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D5264AFA67000D79AF /* NutritionPlan.swift */; };
+		783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D7264B08BE000D79AF /* NutritionPlanInfo.swift */; };
+		783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D9264B0AAE000D79AF /* NutritionDiary.swift */; };
+		783522DC264B0BC3000D79AF /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DB264B0BC3000D79AF /* Meal.swift */; };
+		783522DE264B0D35000D79AF /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DD264B0D35000D79AF /* MealItem.swift */; };
+		783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DF264B0E56000D79AF /* WeightEntry.swift */; };
 		783672202647A4300067B917 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836721F2647A4300067B917 /* LanguageViewModel.swift */; };
 		783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */; };
 		783672242648CFBA0067B917 /* SettingsRepetitionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */; };
@@ -34,6 +44,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
+		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
+		783522D3264AF9A0000D79AF /* IngredientWeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientWeightUnit.swift; sourceTree = "<group>"; };
+		783522D5264AFA67000D79AF /* NutritionPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlan.swift; sourceTree = "<group>"; };
+		783522D7264B08BE000D79AF /* NutritionPlanInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanInfo.swift; sourceTree = "<group>"; };
+		783522D9264B0AAE000D79AF /* NutritionDiary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionDiary.swift; sourceTree = "<group>"; };
+		783522DB264B0BC3000D79AF /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		783522DD264B0D35000D79AF /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
+		783522DF264B0E56000D79AF /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
 		7836721F2647A4300067B917 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOfTheWeekViewModel.swift; sourceTree = "<group>"; };
 		783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsRepetitionUnit.swift; path = fitness/Models/SettingsRepetitionUnit.swift; sourceTree = SOURCE_ROOT; };
@@ -82,13 +102,23 @@
 				7836722D2648D9210067B917 /* ExerciseCategory.swift */,
 				7836722F2648DA1F0067B917 /* ExerciseComment.swift */,
 				783672272648D2210067B917 /* ExerciseInfo.swift */,
+				783522CD264AF4C8000D79AF /* Ingredient.swift */,
+				783522CF264AF779000D79AF /* IngredientInfo.swift */,
+				783522D3264AF9A0000D79AF /* IngredientWeightUnit.swift */,
 				787012F92644F365007D5694 /* Language.swift */,
 				787012FB26458A59007D5694 /* License.swift */,
+				783522DB264B0BC3000D79AF /* Meal.swift */,
+				783522DD264B0D35000D79AF /* MealItem.swift */,
 				783672312648DAED0067B917 /* Muscle.swift */,
+				783522D9264B0AAE000D79AF /* NutritionDiary.swift */,
+				783522D5264AFA67000D79AF /* NutritionPlan.swift */,
+				783522D7264B08BE000D79AF /* NutritionPlanInfo.swift */,
 				787012F52644EEB5007D5694 /* Page.swift */,
 				783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */,
 				783672252648D0D70067B917 /* SettingsWeightUnit.swift */,
 				787012F32640EDA6007D5694 /* UserProfile.swift */,
+				783522DF264B0E56000D79AF /* WeightEntry.swift */,
+				783522D1264AF8C3000D79AF /* WeightUnit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,23 +283,33 @@
 			files = (
 				783672242648CFBA0067B917 /* SettingsRepetitionUnit.swift in Sources */,
 				7836722A2648D75F0067B917 /* Exercise.swift in Sources */,
+				783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */,
 				B45F4AA2263F5FF30095AE10 /* AppDelegate.swift in Sources */,
 				783672262648D0D70067B917 /* SettingsWeightUnit.swift in Sources */,
 				B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */,
 				783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */,
+				783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */,
 				783672282648D2210067B917 /* ExerciseInfo.swift in Sources */,
 				78701306264791CF007D5694 /* LicenseViewModel.swift in Sources */,
 				783672322648DAED0067B917 /* Muscle.swift in Sources */,
+				783522DE264B0D35000D79AF /* MealItem.swift in Sources */,
 				783672202647A4300067B917 /* LanguageViewModel.swift in Sources */,
 				783672302648DA1F0067B917 /* ExerciseComment.swift in Sources */,
+				783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */,
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,
+				783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */,
+				783522DC264B0BC3000D79AF /* Meal.swift in Sources */,
 				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
+				783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */,
 				787012FA2644F365007D5694 /* Language.swift in Sources */,
+				783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */,
 				7836722E2648D9210067B917 /* ExerciseCategory.swift in Sources */,
+				783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */,
 				B45F4AA6263F5FF30095AE10 /* ContentView.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 				787012FC26458A5A007D5694 /* License.swift in Sources */,
+				783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */,
 				7836722C2648D8270067B917 /* Equipment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

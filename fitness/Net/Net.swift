@@ -35,6 +35,23 @@ enum Router: URLRequestConvertible {
     case getExerciseCategory
     case getExerciseComment
     case getMuscle
+    case getIngredients
+    case getIngredientInfo
+    case getWeightUnit
+    case getIngredientWeightUnit
+    case getNutritionPlan
+    case getNutritionPlanInfo
+    case getNutritionDiary
+    case getMeals
+    case getMealItems
+    case getWeightEntry
+    
+    case createNutritionPlan
+    case createNutritionPlanInfo
+    case createNutritionDiary
+    case createMeal
+    case createMealItem
+    case createWeightEntry
 
     var baseURL: URL {
         return URL(string: "https://wger.de/api/v2/")!
@@ -53,7 +70,23 @@ enum Router: URLRequestConvertible {
              .getEquipment,
              .getExerciseCategory,
              .getExerciseComment,
-             .getMuscle: return .get
+             .getMuscle,
+             .getIngredients,
+             .getIngredientInfo,
+             .getWeightUnit,
+             .getIngredientWeightUnit,
+             .getNutritionPlan,
+             .getNutritionPlanInfo,
+             .getNutritionDiary,
+             .getMeals,
+             .getMealItems,
+             .getWeightEntry: return .get
+        case .createNutritionPlan,
+             .createNutritionPlanInfo,
+             .createNutritionDiary,
+             .createMeal,
+             .createMealItem,
+             .createWeightEntry: return .post
         }
     }
 
@@ -71,6 +104,16 @@ enum Router: URLRequestConvertible {
         case .getExerciseCategory: return "exercisecategory"
         case .getExerciseComment: return "exercisecomment"
         case .getMuscle: return "muscle"
+        case .getIngredients: return "ingredient"
+        case .getIngredientInfo: return "ingredientinfo"
+        case .getWeightUnit: return "weightunit"
+        case .getIngredientWeightUnit: return "ingredientweightunit"
+        case .getNutritionPlan, .createNutritionPlan: return "nutritionplan"
+        case .getNutritionPlanInfo, .createNutritionPlanInfo: return "nutritionplaninfo"
+        case .getNutritionDiary, .createNutritionDiary: return "nutritiondiary"
+        case .getMeals, .createMeal: return "meal"
+        case .getMealItems, .createMealItem: return "mealitem"
+        case .getWeightEntry, .createWeightEntry: return "weightentry"
         }
     }
 
@@ -318,53 +361,190 @@ extension Net: NetMuscle {
     }
 }
 
+// MARK: - Ingredient
+
 protocol NetIngredient {
-    func getIngredient() -> DataRequest
+    func getIngredients() -> DataResponsePublisher<Page<Ingredient>>
 }
+
+extension Net: NetIngredient {
+    func getIngredients() -> DataResponsePublisher<Page<Ingredient>> {
+        return AF.request(Router.getIngredients)
+            .validate()
+            .publishDecodable(type: Page<Ingredient>.self)
+    }
+}
+
+// MARK: - Ingredient Info
 
 protocol NetIngredientInfo {
-    func getIngredientInfo() -> DataRequest
+    func getIngredientInfo() -> DataResponsePublisher<Page<IngredientInfo>>
 }
+
+extension Net: NetIngredientInfo {
+    func getIngredientInfo() -> DataResponsePublisher<Page<IngredientInfo>> {
+        return AF.request(Router.getIngredientInfo)
+            .validate()
+            .publishDecodable(type: Page<IngredientInfo>.self)
+    }
+}
+
+// MARK: - Weight Unit
 
 protocol NetWeightUnit {
-    func getWeightUnit() -> DataRequest
+    func getWeightUnit() -> DataResponsePublisher<Page<WeightUnit>>
 }
+
+extension Net: NetWeightUnit {
+    func getWeightUnit() -> DataResponsePublisher<Page<WeightUnit>> {
+        return AF.request(Router.getWeightUnit)
+            .validate()
+            .publishDecodable(type: Page<WeightUnit>.self)
+    }
+}
+
+// MARK: - Ingredient Weight Unit
 
 protocol NetIngredientWeightUnit {
-    func getIngredientWeightUnit() -> DataRequest
+    func getIngredientWeightUnit() -> DataResponsePublisher<Page<IngredeintWeightUnit>>
 }
+
+extension Net: NetIngredientWeightUnit {
+    func getIngredientWeightUnit() -> DataResponsePublisher<Page<IngredeintWeightUnit>> {
+        return AF.request(Router.getIngredientWeightUnit)
+            .validate()
+            .publishDecodable(type: Page<IngredeintWeightUnit>.self)
+    }
+}
+
+// MARK: - Nutrition Plan
 
 protocol NetNutritionPlan {
-    func getNutritionPlan() -> DataRequest
-    func createNutritionPlan() -> DataRequest
+    func getNutritionPlan() -> DataResponsePublisher<Page<NutritionPlan>>
+    func createNutritionPlan() -> DataResponsePublisher<NutritionPlan>
 }
+
+extension Net: NetNutritionPlan {
+    func getNutritionPlan() -> DataResponsePublisher<Page<NutritionPlan>> {
+        return AF.request(Router.getNutritionPlan)
+            .validate()
+            .publishDecodable(type: Page<NutritionPlan>.self)
+    }
+    
+    func createNutritionPlan() -> DataResponsePublisher<NutritionPlan> {
+        return AF.request(Router.createNutritionPlan)
+            .validate()
+            .publishDecodable(type: NutritionPlan.self)
+    }
+}
+
+// MARK: - Nutrition Plan Info
 
 protocol NetNutritionPlanInfo {
-    func getNutritionPlanInfo() -> DataRequest
+    func getNutritionPlanInfo() -> DataResponsePublisher<Page<NutritionPlanInfo>>
     // requires meals
-    func createNutritionPlanoInfo() -> DataRequest
+    func createNutritionPlanInfo() -> DataResponsePublisher<NutritionPlanInfo>
 }
+
+extension Net: NetNutritionPlanInfo {
+    func getNutritionPlanInfo() -> DataResponsePublisher<Page<NutritionPlanInfo>> {
+        return AF.request(Router.getNutritionPlanInfo)
+            .validate()
+            .publishDecodable(type: Page<NutritionPlanInfo>.self)
+    }
+    
+    // requires meals
+    func createNutritionPlanInfo() -> DataResponsePublisher<NutritionPlanInfo> {
+        return AF.request(Router.createNutritionPlanInfo)
+            .validate()
+            .publishDecodable(type: NutritionPlanInfo.self)
+    }
+}
+
+// MARK: - Nutrition Diary
 
 protocol NetNutritionDiary {
-    func getNutritionDiary() -> DataRequest
+    func getNutritionDiary() -> DataResponsePublisher<Page<NutritionDiary>>
     // requires plan, ingredient, amount
-    func createNutritionDiary() -> DataRequest
+    func createNutritionDiary() -> DataResponsePublisher<NutritionDiary>
 }
+
+extension Net: NetNutritionDiary {
+    func getNutritionDiary() -> DataResponsePublisher<Page<NutritionDiary>> {
+        return AF.request(Router.getNutritionDiary)
+            .validate()
+            .publishDecodable(type: Page<NutritionDiary>.self)
+    }
+    // requires plan, ingredient, amount
+    func createNutritionDiary() -> DataResponsePublisher<NutritionDiary> {
+        return AF.request(Router.createNutritionDiary)
+            .validate()
+            .publishDecodable(type: NutritionDiary.self)
+    }
+}
+
+// MARK: - Meal
 
 protocol NetMeal {
-    func getMeal() -> DataRequest
+    func getMeals() -> DataResponsePublisher<Page<Meal>>
     // requires plan
-    func createMeal() -> DataRequest
+    func createMeal() -> DataResponsePublisher<Meal>
 }
+
+extension Net: NetMeal {
+    func getMeals() -> DataResponsePublisher<Page<Meal>> {
+        return AF.request(Router.getMeals)
+            .validate()
+            .publishDecodable(type: Page<Meal>.self)
+    }
+    // requires plan
+    func createMeal() -> DataResponsePublisher<Meal> {
+        return AF.request(Router.createMeal)
+            .validate()
+            .publishDecodable(type: Meal.self)
+    }
+}
+
+// MARK: - Meal Items
 
 protocol NetMealItems {
-    func getMealItems() -> DataRequest
+    func getMealItems() -> DataResponsePublisher<Page<MealItem>>
     // requires meal, ingredient, amount
-    func createMealItem() -> DataRequest
+    func createMealItem() -> DataResponsePublisher<MealItem>
 }
 
+extension Net: NetMealItems {
+    func getMealItems() -> DataResponsePublisher<Page<MealItem>> {
+        return AF.request(Router.getMealItems)
+            .validate()
+            .publishDecodable(type: Page<MealItem>.self)
+    }
+    // requires meal, ingredient, amount
+    func createMealItem() -> DataResponsePublisher<MealItem> {
+        return AF.request(Router.createMealItem)
+            .validate()
+            .publishDecodable(type: MealItem.self)
+    }
+}
+
+// MARK: - Weigth Entry
+
 protocol NetWeightEntry {
-    func getWeightEntry() -> DataRequest
+    func getWeightEntry() -> DataResponsePublisher<Page<WeightEntry>>
     // requires date, weight
-    func creatWeightEntry() -> DataRequest
+    func createWeightEntry() -> DataResponsePublisher<WeightEntry>
+}
+
+extension Net: NetWeightEntry {
+    func getWeightEntry() -> DataResponsePublisher<Page<WeightEntry>> {
+        return AF.request(Router.getWeightEntry)
+            .validate()
+            .publishDecodable(type: Page<WeightEntry>.self)
+    }
+    // requires date, weight
+    func createWeightEntry() -> DataResponsePublisher<WeightEntry> {
+        return AF.request(Router.createWeightEntry)
+            .validate()
+            .publishDecodable(type: WeightEntry.self)
+    }
 }
