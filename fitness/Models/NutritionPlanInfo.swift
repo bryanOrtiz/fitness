@@ -41,7 +41,7 @@ struct NutritionPlanInfo: Decodable {
     let description: String
     let language: Language
 //    let meals: [Meal]
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case description

@@ -24,7 +24,7 @@ struct Ingredient: Decodable {
     let license: Int
     let licenseAuthor: String
     let language: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

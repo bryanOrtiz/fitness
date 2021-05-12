@@ -17,6 +17,8 @@
 		783522DC264B0BC3000D79AF /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DB264B0BC3000D79AF /* Meal.swift */; };
 		783522DE264B0D35000D79AF /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DD264B0D35000D79AF /* MealItem.swift */; };
 		783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DF264B0E56000D79AF /* WeightEntry.swift */; };
+		783522E2264B1ACB000D79AF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E1264B1ACB000D79AF /* Day.swift */; };
+		783522E4264C2431000D79AF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E3264C2431000D79AF /* Router.swift */; };
 		783672202647A4300067B917 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836721F2647A4300067B917 /* LanguageViewModel.swift */; };
 		783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */; };
 		783672242648CFBA0067B917 /* SettingsRepetitionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */; };
@@ -54,6 +56,8 @@
 		783522DB264B0BC3000D79AF /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		783522DD264B0D35000D79AF /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		783522DF264B0E56000D79AF /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
+		783522E1264B1ACB000D79AF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		783522E3264C2431000D79AF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7836721F2647A4300067B917 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOfTheWeekViewModel.swift; sourceTree = "<group>"; };
 		783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsRepetitionUnit.swift; path = fitness/Models/SettingsRepetitionUnit.swift; sourceTree = SOURCE_ROOT; };
@@ -119,6 +123,7 @@
 				787012F32640EDA6007D5694 /* UserProfile.swift */,
 				783522DF264B0E56000D79AF /* WeightEntry.swift */,
 				783522D1264AF8C3000D79AF /* WeightUnit.swift */,
+				783522E1264B1ACB000D79AF /* Day.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				787012F02640EC65007D5694 /* Net.swift */,
+				783522E3264C2431000D79AF /* Router.swift */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -289,11 +295,13 @@
 				B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */,
 				783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */,
 				783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */,
+				783522E4264C2431000D79AF /* Router.swift in Sources */,
 				783672282648D2210067B917 /* ExerciseInfo.swift in Sources */,
 				78701306264791CF007D5694 /* LicenseViewModel.swift in Sources */,
 				783672322648DAED0067B917 /* Muscle.swift in Sources */,
 				783522DE264B0D35000D79AF /* MealItem.swift in Sources */,
 				783672202647A4300067B917 /* LanguageViewModel.swift in Sources */,
+				783522E2264B1ACB000D79AF /* Day.swift in Sources */,
 				783672302648DA1F0067B917 /* ExerciseComment.swift in Sources */,
 				783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */,
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,

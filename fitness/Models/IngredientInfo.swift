@@ -9,7 +9,7 @@
 import Foundation
 
 struct IngredientInfo: Decodable {
-    
+
     let id: Int
     let name: String
     let creationDate: String
@@ -26,7 +26,7 @@ struct IngredientInfo: Decodable {
     let licenseAuthor: String
 //    let ingredientWeightUnitSet: IngredientWeightUnit
     let language: Language
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case name

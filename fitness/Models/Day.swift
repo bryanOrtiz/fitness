@@ -1,5 +1,5 @@
 //
-//  Meal.swift
+//  Day.swift
 //  fitness
 //
 //  Created by Bryan Ortiz on 5/11/21.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Meal: Decodable {
+struct Day: Decodable {
 
 }

@@ -22,113 +22,6 @@ struct Net: NetBase {
     let baseURL = "https://wger.de/api/v2/"
 }
 
-enum Router: URLRequestConvertible {
-    case getDaysOfTheWeek
-    case getLanguages
-    case getLicense
-    case getUserProfile
-    case getSettingRepetitionUnit
-    case getSettingWeightUnit
-    case getExerciseInfo
-    case getExercise
-    case getEquipment
-    case getExerciseCategory
-    case getExerciseComment
-    case getMuscle
-    case getIngredients
-    case getIngredientInfo
-    case getWeightUnit
-    case getIngredientWeightUnit
-    case getNutritionPlan
-    case getNutritionPlanInfo
-    case getNutritionDiary
-    case getMeals
-    case getMealItems
-    case getWeightEntry
-    
-    case createNutritionPlan
-    case createNutritionPlanInfo
-    case createNutritionDiary
-    case createMeal
-    case createMealItem
-    case createWeightEntry
-
-    var baseURL: URL {
-        return URL(string: "https://wger.de/api/v2/")!
-    }
-
-    var method: HTTPMethod {
-        switch self {
-        case .getDaysOfTheWeek,
-             .getLanguages,
-             .getLicense,
-             .getUserProfile,
-             .getSettingRepetitionUnit,
-             .getSettingWeightUnit,
-             .getExerciseInfo,
-             .getExercise,
-             .getEquipment,
-             .getExerciseCategory,
-             .getExerciseComment,
-             .getMuscle,
-             .getIngredients,
-             .getIngredientInfo,
-             .getWeightUnit,
-             .getIngredientWeightUnit,
-             .getNutritionPlan,
-             .getNutritionPlanInfo,
-             .getNutritionDiary,
-             .getMeals,
-             .getMealItems,
-             .getWeightEntry: return .get
-        case .createNutritionPlan,
-             .createNutritionPlanInfo,
-             .createNutritionDiary,
-             .createMeal,
-             .createMealItem,
-             .createWeightEntry: return .post
-        }
-    }
-
-    var path: String {
-        switch self {
-        case .getDaysOfTheWeek: return "daysofweek"
-        case .getLanguages: return "language"
-        case .getLicense: return "license"
-        case .getUserProfile: return "userprofile"
-        case .getSettingRepetitionUnit: return "setting-repetitionunit"
-        case .getSettingWeightUnit: return "setting-weightunit"
-        case .getExerciseInfo: return "exerciseinfo"
-        case .getExercise: return "exercise"
-        case .getEquipment: return "equipment"
-        case .getExerciseCategory: return "exercisecategory"
-        case .getExerciseComment: return "exercisecomment"
-        case .getMuscle: return "muscle"
-        case .getIngredients: return "ingredient"
-        case .getIngredientInfo: return "ingredientinfo"
-        case .getWeightUnit: return "weightunit"
-        case .getIngredientWeightUnit: return "ingredientweightunit"
-        case .getNutritionPlan, .createNutritionPlan: return "nutritionplan"
-        case .getNutritionPlanInfo, .createNutritionPlanInfo: return "nutritionplaninfo"
-        case .getNutritionDiary, .createNutritionDiary: return "nutritiondiary"
-        case .getMeals, .createMeal: return "meal"
-        case .getMealItems, .createMealItem: return "mealitem"
-        case .getWeightEntry, .createWeightEntry: return "weightentry"
-        }
-    }
-
-    func asURLRequest() throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(path)
-        var request = URLRequest(url: url)
-        request.method = method
-        request.headers = [
-            HTTPHeader.authorization("Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e")
-        ]
-
-        return request
-    }
-}
-
 // MARK: Route
 
 protocol NetRoute: NetBase {
@@ -138,9 +31,23 @@ protocol NetRoute: NetBase {
 // MARK: - Day
 
 protocol NetDay {
-    func getDay() -> DataRequest
+    func getDay() -> DataResponsePublisher<Page<Day>>
     // requires training, description, day
-    func createDay() -> DataRequest
+    func createDay(description: String, day: DayOfTheWeek) -> DataResponsePublisher<DayOfTheWeek>
+}
+
+extension Net: NetDay {
+    func getDay() -> DataResponsePublisher<Page<Day>> {
+        return AF.request(Router.getDay)
+            .validate()
+            .publishDecodable(type: Page<Day>.self)
+    }
+
+    func createDay(description: String, day: DayOfTheWeek) -> DataResponsePublisher<DayOfTheWeek> {
+        return AF.request(Router.createDay(description: description, day: day))
+            .validate()
+            .publishDecodable(type: DayOfTheWeek.self)
+    }
 }
 
 protocol NetSet {
@@ -430,7 +337,7 @@ extension Net: NetNutritionPlan {
             .validate()
             .publishDecodable(type: Page<NutritionPlan>.self)
     }
-    
+
     func createNutritionPlan() -> DataResponsePublisher<NutritionPlan> {
         return AF.request(Router.createNutritionPlan)
             .validate()
@@ -452,7 +359,7 @@ extension Net: NetNutritionPlanInfo {
             .validate()
             .publishDecodable(type: Page<NutritionPlanInfo>.self)
     }
-    
+
     // requires meals
     func createNutritionPlanInfo() -> DataResponsePublisher<NutritionPlanInfo> {
         return AF.request(Router.createNutritionPlanInfo)
