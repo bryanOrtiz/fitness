@@ -19,6 +19,9 @@
 		783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522DF264B0E56000D79AF /* WeightEntry.swift */; };
 		783522E2264B1ACB000D79AF /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E1264B1ACB000D79AF /* Day.swift */; };
 		783522E4264C2431000D79AF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E3264C2431000D79AF /* Router.swift */; };
+		783522E6264CCE2C000D79AF /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E5264CCE2C000D79AF /* Set.swift */; };
+		783522E8264CD0F5000D79AF /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E7264CD0F5000D79AF /* Setting.swift */; };
+		783522EA264CD30E000D79AF /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522E9264CD30E000D79AF /* Workout.swift */; };
 		783672202647A4300067B917 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836721F2647A4300067B917 /* LanguageViewModel.swift */; };
 		783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */; };
 		783672242648CFBA0067B917 /* SettingsRepetitionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */; };
@@ -58,6 +61,9 @@
 		783522DF264B0E56000D79AF /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
 		783522E1264B1ACB000D79AF /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		783522E3264C2431000D79AF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		783522E5264CCE2C000D79AF /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		783522E7264CD0F5000D79AF /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		783522E9264CD30E000D79AF /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		7836721F2647A4300067B917 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		783672212647A57E0067B917 /* DaysOfTheWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysOfTheWeekViewModel.swift; sourceTree = "<group>"; };
 		783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsRepetitionUnit.swift; path = fitness/Models/SettingsRepetitionUnit.swift; sourceTree = SOURCE_ROOT; };
@@ -100,6 +106,7 @@
 		787012F22640ED96007D5694 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				783522E1264B1ACB000D79AF /* Day.swift */,
 				787012F72644EF84007D5694 /* DayOfTheWeek.swift */,
 				7836722B2648D8270067B917 /* Equipment.swift */,
 				783672292648D75F0067B917 /* Exercise.swift */,
@@ -118,12 +125,14 @@
 				783522D5264AFA67000D79AF /* NutritionPlan.swift */,
 				783522D7264B08BE000D79AF /* NutritionPlanInfo.swift */,
 				787012F52644EEB5007D5694 /* Page.swift */,
+				783522E5264CCE2C000D79AF /* Set.swift */,
+				783522E7264CD0F5000D79AF /* Setting.swift */,
 				783672232648CFBA0067B917 /* SettingsRepetitionUnit.swift */,
 				783672252648D0D70067B917 /* SettingsWeightUnit.swift */,
 				787012F32640EDA6007D5694 /* UserProfile.swift */,
 				783522DF264B0E56000D79AF /* WeightEntry.swift */,
 				783522D1264AF8C3000D79AF /* WeightUnit.swift */,
-				783522E1264B1ACB000D79AF /* Day.swift */,
+				783522E9264CD30E000D79AF /* Workout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,8 +316,10 @@
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,
 				783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */,
 				783522DC264B0BC3000D79AF /* Meal.swift in Sources */,
+				783522E6264CCE2C000D79AF /* Set.swift in Sources */,
 				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
+				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
 				783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */,
 				787012FA2644F365007D5694 /* Language.swift in Sources */,
 				783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */,
@@ -318,6 +329,7 @@
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 				787012FC26458A5A007D5694 /* License.swift in Sources */,
 				783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */,
+				783522E8264CD0F5000D79AF /* Setting.swift in Sources */,
 				7836722C2648D8270067B917 /* Equipment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

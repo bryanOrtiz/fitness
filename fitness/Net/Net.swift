@@ -50,22 +50,68 @@ extension Net: NetDay {
     }
 }
 
+// MARK: - Set
+
 protocol NetSet {
-    func getSet() -> DataRequest
+    func getSet() -> DataResponsePublisher<Page<Set>>
     // requires Day
-    func createSet() -> DataRequest
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<Set>
 }
+
+extension Net: NetSet {
+    func getSet() -> DataResponsePublisher<Page<Set>> {
+        return AF.request(Router.getSet)
+            .validate()
+            .publishDecodable(type: Page<Set>.self)
+    }
+    
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<Set> {
+        return AF.request(Router.createSet(day: exerciseDay))
+            .validate()
+            .publishDecodable(type: Set.self)
+    }
+}
+
+// MARK: Setting
 
 protocol NetSetting {
-    func getSetting() -> DataRequest
-    // requires setting, exercise, reps
-    func createSetting() -> DataRequest
+    func getSetting() -> DataResponsePublisher<Page<Setting>>
+    // requires set, exercise, reps
+    func createSetting(set: Set, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting>
 }
 
+extension Net: NetSetting {
+    func getSetting() -> DataResponsePublisher<Page<Setting>> {
+        return AF.request(Router.getSetting)
+            .validate()
+            .publishDecodable(type: Page<Setting>.self)
+    }
+    func createSetting(set: Set, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting> {
+        return AF.request(Router.createSetting(set: set, exercise: exercise, reps: reps))
+            .validate()
+            .publishDecodable(type: Setting.self)
+    }
+}
+
+// MARK: - Workout
+
 protocol NetWorkout {
-    func getWorkout() -> DataRequest
-    // requires setting, exercise, reps
-    func createWorkout() -> DataRequest
+    func getWorkout() -> DataResponsePublisher<Page<Workout>>
+    
+    func createWorkout() -> DataResponsePublisher<Workout>
+}
+
+extension Net: NetWorkout {
+    func getWorkout() -> DataResponsePublisher<Page<Workout>> {
+        return AF.request(Router.getWorkout)
+            .validate()
+            .publishDecodable(type: Page<Workout>.self)
+    }
+    func createWorkout() -> DataResponsePublisher<Workout> {
+        return AF.request(Router.createWorkout)
+            .validate()
+            .publishDecodable(type: Workout.self)
+    }
 }
 
 protocol NetWorkoutSession {

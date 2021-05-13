@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Exercise: Decodable {
+struct Exercise: Codable {
     let id: Int
     let name: String
     let uuid: String

@@ -33,6 +33,9 @@ enum Router: URLRequestConvertible {
     case getMealItems
     case getWeightEntry
     case getDay
+    case getSet
+    case getSetting
+    case getWorkout
 
     case createNutritionPlan
     case createNutritionPlanInfo
@@ -41,6 +44,9 @@ enum Router: URLRequestConvertible {
     case createMealItem
     case createWeightEntry
     case createDay(description: String, day: DayOfTheWeek)
+    case createSet(day: DayOfTheWeek)
+    case createSetting(set: Set, exercise: Exercise, reps: Int)
+    case createWorkout
 
     var baseURL: URL {
         return URL(string: "https://wger.de/api/v2/")!
@@ -70,14 +76,20 @@ enum Router: URLRequestConvertible {
              .getMeals,
              .getMealItems,
              .getWeightEntry,
-             .getDay: return .get
+             .getDay,
+             .getSet,
+             .getSetting,
+             .getWorkout: return .get
         case .createNutritionPlan,
              .createNutritionPlanInfo,
              .createNutritionDiary,
              .createMeal,
              .createMealItem,
              .createWeightEntry,
-             .createDay(_, _): return .post
+             .createDay(_, _),
+             .createSet(_),
+             .createSetting(_, _, _),
+             .createWorkout: return .post
         }
     }
 
@@ -106,6 +118,9 @@ enum Router: URLRequestConvertible {
         case .getMealItems, .createMealItem: return "mealitem"
         case .getWeightEntry, .createWeightEntry: return "weightentry"
         case .getDay, .createDay(_, _): return "day"
+        case .getSet, .createSet(_): return "set"
+        case .getSetting, .createSetting(_, _, _): return "setting"
+        case .getWorkout, .createWorkout: return "workout"
         }
     }
 
@@ -123,6 +138,12 @@ enum Router: URLRequestConvertible {
         case let .createDay(description, day):
                     request = try JSONParameterEncoder().encode(["day": day], into: request)
                     request = try JSONParameterEncoder().encode(["description": description], into: request)
+        case let .createSet(day):
+            request = try JSONParameterEncoder().encode(["day": day], into: request)
+        case let .createSetting(set, exercise, reps):
+            request = try JSONParameterEncoder().encode(["set": set], into: request)
+            request = try JSONParameterEncoder().encode(["exercise": exercise], into: request)
+            request = try JSONParameterEncoder().encode(["reps": reps], into: request)
         default: break
                 }
 
