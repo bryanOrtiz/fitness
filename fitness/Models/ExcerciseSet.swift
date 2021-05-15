@@ -8,5 +8,5 @@
 
 import Foundation
 
-struct Set: Codable {
+struct ExcerciseSet: Codable {
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IngredeintWeightUnit: Decodable {
+struct IngredeintWeightUnit: Codable {
     let id: Int
     let amount: Double
     let gram: Int

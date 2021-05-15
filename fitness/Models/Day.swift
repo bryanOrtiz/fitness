@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Day: Decodable {
+struct Day: Codable {
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserProfile: Decodable {
+struct UserProfile: Codable {
 
     let user: Int
     let gym: String?

@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Meal: Decodable {
+struct Meal: Codable {
 
 }

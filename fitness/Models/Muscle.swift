@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Muscle: Decodable {
+struct Muscle: Codable {
     let id: Int
     let name: String
     let isFront: Bool

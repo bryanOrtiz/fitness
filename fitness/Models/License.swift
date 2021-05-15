@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct License: Decodable {
+struct License: Codable {
     let id: Int
     let fullName: String
     let shortName: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NutritionPlanInfo: Decodable {
+struct NutritionPlanInfo: Codable {
     /**
      {
                  "get_nutritional_values": {

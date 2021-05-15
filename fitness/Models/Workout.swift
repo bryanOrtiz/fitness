@@ -13,7 +13,7 @@ struct Workout: Codable {
     let creationDate: String
     let name: String
     let description: String
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, description
         case creationDate = "creation_date"

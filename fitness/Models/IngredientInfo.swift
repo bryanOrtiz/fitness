@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IngredientInfo: Decodable {
+struct IngredientInfo: Codable {
 
     let id: Int
     let name: String

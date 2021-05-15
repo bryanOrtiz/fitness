@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SettingsRepetitionUnit: Decodable {
+struct SettingsRepetitionUnit: Codable {
     let id: Int
     let name: String
 }

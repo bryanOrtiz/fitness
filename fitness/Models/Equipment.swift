@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Equipment: Decodable {
+struct Equipment: Codable {
     let id: Int
     let name: String
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ExerciseComment: Decodable {
+struct ExerciseComment: Codable {
     let id: Int
-    let exercise: String
+    let exercise: Int
     let comment: String
 }

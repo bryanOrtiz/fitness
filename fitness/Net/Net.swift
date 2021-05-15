@@ -53,22 +53,22 @@ extension Net: NetDay {
 // MARK: - Set
 
 protocol NetSet {
-    func getSet() -> DataResponsePublisher<Page<Set>>
+    func getSet() -> DataResponsePublisher<Page<ExcerciseSet>>
     // requires Day
-    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<Set>
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExcerciseSet>
 }
 
 extension Net: NetSet {
-    func getSet() -> DataResponsePublisher<Page<Set>> {
+    func getSet() -> DataResponsePublisher<Page<ExcerciseSet>> {
         return AF.request(Router.getSet)
             .validate()
-            .publishDecodable(type: Page<Set>.self)
+            .publishDecodable(type: Page<ExcerciseSet>.self)
     }
-    
-    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<Set> {
+
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExcerciseSet> {
         return AF.request(Router.createSet(day: exerciseDay))
             .validate()
-            .publishDecodable(type: Set.self)
+            .publishDecodable(type: ExcerciseSet.self)
     }
 }
 
@@ -77,7 +77,7 @@ extension Net: NetSet {
 protocol NetSetting {
     func getSetting() -> DataResponsePublisher<Page<Setting>>
     // requires set, exercise, reps
-    func createSetting(set: Set, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting>
+    func createSetting(set: ExcerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting>
 }
 
 extension Net: NetSetting {
@@ -86,7 +86,7 @@ extension Net: NetSetting {
             .validate()
             .publishDecodable(type: Page<Setting>.self)
     }
-    func createSetting(set: Set, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting> {
+    func createSetting(set: ExcerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting> {
         return AF.request(Router.createSetting(set: set, exercise: exercise, reps: reps))
             .validate()
             .publishDecodable(type: Setting.self)
@@ -97,7 +97,7 @@ extension Net: NetSetting {
 
 protocol NetWorkout {
     func getWorkout() -> DataResponsePublisher<Page<Workout>>
-    
+
     func createWorkout() -> DataResponsePublisher<Workout>
 }
 

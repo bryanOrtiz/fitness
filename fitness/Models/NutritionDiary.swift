@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct NutritionDiary: Decodable {
+struct NutritionDiary: Codable {
 
 }

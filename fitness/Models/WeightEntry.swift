@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct WeightEntry: Decodable {
+struct WeightEntry: Codable {
 
 }

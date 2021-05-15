@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct WeightUnit: Decodable {
+struct WeightUnit: Codable {
     let language: Int
     let name: String
 }

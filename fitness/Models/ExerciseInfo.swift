@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ExerciseInfo: Decodable {
+struct ExerciseInfo: Codable {
     let id: Int
     let name: String
     let uuid: String
@@ -21,9 +21,9 @@ struct ExerciseInfo: Decodable {
     let language: Language
     let license: License
     let licenseAuthor: String
-    let images: [String]
+//    let images: [String]
     let comments: [ExerciseComment]
-    let variations: [String]
+    let variations: [Int]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -35,7 +35,7 @@ struct ExerciseInfo: Decodable {
         case equipment
         case language
         case license
-        case images
+//        case images
         case comments
         case variations
 
