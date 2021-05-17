@@ -16,8 +16,8 @@ enum Router: URLRequestConvertible {
     case getUserProfile
     case getSettingRepetitionUnit
     case getSettingWeightUnit
-    case getExerciseInfo
-    case getExercise
+    case getExerciseInfo(id: Int)
+    case getExercise(category: ExerciseCategory?)
     case getEquipment
     case getExerciseCategory
     case getExerciseComment
@@ -101,7 +101,7 @@ enum Router: URLRequestConvertible {
         case .getUserProfile: return "userprofile"
         case .getSettingRepetitionUnit: return "setting-repetitionunit"
         case .getSettingWeightUnit: return "setting-weightunit"
-        case .getExerciseInfo: return "exerciseinfo"
+        case .getExerciseInfo(let id): return "exerciseinfo/\(id)"
         case .getExercise: return "exercise"
         case .getEquipment: return "equipment"
         case .getExerciseCategory: return "exercisecategory"
@@ -133,11 +133,12 @@ enum Router: URLRequestConvertible {
         ]
 
         switch self {
-//                case let .get(parameters):
-//                    request = try URLEncodedFormParameterEncoder().encode(parameters, into: request)
+        case let .getExercise(category):
+            guard let category = category else { return request }
+            request = try URLEncodedFormParameterEncoder().encode(["category": category.id], into: request)
         case let .createDay(description, day):
-                    request = try JSONParameterEncoder().encode(["day": day], into: request)
-                    request = try JSONParameterEncoder().encode(["description": description], into: request)
+            request = try JSONParameterEncoder().encode(["day": day], into: request)
+            request = try JSONParameterEncoder().encode(["description": description], into: request)
         case let .createSet(day):
             request = try JSONParameterEncoder().encode(["day": day], into: request)
         case let .createSetting(set, exercise, reps):
@@ -145,7 +146,7 @@ enum Router: URLRequestConvertible {
             request = try JSONParameterEncoder().encode(["exercise": exercise], into: request)
             request = try JSONParameterEncoder().encode(["reps": reps], into: request)
         default: break
-                }
+        }
 
         return request
     }

@@ -19,13 +19,17 @@ struct ExerciseCategoryDetailView: View {
     var body: some View {
         List {
             ForEach(viewModel.exercises, id: \.id) { exercise in
-                VStack {
-                    Text(exercise.name).font(.headline)
-                    Text(exercise.equipment.reduce("", { prev, equipment in
-                        return prev + ", \(equipment.name)"
-                    }) ).font(.subheadline)
-                }
-            }.navigationBarTitle(Text("Category Detail"))
+                NavigationLink(
+                    destination: ExerciseDetailView(exercise: exercise),
+                    label: {
+                        VStack {
+                            Text(exercise.name).font(.headline)
+                            //                    Text(exercise.equipment.reduce("", { prev, equipment in
+                            //                        return prev + ", \(equipment.name)"
+                            //                    }) ).font(.subheadline)
+                        }
+                    })
+            }.navigationBarTitle(Text(viewModel.category.name))
         }
     }
 }

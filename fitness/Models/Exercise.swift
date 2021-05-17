@@ -14,16 +14,14 @@ struct Exercise: Codable {
     let uuid: String
     let description: String
     let creationDate: String
-    let category: ExerciseCategory
-    let muscles: [Muscle]
-    let musclesSecondary: [Muscle]
-    let equipment: [Equipment]
-    let language: Language
-    let license: License
+    let category: Int
+    let muscles: [Int]
+    let musclesSecondary: [Int]
+    let equipment: [Int]
+    let language: Int
+    let license: Int
     let licenseAuthor: String
-    let images: [String]
-    let comments: [ExerciseComment]
-    let variations: [String]
+    let variations: [Int]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -35,8 +33,6 @@ struct Exercise: Codable {
         case equipment
         case language
         case license
-        case images
-        case comments
         case variations
 
         case creationDate = "creation_date"

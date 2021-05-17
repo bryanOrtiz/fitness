@@ -224,27 +224,29 @@ extension Net: NetSettingWeightUnit {
 
 // MARK: - Exercise Info
 
+/// This should be used to get more detailed information
 protocol NetExerciseInfo {
-    func getExerciseInfo() -> DataResponsePublisher<Page<ExerciseInfo>>
+    func getExerciseInfo(id: Int) -> DataResponsePublisher<ExerciseInfo>
 }
 
 extension Net: NetExerciseInfo {
-    func getExerciseInfo() -> DataResponsePublisher<Page<ExerciseInfo>> {
-        return AF.request(Router.getExerciseInfo)
+    func getExerciseInfo(id: Int) -> DataResponsePublisher<ExerciseInfo> {
+        return AF.request(Router.getExerciseInfo(id: id))
             .validate()
-            .publishDecodable(type: Page<ExerciseInfo>.self)
+            .publishDecodable(type: ExerciseInfo.self)
     }
 }
 
 // MARK: - Exercise
 
+/// This should be used to get general information such as long lists by categories
 protocol NetExercise {
-    func getExercise() -> DataResponsePublisher<Page<Exercise>>
+    func getExercise(category: ExerciseCategory?) -> DataResponsePublisher<Page<Exercise>>
 }
 
 extension Net: NetExercise {
-    func getExercise() -> DataResponsePublisher<Page<Exercise>> {
-        return AF.request(Router.getExercise)
+    func getExercise(category: ExerciseCategory?) -> DataResponsePublisher<Page<Exercise>> {
+        return AF.request(Router.getExercise(category: category))
             .validate()
             .publishDecodable(type: Page<Exercise>.self)
     }

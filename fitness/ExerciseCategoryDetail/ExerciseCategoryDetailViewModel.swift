@@ -11,11 +11,11 @@ import Combine
 
 class ExerciseCategoryDetailViewModel: ObservableObject {
 
-    @Published var exercises = [ExerciseInfo]()
+    @Published var exercises = [Exercise]()
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    let net: NetExerciseInfo = Net()
+    let net: NetExercise = Net()
 
     let category: ExerciseCategory
 
@@ -26,13 +26,14 @@ class ExerciseCategoryDetailViewModel: ObservableObject {
     }
 
     private func getListOfExercisesForCategory() {
-        net.getExerciseInfo()
+        net.getExercise(category: category)
             .result()
             .map({ result in
                 switch result {
                 case let .success(page):
                     return page.results
-                case .failure(_):
+                case .failure(let error):
+                    debugPrint(error)
                     return []
                 }
             })
