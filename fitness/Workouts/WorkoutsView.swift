@@ -19,7 +19,7 @@ struct WorkoutsView: View {
     var body: some View {
         List {
             ForEach(viewModel.workouts, id: \.id) { workout in
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: WorkoutDetailView(workoutId: workout.id)) {
                     RowView(title: workout.name, detail: workout.creationDate)
                 }
             }

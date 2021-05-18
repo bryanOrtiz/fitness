@@ -9,5 +9,8 @@
 import Foundation
 
 struct Day: Codable {
-
+    let id: Int
+    let training: Int
+    let description: String
+    let day: [Int]
 }
