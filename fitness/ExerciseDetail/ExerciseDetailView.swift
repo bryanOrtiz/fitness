@@ -21,12 +21,17 @@ struct ExerciseDetailView: View {
 
     // MARK: - UI
     var body: some View {
-        List {
-            DetailRowView(title: "Category", detail: viewModel.info.category.name)
-            DetailRowView(title: "Equipment", detail: viewModel.info.equipment.reduce("", { "\($0), \($1)" }))
-            DetailRowView(title: "Description", detail: viewModel.info.description)
-            DetailRowView(title: "Muscles", detail: viewModel.info.muscles.reduce("", { "\($0), \($1)" }))
-        }.navigationBarTitle(Text(viewModel.info.name)).background(Color.red)
+        GeometryReader { metrics in
+            List {
+                VStack(alignment: .center) {
+                    Text("Image").frame(alignment: .center)
+                }.frame(height: metrics.size.height * 0.3)
+                DetailRowView(title: "Category", detail: viewModel.info.category.name)
+                DetailRowView(title: "Equipment", detail: viewModel.info.equipment.reduce("", { "\($0), \($1.name)" }))
+                DetailRowView(title: "Description", detail: viewModel.info.description)
+                DetailRowView(title: "Muscles", detail: viewModel.info.muscles.reduce("", { "\($0), \($1.name)" }))
+            }.navigationBarTitle(Text(viewModel.info.name)).background(Color.red)
+        }
     }
 }
 

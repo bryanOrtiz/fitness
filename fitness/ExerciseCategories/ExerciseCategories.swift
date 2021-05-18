@@ -14,17 +14,14 @@ struct ExerciseCategories: View {
 
     var body: some View {
         List {
-            Section(header: Text("Categories").font(.largeTitle)) {
-                ForEach(exerciseViewModel.categories, id: \.id) { categories in
-                    NavigationLink(
-                        destination: ExerciseCategoryDetailView(category: categories),
-                        label: {
-                            Text(categories.name)
-                        })
-                }
+            ForEach(exerciseViewModel.categories, id: \.id) { categories in
+                NavigationLink(
+                    destination: ExerciseCategoryDetailView(category: categories),
+                    label: {
+                        Text(categories.name)
+                    })
             }
-
-        }
+        }.navigationBarTitle(Text("Categories"))
     }
 }
 

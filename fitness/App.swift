@@ -10,10 +10,13 @@ import SwiftUI
 
 struct App: View {
     var body: some View {
-        NavigationView {
-            TabView {
-                ExerciseCategories().tabItem { Text("Exercises") }
-            }
+        TabView {
+            NavigationView {
+                ExerciseCategories()
+            }.tabItem { Text("Exercises") }
+            NavigationView {
+                WorkoutsView()
+            }.tabItem { Text("Workouts") }
         }
     }
 }

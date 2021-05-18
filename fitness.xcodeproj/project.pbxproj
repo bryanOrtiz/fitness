@@ -40,6 +40,12 @@
 		783B19D22652047C008C1B45 /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19D12652047C008C1B45 /* ExerciseDetailView.swift */; };
 		783B19D626520580008C1B45 /* ExerciseDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19D526520580008C1B45 /* ExerciseDetailViewModel.swift */; };
 		783B19D826520A37008C1B45 /* DetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19D726520A37008C1B45 /* DetailRowView.swift */; };
+		783B19DA2652C844008C1B45 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19D92652C844008C1B45 /* WorkoutsView.swift */; };
+		783B19DD2652CCB8008C1B45 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19DC2652CCB8008C1B45 /* WorkoutsViewModel.swift */; };
+		783B19E02652CF43008C1B45 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19DF2652CF43008C1B45 /* RowView.swift */; };
+		783B19E226533005008C1B45 /* OAuthCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19E126533005008C1B45 /* OAuthCredential.swift */; };
+		783B19E42653303B008C1B45 /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19E32653303B008C1B45 /* OAuthAuthenticator.swift */; };
+		783B19E82653800D008C1B45 /* NetWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19E72653800D008C1B45 /* NetWorkout.swift */; };
 		787012F12640EC65007D5694 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F02640EC65007D5694 /* Net.swift */; };
 		787012F42640EDA6007D5694 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F32640EDA6007D5694 /* UserProfile.swift */; };
 		787012F62644EEB5007D5694 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F52644EEB5007D5694 /* Page.swift */; };
@@ -89,6 +95,12 @@
 		783B19D12652047C008C1B45 /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailView.swift; sourceTree = "<group>"; };
 		783B19D526520580008C1B45 /* ExerciseDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewModel.swift; sourceTree = "<group>"; };
 		783B19D726520A37008C1B45 /* DetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
+		783B19D92652C844008C1B45 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		783B19DC2652CCB8008C1B45 /* WorkoutsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewModel.swift; sourceTree = "<group>"; };
+		783B19DF2652CF43008C1B45 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		783B19E126533005008C1B45 /* OAuthCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthCredential.swift; sourceTree = "<group>"; };
+		783B19E32653303B008C1B45 /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
+		783B19E72653800D008C1B45 /* NetWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkout.swift; sourceTree = "<group>"; };
 		787012F02640EC65007D5694 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Net.swift; path = fitness/Net/Net.swift; sourceTree = SOURCE_ROOT; };
 		787012F32640EDA6007D5694 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		787012F52644EEB5007D5694 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -142,6 +154,23 @@
 				783B19D526520580008C1B45 /* ExerciseDetailViewModel.swift */,
 			);
 			path = ExerciseDetail;
+			sourceTree = "<group>";
+		};
+		783B19DB2652C849008C1B45 /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				783B19D92652C844008C1B45 /* WorkoutsView.swift */,
+				783B19DC2652CCB8008C1B45 /* WorkoutsViewModel.swift */,
+			);
+			path = Workouts;
+			sourceTree = "<group>";
+		};
+		783B19DE2652CF2F008C1B45 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				783B19DF2652CF43008C1B45 /* RowView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		787012F22640ED96007D5694 /* Models */ = {
@@ -207,6 +236,7 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
+				783B19DE2652CF2F008C1B45 /* Components */,
 				783B19C2265035F4008C1B45 /* App.swift */,
 				B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */,
 				B45F4AA7263F5FF80095AE10 /* Assets.xcassets */,
@@ -221,6 +251,7 @@
 				78701304264791BE007D5694 /* ViewModels */,
 				783B19D02652044C008C1B45 /* ExerciseDetail */,
 				783B19D726520A37008C1B45 /* DetailRowView.swift */,
+				783B19DB2652C849008C1B45 /* Workouts */,
 			);
 			path = fitness;
 			sourceTree = "<group>";
@@ -238,6 +269,9 @@
 			children = (
 				787012F02640EC65007D5694 /* Net.swift */,
 				783522E3264C2431000D79AF /* Router.swift */,
+				783B19E126533005008C1B45 /* OAuthCredential.swift */,
+				783B19E32653303B008C1B45 /* OAuthAuthenticator.swift */,
+				783B19E72653800D008C1B45 /* NetWorkout.swift */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -332,7 +366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint --config .swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -353,6 +387,7 @@
 				783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */,
 				783522E4264C2431000D79AF /* Router.swift in Sources */,
 				783B19C3265035F4008C1B45 /* App.swift in Sources */,
+				783B19DD2652CCB8008C1B45 /* WorkoutsViewModel.swift in Sources */,
 				783672282648D2210067B917 /* ExerciseInfo.swift in Sources */,
 				78701306264791CF007D5694 /* LicenseViewModel.swift in Sources */,
 				783672322648DAED0067B917 /* Muscle.swift in Sources */,
@@ -364,6 +399,7 @@
 				783B19D826520A37008C1B45 /* DetailRowView.swift in Sources */,
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,
 				783B19C526503900008C1B45 /* ExerciseCategories.swift in Sources */,
+				783B19E226533005008C1B45 /* OAuthCredential.swift in Sources */,
 				783B19C826503BCA008C1B45 /* ExerciseCategoriesViewModel.swift in Sources */,
 				783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */,
 				783522DC264B0BC3000D79AF /* Meal.swift in Sources */,
@@ -371,14 +407,18 @@
 				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
 				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
+				783B19E02652CF43008C1B45 /* RowView.swift in Sources */,
 				783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */,
 				787012FA2644F365007D5694 /* Language.swift in Sources */,
 				783B19CD26504DD3008C1B45 /* ExerciseCategoryDetailViewModel.swift in Sources */,
+				783B19DA2652C844008C1B45 /* WorkoutsView.swift in Sources */,
 				783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */,
 				7836722E2648D9210067B917 /* ExerciseCategory.swift in Sources */,
 				783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 				787012FC26458A5A007D5694 /* License.swift in Sources */,
+				783B19E82653800D008C1B45 /* NetWorkout.swift in Sources */,
+				783B19E42653303B008C1B45 /* OAuthAuthenticator.swift in Sources */,
 				783B19CB26504D40008C1B45 /* ExerciseCategoryDetailView.swift in Sources */,
 				783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */,
 				783522E8264CD0F5000D79AF /* Setting.swift in Sources */,

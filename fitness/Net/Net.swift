@@ -13,13 +13,43 @@ import Combine
 // MARK: - Base
 
 protocol NetBase {
-    var authorization: String { get }
     var baseURL: String { get }
+    var session: Session { get }
 }
 
 struct Net: NetBase {
-    let authorization = "Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e"
     let baseURL = "https://wger.de/api/v2/"
+
+    // Generally load from keychain if it exists
+    let credential = OAuthCredential(accessToken: "777955d928551a0f6798fb2ccf4de378eafa2ed1",
+                                     refreshToken: "777955d928551a0f6798fb2ccf4de378eafa2ed1",
+                                     userID: "u0",
+                                     expiration: Date(timeIntervalSinceNow: 60 * 60))
+
+    // Create the interceptor
+    let authenticator = OAuthAuthenticator()
+    let interceptor: AuthenticationInterceptor<OAuthAuthenticator>
+
+    let session: Session
+
+    // MARK: - Initializers
+    init() {
+        self.interceptor = AuthenticationInterceptor(authenticator: authenticator,
+                                                     credential: credential)
+        self.session = Session(
+//            configuration: config,
+//            delegate: <#T##SessionDelegate#>,
+//            rootQueue: <#T##DispatchQueue#>,
+//            startRequestsImmediately: <#T##Bool#>,
+//            requestQueue: <#T##DispatchQueue?#>,
+//            serializationQueue: <#T##DispatchQueue?#>,
+            interceptor: self.interceptor // ,
+//            serverTrustManager: <#T##ServerTrustManager?#>,
+//            redirectHandler: <#T##RedirectHandler?#>,
+//            cachedResponseHandler: <#T##CachedResponseHandler?#>,
+//            eventMonitors: <#T##[EventMonitor]#>
+        )
+    }
 }
 
 // MARK: Route
@@ -90,27 +120,6 @@ extension Net: NetSetting {
         return AF.request(Router.createSetting(set: set, exercise: exercise, reps: reps))
             .validate()
             .publishDecodable(type: Setting.self)
-    }
-}
-
-// MARK: - Workout
-
-protocol NetWorkout {
-    func getWorkout() -> DataResponsePublisher<Page<Workout>>
-
-    func createWorkout() -> DataResponsePublisher<Workout>
-}
-
-extension Net: NetWorkout {
-    func getWorkout() -> DataResponsePublisher<Page<Workout>> {
-        return AF.request(Router.getWorkout)
-            .validate()
-            .publishDecodable(type: Page<Workout>.self)
-    }
-    func createWorkout() -> DataResponsePublisher<Workout> {
-        return AF.request(Router.createWorkout)
-            .validate()
-            .publishDecodable(type: Workout.self)
     }
 }
 

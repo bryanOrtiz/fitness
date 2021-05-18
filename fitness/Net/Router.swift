@@ -128,9 +128,6 @@ enum Router: URLRequestConvertible {
         let url = baseURL.appendingPathComponent(path)
         var request = URLRequest(url: url)
         request.method = method
-        request.headers = [
-            HTTPHeader.authorization("Token de69a1643b4f99be3fb7387f26aab4cd19f9d73e")
-        ]
 
         switch self {
         case let .getExercise(category):
