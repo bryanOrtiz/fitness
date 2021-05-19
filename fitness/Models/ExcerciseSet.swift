@@ -9,4 +9,15 @@
 import Foundation
 
 struct ExcerciseSet: Codable {
+    let id: Int
+    let exerciseDay: Int
+    let sets: Int
+    let order: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case exerciseDay = "exerciseday"
+        case sets
+        case order
+    }
 }

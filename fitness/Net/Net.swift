@@ -19,6 +19,7 @@ protocol NetBase {
 
 struct Net: NetBase {
     let baseURL = "https://wger.de/api/v2/"
+    let imgBaseURL = "https://wger.de"
 
     // Generally load from keychain if it exists
     let credential = OAuthCredential(accessToken: "777955d928551a0f6798fb2ccf4de378eafa2ed1",

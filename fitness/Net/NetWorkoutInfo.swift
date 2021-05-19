@@ -9,8 +9,6 @@
 import Foundation
 import Alamofire
 
-// MARK: - Workout
-
 protocol NetWorkoutInfo {
     func getWorkout(id: Int) -> DataResponsePublisher<WorkoutInfo>
 }
