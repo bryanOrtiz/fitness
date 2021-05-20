@@ -23,9 +23,9 @@ class ImageViewModel: ObservableObject {
     init(imgURLString: String) {
         getImage(urlString: imgURLString)
     }
-    
+
     // MARK: - Network
-    
+
     private func getImage(urlString: String) {
         net.getImage(urlString: urlString)
             .result()
