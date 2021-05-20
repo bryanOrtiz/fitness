@@ -12,23 +12,26 @@ import AlamofireImage
 
 class ImageViewModel: ObservableObject {
 
+    // MARK: - Properties
     @Published var uiImage: AlamofireImage.Image?
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    let net: NetImage = Net()
+    private let net: NetImage = Net()
 
+    // MARK: - Initializers
     init(imgURLString: String) {
         getImage(urlString: imgURLString)
     }
-
-    func getImage(urlString: String) {
+    
+    // MARK: - Network
+    
+    private func getImage(urlString: String) {
         net.getImage(urlString: urlString)
             .result()
             .map { result in
                 switch result {
                 case let .success(image):
-                    debugPrint(image)
                     return image
                 case let .failure(error):
                     debugPrint("error: \(error)")

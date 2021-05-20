@@ -7,32 +7,35 @@
 //
 
 import SwiftUI
-import AlamofireImage
 
 struct CardView: View {
 
     // MARK: - Properties
     let title: String
-
-    @ObservedObject var viewModel: ImageViewModel
-
-    private var imageView: SwiftUI.Image?
-
-    // MARK: - Initializers
-    init(title: String, imgURLString: String) {
-        self.title = title
-        self.viewModel = ImageViewModel(imgURLString: imgURLString)
-    }
+    let imgURLString: String
 
     // MARK: - UI
     var body: some View {
-        VStack {
-            Text(title)
-            if let uiImage = self.viewModel.uiImage {
-                Image(uiImage: uiImage)
-            } else {
-                Image(systemName: "person")
+        GeometryReader { _ in
+            VStack {
+                Text(title)
+                    .padding(8)
+                ImageURLView(urlString: imgURLString,
+                             placeholder: { Text("loading") },
+                             imgClosure: { image in
+                                return image
+                                    .resizable()
+                                    .renderingMode(.template)
+                             })
+                    .scaledToFit()
+                    .foregroundColor(.blue)
+                    .padding(8)
             }
+            .background(
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.white)
+                    .shadow(color: .black, radius: 1, x: 0, y: 0))
+//            .frame(width: metrics.size.width * 0.5, height: metrics.size.width * 0.5)
         }
     }
 }

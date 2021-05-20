@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7822CFF1265602FE00A7A47F /* ImageURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFF0265602FE00A7A47F /* ImageURLView.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7822CFF0265602FE00A7A47F /* ImageURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLView.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				783B19DF2652CF43008C1B45 /* RowView.swift */,
 				783B19F22654B488008C1B45 /* CardView.swift */,
+				7822CFF0265602FE00A7A47F /* ImageURLView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				783522E0264B0E56000D79AF /* WeightEntry.swift in Sources */,
 				7836722E2648D9210067B917 /* ExerciseCategory.swift in Sources */,
 				783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */,
+				7822CFF1265602FE00A7A47F /* ImageURLView.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 				787012FC26458A5A007D5694 /* License.swift in Sources */,
 				783B19E82653800D008C1B45 /* NetWorkout.swift in Sources */,

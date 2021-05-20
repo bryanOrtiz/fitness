@@ -26,7 +26,8 @@ struct WorkoutDetailView: View {
                 Section(header: Text(day.daysOfTheWeek.day)) {
                     ForEach(day.sets) { set in
                         ForEach(set.exercises) { exerciseInfo in
-                            CardView(title: exerciseInfo.exercise.name, imgURLString: exerciseInfo.images[0].image)
+                            CardView(title: exerciseInfo.exercise.name,
+                                     imgURLString: exerciseInfo.images[0].image)
                         }
                     }
                 }
