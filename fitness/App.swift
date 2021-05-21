@@ -12,7 +12,7 @@ struct App: View {
     var body: some View {
         TabView {
             NavigationView {
-                ExerciseCategories()
+                ExerciseListView()
             }.tabItem { Text("Exercises") }
             NavigationView {
                 WorkoutsView()

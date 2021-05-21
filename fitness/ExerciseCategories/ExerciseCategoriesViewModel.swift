@@ -11,17 +11,25 @@ import Combine
 
 class ExerciseCategoriesViewModel: ObservableObject {
 
+    // MARK: - Properties
     @Published var categories = [ExerciseCategory]()
+    @Published var muscles = [Muscle]()
+    @Published var equipment = [Equipment]()
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    let net: NetExerciseCategory = Net()
+    private let net: NetExerciseCategory & NetMuscle & NetEquipment = Net()
+
+    // MARK: - Initializers
 
     init() {
         getCategories()
+        getMuscles()
+        getEquipment()
     }
 
-    func getCategories() {
+    // MARK: - Network
+    private func getCategories() {
         net.getExerciseCategory()
             .map({ response in
                 switch response.result {
@@ -33,6 +41,36 @@ class ExerciseCategoriesViewModel: ObservableObject {
                 return []
             })
             .assign(to: \.categories, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    private func getMuscles() {
+        net.getMuscle()
+            .map({ response in
+                switch response.result {
+                case let .success(page):
+                    return page.results
+                case .failure:
+                    break
+                }
+                return []
+            })
+            .assign(to: \.muscles, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    private func getEquipment() {
+        net.getEquipment()
+            .map({ response in
+                switch response.result {
+                case let .success(page):
+                    return page.results
+                case .failure:
+                    break
+                }
+                return []
+            })
+            .assign(to: \.equipment, on: self)
             .store(in: &cancellableSet)
     }
 }
