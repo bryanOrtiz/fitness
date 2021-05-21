@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7822CFF1265602FE00A7A47F /* ImageURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFF0265602FE00A7A47F /* ImageURLView.swift */; };
 		7822CFF626575D6700A7A47F /* ExerciseListFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFF526575D6700A7A47F /* ExerciseListFilteredView.swift */; };
+		7822CFF926581F8100A7A47F /* NutritionPlansListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFF826581F8100A7A47F /* NutritionPlansListView.swift */; };
+		7822CFFB26581F9700A7A47F /* NutrionPlansViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFFA26581F9700A7A47F /* NutrionPlansViewModel.swift */; };
+		7822CFFD265821EC00A7A47F /* NutritionPlanNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -74,6 +77,9 @@
 /* Begin PBXFileReference section */
 		7822CFF0265602FE00A7A47F /* ImageURLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLView.swift; sourceTree = "<group>"; };
 		7822CFF526575D6700A7A47F /* ExerciseListFilteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListFilteredView.swift; sourceTree = "<group>"; };
+		7822CFF826581F8100A7A47F /* NutritionPlansListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlansListView.swift; sourceTree = "<group>"; };
+		7822CFFA26581F9700A7A47F /* NutrionPlansViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrionPlansViewModel.swift; sourceTree = "<group>"; };
+		7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanNet.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -149,14 +155,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		783B19C626503BB0008C1B45 /* ExerciseCategories */ = {
+		7822CFF726581F6900A7A47F /* NutritionPlans */ = {
+			isa = PBXGroup;
+			children = (
+				7822CFF826581F8100A7A47F /* NutritionPlansListView.swift */,
+				7822CFFA26581F9700A7A47F /* NutrionPlansViewModel.swift */,
+				7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */,
+			);
+			path = NutritionPlans;
+			sourceTree = "<group>";
+		};
+		783B19C626503BB0008C1B45 /* ExerciseList */ = {
 			isa = PBXGroup;
 			children = (
 				783B19C426503900008C1B45 /* ExerciseListView.swift */,
 				783B19C726503BCA008C1B45 /* ExerciseCategoriesViewModel.swift */,
 				7822CFF526575D6700A7A47F /* ExerciseListFilteredView.swift */,
 			);
-			path = ExerciseCategories;
+			path = ExerciseList;
 			sourceTree = "<group>";
 		};
 		783B19C926504D12008C1B45 /* ExerciseCategoryDetail */ = {
@@ -271,21 +287,22 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
-				783B19ED26541EF4008C1B45 /* WorkoutDetail */,
-				783B19DE2652CF2F008C1B45 /* Components */,
 				783B19C2265035F4008C1B45 /* App.swift */,
 				B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */,
 				B45F4AA7263F5FF80095AE10 /* Assets.xcassets */,
-				783B19C626503BB0008C1B45 /* ExerciseCategories */,
+				783B19DE2652CF2F008C1B45 /* Components */,
 				783B19C926504D12008C1B45 /* ExerciseCategoryDetail */,
+				783B19D02652044C008C1B45 /* ExerciseDetail */,
+				783B19C626503BB0008C1B45 /* ExerciseList */,
 				B45F4AAF263F5FF80095AE10 /* Info.plist */,
 				B45F4AAC263F5FF80095AE10 /* LaunchScreen.storyboard */,
 				787012F22640ED96007D5694 /* Models */,
 				B45F4AB8264059B10095AE10 /* Net */,
+				7822CFF726581F6900A7A47F /* NutritionPlans */,
 				B45F4AA9263F5FF80095AE10 /* Preview Content */,
 				B45F4AA3263F5FF30095AE10 /* SceneDelegate.swift */,
 				78701304264791BE007D5694 /* ViewModels */,
-				783B19D02652044C008C1B45 /* ExerciseDetail */,
+				783B19ED26541EF4008C1B45 /* WorkoutDetail */,
 				783B19DB2652C849008C1B45 /* Workouts */,
 			);
 			path = fitness;
@@ -421,6 +438,7 @@
 				B45F4AA2263F5FF30095AE10 /* AppDelegate.swift in Sources */,
 				783B19D626520580008C1B45 /* ExerciseDetailViewModel.swift in Sources */,
 				783672262648D0D70067B917 /* SettingsWeightUnit.swift in Sources */,
+				7822CFFB26581F9700A7A47F /* NutrionPlansViewModel.swift in Sources */,
 				7822CFF626575D6700A7A47F /* ExerciseListFilteredView.swift in Sources */,
 				B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */,
 				783672222647A57E0067B917 /* DaysOfTheWeekViewModel.swift in Sources */,
@@ -444,8 +462,10 @@
 				783B19E226533005008C1B45 /* OAuthCredential.swift in Sources */,
 				783B19C826503BCA008C1B45 /* ExerciseCategoriesViewModel.swift in Sources */,
 				783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */,
+				7822CFFD265821EC00A7A47F /* NutritionPlanNet.swift in Sources */,
 				783B19EC26540DE6008C1B45 /* WorkoutInfo.swift in Sources */,
 				783522DC264B0BC3000D79AF /* Meal.swift in Sources */,
+				7822CFF926581F8100A7A47F /* NutritionPlansListView.swift in Sources */,
 				783B19FA2654D271008C1B45 /* ImageViewModel.swift in Sources */,
 				783B19EA26540D86008C1B45 /* NetWorkoutInfo.swift in Sources */,
 				783522E6264CCE2C000D79AF /* ExcerciseSet.swift in Sources */,

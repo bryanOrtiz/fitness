@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct NutritionPlan: Codable {
+struct NutritionPlan: Codable, Identifiable {
     let id: Int
     let creationDate: String
     let description: String

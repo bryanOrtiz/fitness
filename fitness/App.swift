@@ -17,6 +17,9 @@ struct App: View {
             NavigationView {
                 WorkoutsView()
             }.tabItem { Text("Workouts") }
+            NavigationView {
+                NutritionPlansListView()
+            }.tabItem { Text("Nutrition") }
         }
     }
 }
