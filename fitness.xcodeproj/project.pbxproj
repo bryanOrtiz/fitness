@@ -12,6 +12,10 @@
 		7822CFF926581F8100A7A47F /* NutritionPlansListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFF826581F8100A7A47F /* NutritionPlansListView.swift */; };
 		7822CFFB26581F9700A7A47F /* NutrionPlansViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFFA26581F9700A7A47F /* NutrionPlansViewModel.swift */; };
 		7822CFFD265821EC00A7A47F /* NutritionPlanNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */; };
+		7822D0002658AF8B00A7A47F /* BasalMetabolicRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822CFFF2658AF8B00A7A47F /* BasalMetabolicRate.swift */; };
+		7822D002265967E000A7A47F /* ImperialHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D001265967E000A7A47F /* ImperialHeightView.swift */; };
+		7822D00426597F9000A7A47F /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00326597F9000A7A47F /* WeightView.swift */; };
+		7822D0062659838700A7A47F /* AgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D0052659838700A7A47F /* AgeView.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -80,6 +84,10 @@
 		7822CFF826581F8100A7A47F /* NutritionPlansListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlansListView.swift; sourceTree = "<group>"; };
 		7822CFFA26581F9700A7A47F /* NutrionPlansViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrionPlansViewModel.swift; sourceTree = "<group>"; };
 		7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanNet.swift; sourceTree = "<group>"; };
+		7822CFFF2658AF8B00A7A47F /* BasalMetabolicRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasalMetabolicRate.swift; sourceTree = "<group>"; };
+		7822D001265967E000A7A47F /* ImperialHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialHeightView.swift; sourceTree = "<group>"; };
+		7822D00326597F9000A7A47F /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
+		7822D0052659838700A7A47F /* AgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeView.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -163,6 +171,17 @@
 				7822CFFC265821EC00A7A47F /* NutritionPlanNet.swift */,
 			);
 			path = NutritionPlans;
+			sourceTree = "<group>";
+		};
+		7822CFFE2658AF7000A7A47F /* BasalMetabolicRate */ = {
+			isa = PBXGroup;
+			children = (
+				7822CFFF2658AF8B00A7A47F /* BasalMetabolicRate.swift */,
+				7822D001265967E000A7A47F /* ImperialHeightView.swift */,
+				7822D00326597F9000A7A47F /* WeightView.swift */,
+				7822D0052659838700A7A47F /* AgeView.swift */,
+			);
+			path = BasalMetabolicRate;
 			sourceTree = "<group>";
 		};
 		783B19C626503BB0008C1B45 /* ExerciseList */ = {
@@ -287,6 +306,7 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
+				7822CFFE2658AF7000A7A47F /* BasalMetabolicRate */,
 				783B19C2265035F4008C1B45 /* App.swift */,
 				B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */,
 				B45F4AA7263F5FF80095AE10 /* Assets.xcassets */,
@@ -447,6 +467,7 @@
 				783B19C3265035F4008C1B45 /* App.swift in Sources */,
 				783B19DD2652CCB8008C1B45 /* WorkoutsViewModel.swift in Sources */,
 				783672282648D2210067B917 /* ExerciseInfo.swift in Sources */,
+				7822D0062659838700A7A47F /* AgeView.swift in Sources */,
 				78701306264791CF007D5694 /* LicenseViewModel.swift in Sources */,
 				783672322648DAED0067B917 /* Muscle.swift in Sources */,
 				783522DE264B0D35000D79AF /* MealItem.swift in Sources */,
@@ -459,7 +480,9 @@
 				783B19F82654C0F2008C1B45 /* NetImage.swift in Sources */,
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,
 				783B19C526503900008C1B45 /* ExerciseListView.swift in Sources */,
+				7822D00426597F9000A7A47F /* WeightView.swift in Sources */,
 				783B19E226533005008C1B45 /* OAuthCredential.swift in Sources */,
+				7822D0002658AF8B00A7A47F /* BasalMetabolicRate.swift in Sources */,
 				783B19C826503BCA008C1B45 /* ExerciseCategoriesViewModel.swift in Sources */,
 				783522DA264B0AAE000D79AF /* NutritionDiary.swift in Sources */,
 				7822CFFD265821EC00A7A47F /* NutritionPlanNet.swift in Sources */,
@@ -472,6 +495,7 @@
 				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
 				783B19F126541F24008C1B45 /* WorkoutDetailViewModel.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
+				7822D002265967E000A7A47F /* ImperialHeightView.swift in Sources */,
 				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
 				783B19E02652CF43008C1B45 /* RowView.swift in Sources */,
 				783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */,
