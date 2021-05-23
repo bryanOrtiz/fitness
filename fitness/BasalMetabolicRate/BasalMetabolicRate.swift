@@ -55,11 +55,20 @@ struct BasalMetabolicRate: View {
             WeightView(measurementSystem: selectedMeasurementSystem,
                        weightCalculated: { weight = $0 })
             Spacer()
-            DetailRowView(title: "Your BMR is:", detail: "\(bmr)")
-            Button("Calculate", action: calculate)
-            .background(RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(.green))
+            VStack {
+                HStack {
+                    Text("Your BMR is: ")
+                    Spacer()
+                    Text("\(bmr)")
+                        .font(.title)
+                }
+                Button("Calculate", action: calculate)
+                                .buttonStyle(PrimaryButtonStyle())
+                                .padding(16)
+            }
         }
+        .padding(16)
+        .navigationTitle("Basal Metabolic Rate")
     }
 
     // MARK: - Actions

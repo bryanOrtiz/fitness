@@ -16,6 +16,7 @@
 		7822D002265967E000A7A47F /* ImperialHeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D001265967E000A7A47F /* ImperialHeightView.swift */; };
 		7822D00426597F9000A7A47F /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00326597F9000A7A47F /* WeightView.swift */; };
 		7822D0062659838700A7A47F /* AgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D0052659838700A7A47F /* AgeView.swift */; };
+		7822D00A2659FE3200A7A47F /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -88,6 +89,7 @@
 		7822D001265967E000A7A47F /* ImperialHeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialHeightView.swift; sourceTree = "<group>"; };
 		7822D00326597F9000A7A47F /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		7822D0052659838700A7A47F /* AgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeView.swift; sourceTree = "<group>"; };
+		7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -182,6 +184,22 @@
 				7822D0052659838700A7A47F /* AgeView.swift */,
 			);
 			path = BasalMetabolicRate;
+			sourceTree = "<group>";
+		};
+		7822D0072659FDE200A7A47F /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				7822D0082659FDEC00A7A47F /* Button */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		7822D0082659FDEC00A7A47F /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		783B19C626503BB0008C1B45 /* ExerciseList */ = {
@@ -306,10 +324,10 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
-				7822CFFE2658AF7000A7A47F /* BasalMetabolicRate */,
 				783B19C2265035F4008C1B45 /* App.swift */,
 				B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */,
 				B45F4AA7263F5FF80095AE10 /* Assets.xcassets */,
+				7822CFFE2658AF7000A7A47F /* BasalMetabolicRate */,
 				783B19DE2652CF2F008C1B45 /* Components */,
 				783B19C926504D12008C1B45 /* ExerciseCategoryDetail */,
 				783B19D02652044C008C1B45 /* ExerciseDetail */,
@@ -321,6 +339,7 @@
 				7822CFF726581F6900A7A47F /* NutritionPlans */,
 				B45F4AA9263F5FF80095AE10 /* Preview Content */,
 				B45F4AA3263F5FF30095AE10 /* SceneDelegate.swift */,
+				7822D0072659FDE200A7A47F /* Styles */,
 				78701304264791BE007D5694 /* ViewModels */,
 				783B19ED26541EF4008C1B45 /* WorkoutDetail */,
 				783B19DB2652C849008C1B45 /* Workouts */,
@@ -497,6 +516,7 @@
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
 				7822D002265967E000A7A47F /* ImperialHeightView.swift in Sources */,
 				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
+				7822D00A2659FE3200A7A47F /* PrimaryButtonStyle.swift in Sources */,
 				783B19E02652CF43008C1B45 /* RowView.swift in Sources */,
 				783522D8264B08BE000D79AF /* NutritionPlanInfo.swift in Sources */,
 				787012FA2644F365007D5694 /* Language.swift in Sources */,

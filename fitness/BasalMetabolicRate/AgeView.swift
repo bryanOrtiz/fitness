@@ -13,7 +13,7 @@ struct AgeView: View {
     // MARK: - Properties
     let ageCalculated: (_ age: Double) -> Void
 
-    @State private var age = ""
+    @State private var age = "0"
 
     // MARK: - UI
     var body: some View {
