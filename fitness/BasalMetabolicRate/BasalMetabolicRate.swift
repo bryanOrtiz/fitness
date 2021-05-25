@@ -11,30 +11,31 @@ import SwiftUI
 enum MeasurementSystem: String, CaseIterable, Identifiable {
     case imperial = "Imperial"
     case metric = "Metric"
-
+    
     var id: String { self.rawValue }
 }
 
 private enum Gender: String, CaseIterable, Identifiable {
     case male = "Male"
     case female = "Female"
-
+    
     var id: String { self.rawValue }
 }
 
 struct BasalMetabolicRate: View {
-
+    
     // MARK: - Properties
-
+    
     @State private var selectedMeasurementSystem = MeasurementSystem.imperial
     @State private var selectedGender = Gender.male
     @State private var age: Double = 0
     @State private var height: Double = 0
     @State private var weight: Double = 0
     @State private var bmr: Double = 0
-
+    @State private var activityFactor: Double = 0
+    
     // MARK: - UI
-
+    
     var body: some View {
         VStack {
             Picker("Filter", selection: $selectedMeasurementSystem) {
@@ -54,6 +55,7 @@ struct BasalMetabolicRate: View {
                                heightCalculated: { height = $0 })
             WeightView(measurementSystem: selectedMeasurementSystem,
                        weightCalculated: { weight = $0 })
+            ActivityFactorView { activityFactor = $0.factorValue }
             Spacer()
             VStack {
                 HStack {
@@ -63,21 +65,21 @@ struct BasalMetabolicRate: View {
                         .font(.title)
                 }
                 Button("Calculate", action: calculate)
-                                .buttonStyle(PrimaryButtonStyle())
-                                .padding(16)
+                    .buttonStyle(PrimaryButtonStyle())
+                    .padding(16)
             }
         }
         .padding(16)
         .navigationTitle("Basal Metabolic Rate")
     }
-
+    
     // MARK: - Actions
-
+    
     func calculate() {
         if selectedGender == .male {
-            bmr = 4.799 * height + 13.397 * weight - 5.677 * age + 88.326
+            bmr = (4.799 * height + 13.397 * weight - 5.677 * age + 88.326) * activityFactor
         } else if selectedGender == .female {
-            bmr = 3.098 * height + 9.247 * weight - 4.33 * age + 447.593
+            bmr = (3.098 * height + 9.247 * weight - 4.33 * age + 447.593) * activityFactor
         }
     }
 }

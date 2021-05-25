@@ -23,7 +23,7 @@ struct WorkoutsView: View {
                     RowView(title: workout.name, detail: workout.creationDate)
                 }
             }
-        }
+        }.navigationTitle("Workouts")
     }
 }
 

@@ -17,6 +17,8 @@
 		7822D00426597F9000A7A47F /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00326597F9000A7A47F /* WeightView.swift */; };
 		7822D0062659838700A7A47F /* AgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D0052659838700A7A47F /* AgeView.swift */; };
 		7822D00A2659FE3200A7A47F /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */; };
+		7822D00C265B4D2000A7A47F /* ActivityFactorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00B265B4D2000A7A47F /* ActivityFactorView.swift */; };
+		7822D00E265B4F9D00A7A47F /* ActivityFactorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -90,6 +92,8 @@
 		7822D00326597F9000A7A47F /* WeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		7822D0052659838700A7A47F /* AgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeView.swift; sourceTree = "<group>"; };
 		7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		7822D00B265B4D2000A7A47F /* ActivityFactorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFactorView.swift; sourceTree = "<group>"; };
+		7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFactorItemView.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				7822D001265967E000A7A47F /* ImperialHeightView.swift */,
 				7822D00326597F9000A7A47F /* WeightView.swift */,
 				7822D0052659838700A7A47F /* AgeView.swift */,
+				7822D00B265B4D2000A7A47F /* ActivityFactorView.swift */,
+				7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */,
 			);
 			path = BasalMetabolicRate;
 			sourceTree = "<group>";
@@ -515,6 +521,7 @@
 				783B19F126541F24008C1B45 /* WorkoutDetailViewModel.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
 				7822D002265967E000A7A47F /* ImperialHeightView.swift in Sources */,
+				7822D00E265B4F9D00A7A47F /* ActivityFactorItemView.swift in Sources */,
 				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
 				7822D00A2659FE3200A7A47F /* PrimaryButtonStyle.swift in Sources */,
 				783B19E02652CF43008C1B45 /* RowView.swift in Sources */,
@@ -534,6 +541,7 @@
 				783B19CB26504D40008C1B45 /* ExerciseCategoryDetailView.swift in Sources */,
 				783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */,
 				783522E8264CD0F5000D79AF /* Setting.swift in Sources */,
+				7822D00C265B4D2000A7A47F /* ActivityFactorView.swift in Sources */,
 				7836722C2648D8270067B917 /* Equipment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
