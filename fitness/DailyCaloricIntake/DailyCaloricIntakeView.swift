@@ -9,15 +9,15 @@
 import SwiftUI
 
 struct DailyCaloricIntakeView: View {
-    
+
     // MARK: - Properties
-    
+
     @State private var bmr: Double = 0
     @State private var activityFactor: Double = 1.2
     @State private var total: Double = 0
-    
+
     // MARK: - UI
-    
+
     var body: some View {
         VStack {
             ScrollView {
@@ -42,9 +42,9 @@ struct DailyCaloricIntakeView: View {
         }
         .navigationTitle("Daily Caloric Intake")
     }
-    
+
     // MARK: - Actions
-    
+
     func calculate() {
         total = bmr * activityFactor
     }

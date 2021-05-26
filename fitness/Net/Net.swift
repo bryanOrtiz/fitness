@@ -17,39 +17,38 @@ protocol NetBase {
     var session: Session { get }
 }
 
-struct Net: NetBase {
+class Net: NetBase, ObservableObject {
     let baseURL = "https://wger.de/api/v2/"
     let imgBaseURL = "https://wger.de"
 
     // Generally load from keychain if it exists
-    let credential = OAuthCredential(accessToken: "777955d928551a0f6798fb2ccf4de378eafa2ed1",
-                                     refreshToken: "777955d928551a0f6798fb2ccf4de378eafa2ed1",
-                                     userID: "u0",
-                                     expiration: Date(timeIntervalSinceNow: 60 * 60))
+    @Published var credential: BasicAuthenticationCredential?
 
     // Create the interceptor
     let authenticator = OAuthAuthenticator()
-    let interceptor: AuthenticationInterceptor<OAuthAuthenticator>
 
-    let session: Session
+    @Published var interceptor: AuthenticationInterceptor<OAuthAuthenticator>?
+
+    @Published var session: Session
 
     // MARK: - Initializers
     init() {
-        self.interceptor = AuthenticationInterceptor(authenticator: authenticator,
-                                                     credential: credential)
-        self.session = Session(
-//            configuration: config,
-//            delegate: <#T##SessionDelegate#>,
-//            rootQueue: <#T##DispatchQueue#>,
-//            startRequestsImmediately: <#T##Bool#>,
-//            requestQueue: <#T##DispatchQueue?#>,
-//            serializationQueue: <#T##DispatchQueue?#>,
-            interceptor: self.interceptor // ,
-//            serverTrustManager: <#T##ServerTrustManager?#>,
-//            redirectHandler: <#T##RedirectHandler?#>,
-//            cachedResponseHandler: <#T##CachedResponseHandler?#>,
-//            eventMonitors: <#T##[EventMonitor]#>
-        )
+        self.session = Session()
+
+        self.$credential
+            .map { [weak self] credential in
+                guard let self = self, let cred = credential else { return nil }
+                return AuthenticationInterceptor(authenticator: self.authenticator,
+                                                 credential: cred)
+            }
+            .assign(to: &$interceptor)
+
+        self.$interceptor
+            .map { [unowned self] interceptor in
+                guard let interceptor = interceptor else { return self.session }
+                return Session(interceptor: interceptor)
+            }
+            .assign(to: &$session)
     }
 }
 

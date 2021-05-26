@@ -9,17 +9,26 @@
 import SwiftUI
 
 struct App: View {
+
+    @StateObject private var net = Net()
+
     var body: some View {
-        TabView {
+        if net.interceptor != nil {
+            TabView {
+                NavigationView {
+                    ExerciseListView()
+                }.tabItem { Text("Exercises") }
+                NavigationView {
+                    WorkoutsView()
+                }.tabItem { Text("Workouts") }
+                NavigationView {
+                    NutritionPlansListView()
+                }.tabItem { Text("Nutrition") }
+            }
+        } else {
             NavigationView {
-                ExerciseListView()
-            }.tabItem { Text("Exercises") }
-            NavigationView {
-                WorkoutsView()
-            }.tabItem { Text("Workouts") }
-            NavigationView {
-                NutritionPlansListView()
-            }.tabItem { Text("Nutrition") }
+                LoginView()
+            }.environmentObject(net)
         }
     }
 }

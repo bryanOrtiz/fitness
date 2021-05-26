@@ -10,13 +10,13 @@ import Foundation
 import Alamofire
 
 class OAuthAuthenticator: Authenticator {
-    func apply(_ credential: OAuthCredential, to urlRequest: inout URLRequest) {
+    func apply(_ credential: BasicAuthenticationCredential, to urlRequest: inout URLRequest) {
         urlRequest.headers.add(.authorization("Token \(credential.accessToken)"))
     }
 
-    func refresh(_ credential: OAuthCredential,
+    func refresh(_ credential: BasicAuthenticationCredential,
                  for session: Session,
-                 completion: @escaping (Result<OAuthCredential, Error>) -> Void) {
+                 completion: @escaping (Result<BasicAuthenticationCredential, Error>) -> Void) {
         // Refresh the credential using the refresh token...then call completion with the new credential.
         //
         // The new credential will automatically be stored within the `AuthenticationInterceptor`. Future requests will
@@ -35,7 +35,7 @@ class OAuthAuthenticator: Authenticator {
         // return response.statusCode == 401
     }
 
-    func isRequest(_ urlRequest: URLRequest, authenticatedWith credential: OAuthCredential) -> Bool {
+    func isRequest(_ urlRequest: URLRequest, authenticatedWith credential: BasicAuthenticationCredential) -> Bool {
 
         // If authentication server CANNOT invalidate credentials, return `true`
         return true

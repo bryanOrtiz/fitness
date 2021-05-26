@@ -21,6 +21,11 @@
 		7822D00E265B4F9D00A7A47F /* ActivityFactorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */; };
 		7822D012265D77C800A7A47F /* DailyCaloricIntakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D011265D77C800A7A47F /* DailyCaloricIntakeView.swift */; };
 		7822D014265DF03100A7A47F /* DailyCaloricIntakeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D013265DF03100A7A47F /* DailyCaloricIntakeLabelView.swift */; };
+		7822D017265DF35200A7A47F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D016265DF35200A7A47F /* LoginView.swift */; };
+		7822D019265DF3EA00A7A47F /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D018265DF3EA00A7A47F /* SecondaryButtonStyle.swift */; };
+		7822D01D265DFDEB00A7A47F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D01C265DFDEB00A7A47F /* LoginViewModel.swift */; };
+		7822D01F265E9D5D00A7A47F /* NetLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D01E265E9D5D00A7A47F /* NetLogin.swift */; };
+		7822D021265E9EF600A7A47F /* BasicAuthenticationCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D020265E9EF600A7A47F /* BasicAuthenticationCredential.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -98,6 +103,11 @@
 		7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFactorItemView.swift; sourceTree = "<group>"; };
 		7822D011265D77C800A7A47F /* DailyCaloricIntakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCaloricIntakeView.swift; sourceTree = "<group>"; };
 		7822D013265DF03100A7A47F /* DailyCaloricIntakeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCaloricIntakeLabelView.swift; sourceTree = "<group>"; };
+		7822D016265DF35200A7A47F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7822D018265DF3EA00A7A47F /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
+		7822D01C265DFDEB00A7A47F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7822D01E265E9D5D00A7A47F /* NetLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetLogin.swift; sourceTree = "<group>"; };
+		7822D020265E9EF600A7A47F /* BasicAuthenticationCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAuthenticationCredential.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -206,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				7822D0092659FE3200A7A47F /* PrimaryButtonStyle.swift */,
+				7822D018265DF3EA00A7A47F /* SecondaryButtonStyle.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -228,6 +239,16 @@
 				7822D00D265B4F9D00A7A47F /* ActivityFactorItemView.swift */,
 			);
 			path = ActivityFactor;
+			sourceTree = "<group>";
+		};
+		7822D015265DF33E00A7A47F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7822D016265DF35200A7A47F /* LoginView.swift */,
+				7822D01C265DFDEB00A7A47F /* LoginViewModel.swift */,
+				7822D01E265E9D5D00A7A47F /* NetLogin.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		783B19C626503BB0008C1B45 /* ExerciseList */ = {
@@ -318,6 +339,7 @@
 				783522D1264AF8C3000D79AF /* WeightUnit.swift */,
 				783522E9264CD30E000D79AF /* Workout.swift */,
 				783B19EB26540DE6008C1B45 /* WorkoutInfo.swift */,
+				7822D020265E9EF600A7A47F /* BasicAuthenticationCredential.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +374,7 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
+				7822D015265DF33E00A7A47F /* Login */,
 				783B19C2265035F4008C1B45 /* App.swift */,
 				B45F4AA1263F5FF30095AE10 /* AppDelegate.swift */,
 				B45F4AA7263F5FF80095AE10 /* Assets.xcassets */,
@@ -503,9 +526,11 @@
 				7836722A2648D75F0067B917 /* Exercise.swift in Sources */,
 				783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */,
 				B45F4AA2263F5FF30095AE10 /* AppDelegate.swift in Sources */,
+				7822D01F265E9D5D00A7A47F /* NetLogin.swift in Sources */,
 				783B19D626520580008C1B45 /* ExerciseDetailViewModel.swift in Sources */,
 				783672262648D0D70067B917 /* SettingsWeightUnit.swift in Sources */,
 				7822D014265DF03100A7A47F /* DailyCaloricIntakeLabelView.swift in Sources */,
+				7822D017265DF35200A7A47F /* LoginView.swift in Sources */,
 				7822CFFB26581F9700A7A47F /* NutrionPlansViewModel.swift in Sources */,
 				7822CFF626575D6700A7A47F /* ExerciseListFilteredView.swift in Sources */,
 				B45F4AA4263F5FF30095AE10 /* SceneDelegate.swift in Sources */,
@@ -517,8 +542,11 @@
 				783672282648D2210067B917 /* ExerciseInfo.swift in Sources */,
 				7822D0062659838700A7A47F /* AgeView.swift in Sources */,
 				78701306264791CF007D5694 /* LicenseViewModel.swift in Sources */,
+				7822D021265E9EF600A7A47F /* BasicAuthenticationCredential.swift in Sources */,
 				783672322648DAED0067B917 /* Muscle.swift in Sources */,
+				7822D019265DF3EA00A7A47F /* SecondaryButtonStyle.swift in Sources */,
 				783522DE264B0D35000D79AF /* MealItem.swift in Sources */,
+				7822D01D265DFDEB00A7A47F /* LoginViewModel.swift in Sources */,
 				783672202647A4300067B917 /* LanguageViewModel.swift in Sources */,
 				783522E2264B1ACB000D79AF /* Day.swift in Sources */,
 				783B19EF26541F0D008C1B45 /* WorkoutDetailView.swift in Sources */,

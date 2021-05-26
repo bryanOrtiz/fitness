@@ -11,32 +11,32 @@ import SwiftUI
 enum MeasurementSystem: String, CaseIterable, Identifiable {
     case imperial = "Imperial"
     case metric = "Metric"
-    
+
     var id: String { self.rawValue }
 }
 
 private enum Gender: String, CaseIterable, Identifiable {
     case male = "Male"
     case female = "Female"
-    
+
     var id: String { self.rawValue }
 }
 
 struct BasalMetabolicRate: View {
-    
+
     // MARK: - Properties
     @Binding var bmr: Double
-    
+
     @State private var selectedMeasurementSystem = MeasurementSystem.imperial
     @State private var selectedGender = Gender.male
     @State private var age: Double = 0
     @State private var height: Double = 0
     @State private var weight: Double = 0
-    
+
     @State private var isExpanded = false
-    
+
     // MARK: - UI
-    
+
     var body: some View {
         DisclosureGroup(
             isExpanded: $isExpanded,
@@ -81,9 +81,9 @@ struct BasalMetabolicRate: View {
             }
         )
     }
-    
+
     // MARK: - Actions
-    
+
     func calculate() {
         if selectedGender == .male {
             bmr = (4.799 * height + 13.397 * weight - 5.677 * age + 88.326)
