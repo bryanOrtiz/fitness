@@ -12,7 +12,8 @@ struct WeightView: View {
 
     // MARK: - Properties
     let measurementSystem: MeasurementSystem
-    let weightCalculated: (_ weight: Double) -> Void
+//    let weightCalculated: (_ weight: Double) -> Void
+    @Binding var weight: Double
 
     @State private var pounds = Measurement(value: 0,
                                             unit: UnitMass.pounds)
@@ -37,7 +38,8 @@ struct WeightView: View {
                     pounds = Measurement(value: val,
                                          unit: UnitMass.pounds)
                     let weightKilograms = pounds.converted(to: UnitMass.kilograms)
-                    weightCalculated(weightKilograms.value)
+//                    weightCalculated(weightKilograms.value)
+                    weight = weightKilograms.value
                 })
         } else {
             weightTest = Binding<String>(
@@ -46,7 +48,8 @@ struct WeightView: View {
                     guard !measurementStr.isEmpty, let val = Double(measurementStr) else { return }
                     kilograms = Measurement(value: val,
                                          unit: UnitMass.pounds)
-                    weightCalculated(kilograms.value)
+//                    weightCalculated(kilograms.value)
+                    weight = kilograms.value
                 })
         }
 
@@ -61,11 +64,5 @@ struct WeightView: View {
                 Text(measurementSystem == .imperial ? UnitMass.pounds.symbol : UnitMass.kilograms.symbol)
             }
         }
-    }
-}
-
-struct ImperialWeightView_Previews: PreviewProvider {
-    static var previews: some View {
-        WeightView(measurementSystem: MeasurementSystem.imperial, weightCalculated: { _ in })
     }
 }

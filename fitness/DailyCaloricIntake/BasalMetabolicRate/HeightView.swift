@@ -1,5 +1,5 @@
 //
-//  ImperialHeightView.swift
+//  HeightView.swift
 //  fitness
 //
 //  Created by Bryan Ortiz on 5/22/21.
@@ -8,28 +8,28 @@
 
 import SwiftUI
 
-struct ImperialHeightView: View {
-
+struct HeightView: View {
+    
     // MARK: - Properties
     let measurementSystem: MeasurementSystem
-    let heightCalculated: (_ height: Double) -> Void
-
+    @Binding var height: Double
+    
     @State private var feet = Measurement(value: 0,
                                           unit: UnitLength.feet)
     @State private var inches = Measurement(value: 0,
                                             unit: UnitLength.inches)
     @State private var centimeters = Measurement(value: 0,
-                                            unit: UnitLength.centimeters)
-
+                                                 unit: UnitLength.centimeters)
+    
     private let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 0
         return formatter
     }()
-
+    
     // MARK: - UI
     var body: some View {
-
+        
         let feetBinding = Binding<String>(
             get: { self.formatter.string(for: self.feet.value) ?? "" },
             set: { measurementStr in
@@ -38,7 +38,7 @@ struct ImperialHeightView: View {
                                         unit: UnitLength.feet)
                 calculateInches()
             })
-
+        
         let inchesBinding = Binding<String>(
             get: { self.formatter.string(for: self.inches.value) ?? "" },
             set: { measurementStr in
@@ -47,7 +47,7 @@ struct ImperialHeightView: View {
                                           unit: UnitLength.inches)
                 calculateInches()
             })
-
+        
         let centimetersBinding = Binding<String>(
             get: {
                 self.formatter.string(for: self.inches.value) ?? ""
@@ -55,10 +55,10 @@ struct ImperialHeightView: View {
             set: { measurementStr in
                 guard !measurementStr.isEmpty, let val = Double(measurementStr) else { return }
                 self.centimeters = Measurement(value: val,
-                                          unit: UnitLength.centimeters)
-                heightCalculated(self.centimeters.value)
+                                               unit: UnitLength.centimeters)
+                height = centimeters.value
             })
-
+        
         return VStack(alignment: .leading) {
             Text("Height")
                 .font(.callout)
@@ -91,18 +91,12 @@ struct ImperialHeightView: View {
             }
         }
     }
-
+    
     // MARK: - Actions
     private func calculateInches() {
         let feetToInches = feet.converted(to: UnitLength.inches)
         let totalInches = feetToInches + inches
         let heightCentimeters = totalInches.converted(to: UnitLength.centimeters)
-        heightCalculated(heightCentimeters.value)
-    }
-}
-
-struct ImperialHeightView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImperialHeightView(measurementSystem: .imperial, heightCalculated: { _ in })
+        height = heightCentimeters.value
     }
 }

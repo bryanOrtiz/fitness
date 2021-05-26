@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ActivityFactorItemView: View {
-    
+
     // MARK: - Properties
     let factor: ActivityFactor
     @Binding var isSelected: Bool
-    
+
     // MARK: - UI
     var body: some View {
         Toggle(isOn: $isSelected) {

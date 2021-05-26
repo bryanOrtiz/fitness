@@ -14,9 +14,9 @@ enum ActivityFactor: String, CaseIterable, Identifiable {
     case moderate
     case high
     case extraHigh
-    
+
     var id: String { "\(self.rawValue)" }
-    
+
     var factorValue: Double {
         switch self {
         case .sedentary:
@@ -31,7 +31,7 @@ enum ActivityFactor: String, CaseIterable, Identifiable {
             return 1.9
         }
     }
-    
+
     var title: String {
         switch self {
         case .sedentary:
@@ -46,7 +46,7 @@ enum ActivityFactor: String, CaseIterable, Identifiable {
             return "Extra High"
         }
     }
-    
+
     var detail: String {
         switch self {
         case .sedentary:
@@ -61,23 +61,23 @@ enum ActivityFactor: String, CaseIterable, Identifiable {
             return "very hard exercise/sports & a physical job"
         }
     }
-    
+
 }
 
 struct ActivityFactorView: View {
-    
+
     // MARK: - Properties
-    let didSelectActivityFactor: (_ factor: ActivityFactor) -> Void
+    @Binding var activityFactor: Double
     @State private var afExpanded = false
-    
+
     @State private var sedantaryIsActive = true
     @State private var lightIsActive = false
     @State private var moderateIsActive = false
     @State private var highIsActive = false
     @State private var extraHighIsActive = false
-    
+
     // MARK: - UI
-    
+
     func bindingGetter(factor: ActivityFactor) -> Bool {
         switch factor {
         case .sedentary:
@@ -92,12 +92,10 @@ struct ActivityFactorView: View {
             return extraHighIsActive
         }
     }
-    
+
     func bindingSetter(factor: ActivityFactor,
                        isOn: Bool) {
-        if isOn {
-            didSelectActivityFactor(factor)
-        }
+        if isOn { activityFactor = factor.factorValue }
         switch factor {
         case .sedentary:
             sedantaryIsActive = isOn
@@ -136,10 +134,10 @@ struct ActivityFactorView: View {
             sedantaryIsActive = false
         }
     }
-    
+
     var body: some View {
         DisclosureGroup(isExpanded: $afExpanded) {
-            LazyVStack(alignment: .leading) {
+            LazyVStack {
                 ForEach(ActivityFactor.allCases) { factor in
                     let binding = Binding<Bool> {
                         return bindingGetter(factor: factor)
@@ -150,14 +148,12 @@ struct ActivityFactorView: View {
                 }
             }
         } label: {
-            Text("Activity Factor")
-                .font(.title)
+            DailyCaloricIntakeLabelView(title: "Activity Factor",
+                                        description: "The physical activity level (PAL) is a factor used to to " +
+                                            "express the additional physical activity and is used to calculate the " +
+                                            "total energy required per day.",
+                                        valueTitle: "Your AF is:",
+                                        valueText: "\(activityFactor)")
         }
-    }
-}
-
-struct ActivityFactorView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActivityFactorView(didSelectActivityFactor: { _ in })
     }
 }
