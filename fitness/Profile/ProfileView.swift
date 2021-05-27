@@ -11,12 +11,23 @@ import SwiftUI
 struct ProfileView: View {
 
     @EnvironmentObject private var deps: AppDeps
+    @StateObject private var viewModel = ProfileViewModel()
 
     // MARK: - UI
 
     var body: some View {
-        Button("Log Out", action: logOut)
-            .buttonStyle(SecondaryButtonStyle())
+        ScrollView {
+            LazyVStack {
+                Text("UserId: \(viewModel.profile?.user ?? 0)")
+                Button("Log Out", action: logOut)
+                    .buttonStyle(SecondaryButtonStyle())
+            }
+        }
+        .navigationBarTitle("Profile")
+        .onAppear {
+            viewModel.net = deps.net
+            viewModel.getProfile()
+        }
     }
 
     // MARK: - Actions

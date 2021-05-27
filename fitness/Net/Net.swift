@@ -189,20 +189,6 @@ extension Net: NetLicense {
     }
 }
 
-// MARK: - User Profile
-
-protocol NetUserProfile {
-    func getUserProfile() -> DataResponsePublisher<Page<UserProfile>>
-}
-
-extension Net: NetUserProfile {
-    func getUserProfile() -> DataResponsePublisher<Page<UserProfile>> {
-        return AF.request(Router.getUserProfile)
-            .validate()
-            .publishDecodable(type: Page<UserProfile>.self)
-    }
-}
-
 // MARK: - Repition Unit
 
 protocol NetSettingRepetitionUnit {

@@ -21,9 +21,9 @@ struct UserProfile: Codable {
     let lastWorkoutNotification: String?
     let notificationLanguage: Int
     let timerActive: Bool
-    let age: String?
+    let age: Int?
     let birthdate: String?
-    let height: String?
+    let height: Int?
     let gender: String
     let sleepHours: Int
     let workHours: Int
