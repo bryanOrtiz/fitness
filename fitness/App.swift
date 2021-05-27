@@ -7,29 +7,55 @@
 //
 
 import SwiftUI
+import Combine
 
 struct App: View {
 
     @StateObject private var net = Net()
+    @StateObject private var keychainService = KeychainService()
+
+    private var cancellableSet: Set<AnyCancellable> = []
 
     var body: some View {
-        if net.interceptor != nil {
-            TabView {
-                NavigationView {
-                    ExerciseListView()
-                }.tabItem { Text("Exercises") }
-                NavigationView {
-                    WorkoutsView()
-                }.tabItem { Text("Workouts") }
-                NavigationView {
-                    NutritionPlansListView()
-                }.tabItem { Text("Nutrition") }
-            }
-        } else {
-            NavigationView {
+        NavigationView {
+            if net.interceptor != nil {
+                TabView {
+                    ExerciseListView().tabItem { Text("Exercises") }
+                    WorkoutsView().tabItem { Text("Workouts") }
+                    NutritionPlansListView().tabItem { Text("Nutrition") }
+                }
+            } else {
                 LoginView()
-            }.environmentObject(net)
-        }
+            }
+        }.environmentObject(net)
+        .onAppear(perform: {
+            net.$credential
+                .compactMap({ $0 })
+                .flatMap { credential in
+                    return keychainService.storeGenericPasswordFor(account: "",
+                                                                   service: "",
+                                                                   password: credential.accessToken)
+                }
+                .sink { _ in
+                    debugPrint("error: error")
+                } receiveValue: { _ in
+                    debugPrint("it worked???")
+                }
+                .store(in: &cancellableSet)
+
+//                .compactMap { credential -> AnyPublisher<Void, KeychainWrapperError>? in
+//                    guard let credential = credential else { return nil }
+//                    return keychainService.storeGenericPasswordFor(account: <#T##String#>,
+//                                                                   service: <#T##String#>,
+//                                                                   password: <#T##String#>)
+//                }
+
+        })
+    }
+
+    // MARK: - Actions
+    func storeToken() {
+
     }
 }
 

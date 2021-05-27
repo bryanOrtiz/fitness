@@ -29,7 +29,6 @@ class LoginViewModel: ObservableObject {
                 switch result {
                 case let .success(token):
                     self.net.credential = token
-                    debugPrint("self.net.credential: \(self.net.credential)")
                     return token
                 case let .failure(error):
                     debugPrint("error: \(error)")

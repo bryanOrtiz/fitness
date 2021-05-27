@@ -13,23 +13,23 @@ class WorkoutsViewModel: ObservableObject {
 
     // MARK: - Properties
     @Published var workouts = [Workout]()
+    @Published var net: NetWorkout!
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    let net: NetWorkout & NetDay = Net()
-
     // MARK: - Initializers
     init() {
-//        test()
         getWorkouts()
-//        psuedoGetWorkouts()
     }
 
     // MARK: - Network
 
     func getWorkouts() {
-        net.getWorkout()
-            .result()
+        $net.compactMap({ $0 })
+            .flatMap { net in
+                return net.getWorkout()
+                    .result()
+            }
             .map({ result in
                 switch result {
                 case let .success(page):

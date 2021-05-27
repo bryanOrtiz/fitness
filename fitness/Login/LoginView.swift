@@ -11,7 +11,7 @@ import SwiftUI
 struct LoginView: View {
 
     // MARK: - Properties
-    @EnvironmentObject private var net: Net
+    @EnvironmentObject private var deps: AppDeps
     @StateObject private var viewModel = LoginViewModel()
 
     @State private var email = ""
@@ -36,7 +36,7 @@ struct LoginView: View {
             Spacer()
         }.padding([.leading, .trailing], 16)
         .onAppear(perform: {
-            viewModel.net = net
+            viewModel.net = deps.net
         })
     }
 

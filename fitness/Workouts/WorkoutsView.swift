@@ -12,7 +12,8 @@ struct WorkoutsView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var viewModel = WorkoutsViewModel()
+    @EnvironmentObject private var deps: AppDeps
+    @StateObject var viewModel = WorkoutsViewModel()
 
     // MARK: - UI
 
@@ -24,6 +25,9 @@ struct WorkoutsView: View {
                 }
             }
         }.navigationTitle("Workouts")
+        .onAppear(perform: {
+            viewModel.net = deps.net
+        })
     }
 }
 

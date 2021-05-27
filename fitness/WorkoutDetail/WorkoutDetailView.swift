@@ -11,12 +11,9 @@ import SwiftUI
 struct WorkoutDetailView: View {
 
     // MARK: - Properties
-    @ObservedObject var viewModel: WorkoutDetailViewModel
-
-    // MARK: - Initializers
-    init(workoutId: Int) {
-        self.viewModel = WorkoutDetailViewModel(workoutId: workoutId)
-    }
+    @EnvironmentObject private var deps: AppDeps
+    @StateObject var viewModel = WorkoutDetailViewModel()
+    let workoutId: Int
 
     // MARK: - UI
 
@@ -45,6 +42,10 @@ struct WorkoutDetailView: View {
                                     debugPrint("editing")
                                 })
         )
+        .onAppear(perform: {
+            viewModel.net = deps.net
+            viewModel.getWorkoutInfo(id: workoutId)
+        })
     }
 }
 

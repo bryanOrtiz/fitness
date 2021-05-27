@@ -14,21 +14,18 @@ class WorkoutDetailViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var workout: WorkoutInfo?
+    @Published var net: NetWorkoutInfo!
 
     private var cancellableSet: Set<AnyCancellable> = []
-
-    let net: NetWorkoutInfo = Net()
-
-    // MARK: - Initializers
-    init(workoutId: Int) {
-        getWorkoutInfo(id: workoutId)
-    }
 
     // MARK: - Network
 
     func getWorkoutInfo(id: Int) {
-        net.getWorkout(id: id)
-            .result()
+        $net.compactMap({ $0 })
+            .flatMap { net in
+                return net.getWorkout(id: id)
+                    .result()
+            }
             .map({ result in
                 switch result {
                 case let .success(workout):
