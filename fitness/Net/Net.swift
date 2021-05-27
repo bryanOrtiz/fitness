@@ -44,8 +44,8 @@ class Net: NetBase, ObservableObject {
             .assign(to: &$interceptor)
 
         self.$interceptor
-            .map { [unowned self] interceptor in
-                guard let interceptor = interceptor else { return self.session }
+            .map { interceptor in
+                guard let interceptor = interceptor else { return Session() }
                 return Session(interceptor: interceptor)
             }
             .assign(to: &$session)

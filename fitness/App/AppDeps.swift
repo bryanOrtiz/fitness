@@ -18,6 +18,8 @@ class AppDeps: ObservableObject {
 
     private var cancellableSet: Set<AnyCancellable> = []
 
+    // MARK: - State Handlers
+
     func observeLoginState() {
         net.$interceptor
             .map { inteceptor -> Bool in
@@ -29,8 +31,10 @@ class AppDeps: ObservableObject {
 
     func storeCredentials() {
         net.$credential
-            .compactMap({ $0 })
-            .flatMap { [unowned self] credential in
+            .flatMap { [unowned self] credential -> AnyPublisher<Void, KeychainWrapperError> in
+                guard let credential = credential else {
+                    return keychainService.deleteGenericPasswordFor(account: "fitness", service: "retrievePassword")
+                }
                 return keychainService.storeGenericPasswordFor(account: "fitness",
                                                                service: "retrievePassword",
                                                                password: credential.accessToken)
@@ -66,5 +70,9 @@ class AppDeps: ObservableObject {
                 net.credential = credential
             }
             .store(in: &cancellableSet)
+    }
+
+    func logOut() {
+        net.credential = nil
     }
 }

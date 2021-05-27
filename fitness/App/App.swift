@@ -22,6 +22,7 @@ struct App: View {
                     ExerciseListView().tabItem { Text("Exercises") }
                     WorkoutsView().tabItem { Text("Workouts") }
                     NutritionPlansListView().tabItem { Text("Nutrition") }
+                    ProfileView().tabItem { Text("Profile") }
                 }
             } else {
                 LoginView()

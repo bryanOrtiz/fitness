@@ -75,6 +75,7 @@
 		783B19FA2654D271008C1B45 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B19F92654D271008C1B45 /* ImageViewModel.swift */; };
 		783E6F64265ED483009FE21A /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783E6F63265ED483009FE21A /* KeychainService.swift */; };
 		783E6F67265F46E4009FE21A /* AppDeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783E6F66265F46E4009FE21A /* AppDeps.swift */; };
+		783E6F6A265FF565009FE21A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783E6F69265FF565009FE21A /* ProfileView.swift */; };
 		787012F12640EC65007D5694 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F02640EC65007D5694 /* Net.swift */; };
 		787012F42640EDA6007D5694 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F32640EDA6007D5694 /* UserProfile.swift */; };
 		787012F62644EEB5007D5694 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787012F52644EEB5007D5694 /* Page.swift */; };
@@ -158,6 +159,7 @@
 		783B19F92654D271008C1B45 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		783E6F63265ED483009FE21A /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		783E6F66265F46E4009FE21A /* AppDeps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDeps.swift; sourceTree = "<group>"; };
+		783E6F69265FF565009FE21A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		787012F02640EC65007D5694 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Net.swift; path = fitness/Net/Net.swift; sourceTree = SOURCE_ROOT; };
 		787012F32640EDA6007D5694 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		787012F52644EEB5007D5694 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -331,6 +333,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		783E6F68265FF4FE009FE21A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				783E6F69265FF565009FE21A /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		787012F22640ED96007D5694 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +422,7 @@
 				B45F4AB8264059B10095AE10 /* Net */,
 				7822CFF726581F6900A7A47F /* NutritionPlans */,
 				B45F4AA9263F5FF80095AE10 /* Preview Content */,
+				783E6F68265FF4FE009FE21A /* Profile */,
 				7822D0072659FDE200A7A47F /* Styles */,
 				78701304264791BE007D5694 /* ViewModels */,
 				783B19ED26541EF4008C1B45 /* WorkoutDetail */,
@@ -618,6 +629,7 @@
 				783522D4264AF9A0000D79AF /* IngredientWeightUnit.swift in Sources */,
 				783522E8264CD0F5000D79AF /* Setting.swift in Sources */,
 				7822D00C265B4D2000A7A47F /* ActivityFactorView.swift in Sources */,
+				783E6F6A265FF565009FE21A /* ProfileView.swift in Sources */,
 				7836722C2648D8270067B917 /* Equipment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
