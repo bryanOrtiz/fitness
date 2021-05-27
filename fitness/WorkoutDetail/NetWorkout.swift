@@ -15,6 +15,8 @@ protocol NetWorkout {
     func getWorkout() -> DataResponsePublisher<Page<Workout>>
 
     func createWorkout() -> DataResponsePublisher<Workout>
+
+    func editWorkout(id: Int, name: String, description: String) -> DataResponsePublisher<Workout>
 }
 
 extension Net: NetWorkout {
@@ -25,6 +27,14 @@ extension Net: NetWorkout {
     }
     func createWorkout() -> DataResponsePublisher<Workout> {
         return AF.request(Router.createWorkout)
+            .validate()
+            .publishDecodable(type: Workout.self)
+    }
+    func editWorkout(id: Int, name: String, description: String) -> DataResponsePublisher<Workout> {
+        return session.request(self.baseURL + "workout/\(id)/",
+                               method: .patch,
+                               parameters: ["name": name, "description": description],
+                               encoder: JSONParameterEncoder.default)
             .validate()
             .publishDecodable(type: Workout.self)
     }

@@ -14,6 +14,7 @@ struct WorkoutDetailView: View {
     @EnvironmentObject private var deps: AppDeps
     @StateObject var viewModel = WorkoutDetailViewModel()
     let workoutId: Int
+    @State private var isPresentingSheet = false
 
     // MARK: - UI
 
@@ -39,13 +40,17 @@ struct WorkoutDetailView: View {
         .navigationBarTitle(viewModel.workout?.workout.name ?? "No Title")
         .navigationBarItems(trailing:
                                 Button("Edit", action: {
-                                    debugPrint("editing")
+                                    isPresentingSheet.toggle()
                                 })
         )
         .onAppear(perform: {
             viewModel.net = deps.net
             viewModel.getWorkoutInfo(id: workoutId)
         })
+        .sheet(isPresented: $isPresentingSheet) {
+            EditWorkoutDetailView()
+                .environmentObject(viewModel)
+        }
     }
 }
 

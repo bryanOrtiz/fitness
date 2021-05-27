@@ -14,7 +14,7 @@ class WorkoutDetailViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var workout: WorkoutInfo?
-    @Published var net: NetWorkoutInfo!
+    @Published var net: (NetWorkoutInfo & NetWorkout)!
 
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -36,6 +36,25 @@ class WorkoutDetailViewModel: ObservableObject {
                 }
             })
             .assign(to: \.workout, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    func editWorkout(name: String,
+                     description: String,
+                     completion: @escaping () -> Void) {
+        net.editWorkout(id: workout!.workout.id, name: name, description: description)
+            .result()
+            .map({ result -> Void in
+                switch result {
+                case let .success(workout):
+                    return self.getWorkoutInfo(id: workout.id)
+                case let .failure(error):
+                    debugPrint("error: \(error)")
+                    return ()
+                }
+            })
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { _ in completion() })
             .store(in: &cancellableSet)
     }
 }
