@@ -24,10 +24,10 @@ struct WorkoutInfo: Codable {
 
 // MARK: - WorkoutInfoDay
 
-struct WorkoutInfoDay: Codable {
+struct WorkoutInfoDay: Codable, Identifiable {
     let id = UUID()
 
-    let day: Day
+    let day: WorkoutDay
     let daysOfTheWeek: WorkoutInfoDaysOfWeek
     let sets: [WorkoutInfoSet]
     let muscles: WorkoutInfoMuscle

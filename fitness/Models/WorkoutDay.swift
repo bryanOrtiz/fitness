@@ -1,5 +1,5 @@
 //
-//  Day.swift
+//  WorkoutDay.swift
 //  fitness
 //
 //  Created by Bryan Ortiz on 5/11/21.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Day: Codable {
+struct WorkoutDay: Codable, Identifiable {
     let id: Int
     let training: Int
     let description: String

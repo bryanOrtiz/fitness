@@ -52,39 +52,11 @@ class Net: NetBase, ObservableObject {
     }
 }
 
-// MARK: Route
-
-protocol NetRoute: NetBase {
-    var route: String { get }
-}
-
-// MARK: - Day
-
-protocol NetDay {
-    func getDay() -> DataResponsePublisher<Page<Day>>
-    // requires training, description, day
-    func createDay(description: String, day: DayOfTheWeek) -> DataResponsePublisher<DayOfTheWeek>
-}
-
-extension Net: NetDay {
-    func getDay() -> DataResponsePublisher<Page<Day>> {
-        return AF.request(Router.getDay)
-            .validate()
-            .publishDecodable(type: Page<Day>.self)
-    }
-
-    func createDay(description: String, day: DayOfTheWeek) -> DataResponsePublisher<DayOfTheWeek> {
-        return AF.request(Router.createDay(description: description, day: day))
-            .validate()
-            .publishDecodable(type: DayOfTheWeek.self)
-    }
-}
-
 // MARK: - Set
 
 protocol NetSet {
     func getSet() -> DataResponsePublisher<Page<ExcerciseSet>>
-    // requires Day
+    // requires WorkoutDay
     func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExcerciseSet>
 }
 
@@ -145,20 +117,6 @@ protocol NetSchedule {
     func getSchedule() -> DataRequest
     // requires name
     func createSchedule() -> DataRequest
-}
-
-// MARK: - DaysOfTheWeek
-
-protocol NetDaysOfTheWeek {
-    func getDaysOfTheWeek() -> DataResponsePublisher<Page<DayOfTheWeek>>
-}
-
-extension Net: NetDaysOfTheWeek {
-    func getDaysOfTheWeek() -> DataResponsePublisher<Page<DayOfTheWeek>> {
-        return AF.request(Router.getDaysOfTheWeek)
-            .validate()
-            .publishDecodable(type: Page<DayOfTheWeek>.self)
-    }
 }
 
 // MARK: - Languages

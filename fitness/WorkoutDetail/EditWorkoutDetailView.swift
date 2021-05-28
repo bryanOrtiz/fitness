@@ -30,12 +30,12 @@ struct EditWorkoutDetailView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Text("Description")
                     .font(.headline)
-                TextEditor(text: $description)
-                    .overlay(RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 1))
+                MultilineTextView(description: $description)
             }
             Spacer()
             Button("Update", action: updateAction)
+                .buttonStyle(PrimaryButtonStyle())
+            Button("Delete", action: deleteAction)
                 .buttonStyle(PrimaryButtonStyle())
         }.padding()
         .onAppear(perform: {
@@ -47,6 +47,12 @@ struct EditWorkoutDetailView: View {
     // MARK: - Actions
     func updateAction() {
         viewModel.editWorkout(name: title, description: description) {
+            presentationMode.wrappedValue.dismiss()
+        }
+    }
+
+    func deleteAction() {
+        viewModel.deleteWorkout {
             presentationMode.wrappedValue.dismiss()
         }
     }

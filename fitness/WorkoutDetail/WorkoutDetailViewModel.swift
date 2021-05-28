@@ -14,6 +14,7 @@ class WorkoutDetailViewModel: ObservableObject {
     // MARK: - Properties
 
     @Published var workout: WorkoutInfo?
+    @Published var daysOfTheWeek = [BindingDayOfTheWeek]()
     @Published var net: (NetWorkoutInfo & NetWorkout)!
 
     private var cancellableSet: Set<AnyCancellable> = []
@@ -55,6 +56,60 @@ class WorkoutDetailViewModel: ObservableObject {
             })
             .receive(on: RunLoop.main)
             .sink(receiveValue: { _ in completion() })
+            .store(in: &cancellableSet)
+    }
+
+    func deleteWorkout(completion: @escaping () -> Void) {
+        net.deleteWorkout(id: workout!.workout.id)
+            .result()
+            .map({ result -> Void in
+                switch result {
+                case .success(_):
+                    return ()
+                case let .failure(error):
+                    debugPrint("error: \(error)")
+                    return ()
+                }
+            })
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { _ in completion() })
+            .store(in: &cancellableSet)
+    }
+
+    func getDaysOfTheWeek() {
+        net.getDaysOfTheWeek()
+            .result()
+            .map { result in
+                switch result {
+                case let .success(page):
+                    return page.results.map { day in
+                        return BindingDayOfTheWeek(day: day)
+                    }
+                case let.failure(error):
+                    debugPrint("error: \(error)")
+                    return []
+                }
+            }
+            .assign(to: \.daysOfTheWeek, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    func createWorkoutDay(description: String,
+                          days: [Int],
+                          completion: @escaping () -> Void) {
+        net.createWorkoutDay(workoutId: self.workout!.workout.id, description: description, days: days)
+            .result()
+            .map({ result -> Void in
+                switch result {
+                case let .success(day):
+                    return self.getWorkoutInfo(id: day.training)
+                case let .failure(error):
+                    debugPrint(error)
+                    return ()
+                }
+            })
+            .receive(on: RunLoop.main)
+            .sink { _ in completion() }
             .store(in: &cancellableSet)
     }
 }

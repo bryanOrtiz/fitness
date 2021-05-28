@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct DayOfTheWeek: Codable {
+struct DayOfTheWeek: Codable, Identifiable, Equatable, Hashable {
+    var id: String { day }
 
     let day: String
 

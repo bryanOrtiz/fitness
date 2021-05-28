@@ -19,23 +19,30 @@ struct WorkoutDetailView: View {
     // MARK: - UI
 
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())],
-                      alignment: HorizontalAlignment.center,
-                      spacing: 8,
-                      pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                ForEach(viewModel.workout?.days ?? [], id: \.id) { day in
-                    Section(header: Text(day.daysOfTheWeek.day)) {
-                        ForEach(day.sets) { set in
-                            ForEach(set.exercises) { exerciseInfo in
-                                CardView(title: exerciseInfo.exercise.name,
-                                         imgURLString: exerciseInfo.images[0].image)
+        Group {
+            if (self.viewModel.workout?.days ?? []).isEmpty {
+                EmptyWorkoutDaysView()
+                    .environmentObject(self.viewModel)
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())],
+                              alignment: HorizontalAlignment.center,
+                              spacing: 8,
+                              pinnedViews: [.sectionHeaders, .sectionFooters]) {
+                        ForEach(viewModel.workout?.days ?? []) { day in
+                            Section(header: Text(day.daysOfTheWeek.day)) {
+                                ForEach(day.sets) { set in
+                                    ForEach(set.exercises) { exerciseInfo in
+                                        CardView(title: exerciseInfo.exercise.name,
+                                                 imgURLString: exerciseInfo.images[0].image)
+                                    }
+                                }
                             }
                         }
                     }
+                    .padding(.horizontal)
                 }
             }
-            .padding(.horizontal)
         }
         .navigationBarTitle(viewModel.workout?.workout.name ?? "No Title")
         .navigationBarItems(trailing:
