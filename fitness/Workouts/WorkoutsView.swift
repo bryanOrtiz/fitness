@@ -14,20 +14,39 @@ struct WorkoutsView: View {
 
     @EnvironmentObject private var deps: AppDeps
     @StateObject var viewModel = WorkoutsViewModel()
+    @State private var isPresentingSheet = false
 
     // MARK: - UI
 
     var body: some View {
-        List {
-            ForEach(viewModel.workouts, id: \.id) { workout in
-                NavigationLink(destination: WorkoutDetailView(workoutId: workout.id)) {
-                    RowView(title: workout.name, detail: workout.creationDate)
+        NavigationView {
+            List {
+                ForEach(viewModel.workouts, id: \.id) { workout in
+                    NavigationLink(destination: WorkoutDetailView(workoutId: workout.id)) {
+                        RowView(title: workout.name, detail: workout.creationDate)
+                    }
                 }
             }
-        }.navigationTitle("Workouts")
-        .onAppear(perform: {
-            viewModel.net = deps.net
-        })
+            .navigationTitle("Workouts")
+            .navigationBarItems(trailing:
+                                    Button(action: addAction, label: {
+                                        Image(systemName: "plus")
+                                    })
+            )
+            .onAppear(perform: {
+                viewModel.net = deps.net
+                viewModel.getWorkouts()
+            })
+            .sheet(isPresented: $isPresentingSheet) {
+                CreateWorkoutView()
+                    .environmentObject(viewModel)
+            }
+        }
+    }
+
+    // MARK: - Actions
+    func addAction() {
+        isPresentingSheet.toggle()
     }
 }
 

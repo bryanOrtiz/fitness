@@ -17,19 +17,11 @@ class WorkoutsViewModel: ObservableObject {
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    // MARK: - Initializers
-    init() {
-        getWorkouts()
-    }
-
     // MARK: - Network
 
     func getWorkouts() {
-        $net.compactMap({ $0 })
-            .flatMap { net in
-                return net.getWorkout()
-                    .result()
-            }
+        net.getWorkout()
+            .result()
             .map({ result in
                 switch result {
                 case let .success(page):
@@ -40,6 +32,25 @@ class WorkoutsViewModel: ObservableObject {
                 }
             })
             .assign(to: \.workouts, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    func createWorkout(name: String,
+                       description: String,
+                       completion: @escaping () -> Void) {
+        net.createWorkout(name: name, description: description)
+            .result()
+            .map({ result -> Void in
+                switch result {
+                case .success(_):
+                    return self.getWorkouts()
+                case let .failure(error):
+                    debugPrint("error: \(error)")
+                    return ()
+                }
+            })
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { _ in completion() })
             .store(in: &cancellableSet)
     }
 }

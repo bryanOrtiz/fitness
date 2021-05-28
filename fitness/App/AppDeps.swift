@@ -66,7 +66,6 @@ class AppDeps: ObservableObject {
                     debugPrint("completed getting credential")
                 }
             } receiveValue: { [unowned self] credential in
-                debugPrint("credential: \(credential)")
                 net.credential = credential
             }
             .store(in: &cancellableSet)

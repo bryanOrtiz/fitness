@@ -16,7 +16,7 @@ struct App: View {
     private var cancellableSet: Set<AnyCancellable> = []
 
     var body: some View {
-        NavigationView {
+        Group {
             if deps.isLoggedIn {
                 TabView {
                     ExerciseListView().tabItem { Text("Exercises") }
