@@ -15,6 +15,8 @@ class WorkoutDetailViewModel: ObservableObject {
 
     @Published var workout: WorkoutInfo?
     @Published var daysOfTheWeek = [BindingDayOfTheWeek]()
+    @Published var searchedExercises = [SearchExercise.Data]()
+
     @Published var net: (NetWorkoutInfo & NetWorkout)!
 
     private var cancellableSet: Set<AnyCancellable> = []
@@ -110,6 +112,14 @@ class WorkoutDetailViewModel: ObservableObject {
             })
             .receive(on: RunLoop.main)
             .sink { _ in completion() }
+            .store(in: &cancellableSet)
+    }
+
+    func searchExercises(search: String) {
+        net.getExercise(by: search)
+            .receive(on: RunLoop.main)
+            .assertNoFailure()
+            .assign(to: \.searchedExercises, on: self)
             .store(in: &cancellableSet)
     }
 }

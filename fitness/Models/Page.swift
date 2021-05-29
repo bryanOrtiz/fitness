@@ -8,15 +8,6 @@
 
 import Foundation
 
-// struct Page<T: Codable & Identifiable>: Codable, Identifiable {
-//    let id = UUID()
-//
-//    let count: Int
-//    let next: Int?
-//    let previous: Int?
-//    let results: [T]
-// }
-
 struct Page<T: Codable>: Codable {
     let count: Int
     let next: String?

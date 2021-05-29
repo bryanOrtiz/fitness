@@ -24,24 +24,8 @@ struct WorkoutDetailView: View {
                 EmptyWorkoutDaysView()
                     .environmentObject(self.viewModel)
             } else {
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())],
-                              alignment: HorizontalAlignment.center,
-                              spacing: 8,
-                              pinnedViews: [.sectionHeaders, .sectionFooters]) {
-                        ForEach(viewModel.workout?.days ?? []) { day in
-                            Section(header: Text(day.daysOfTheWeek.day)) {
-                                ForEach(day.sets) { set in
-                                    ForEach(set.exercises) { exerciseInfo in
-                                        CardView(title: exerciseInfo.exercise.name,
-                                                 imgURLString: exerciseInfo.images[0].image)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .padding(.horizontal)
-                }
+                WorkoutDetailGridView()
+                    .environmentObject(self.viewModel)
             }
         }
         .navigationBarTitle(viewModel.workout?.workout.name ?? "No Title")
