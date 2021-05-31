@@ -13,9 +13,10 @@ class WorkoutDetailViewModel: ObservableObject {
 
     // MARK: - Properties
 
-    @Published var workout: WorkoutInfo?
+    @Published private(set) var workout: WorkoutInfo?
     @Published var daysOfTheWeek = [BindingDayOfTheWeek]()
     @Published var searchedExercises = [SearchExercise.Data]()
+    @Published var selectedExercise: SearchExercise.Data?
 
     @Published var net: (NetWorkoutInfo & NetWorkout)!
 

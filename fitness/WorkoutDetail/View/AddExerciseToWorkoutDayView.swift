@@ -14,33 +14,39 @@ struct AddExerciseToWorkoutDayView: View {
 
     @EnvironmentObject private var viewModel: WorkoutDetailViewModel
     @Environment(\.presentationMode) var presentationMode
-    @State private var search = ""
 
     // MARK: - UI
 
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text("Add Workout Day")
-                        .font(.largeTitle)
-                    Spacer()
+        NavigationView {
+            VStack(alignment: .leading) {
+                List {
                     Text("This is will be a description.")
                         .font(.body)
-                    TextField("", text: $search)
-                        .onChange(of: search, perform: { term in
-                            self.viewModel.searchExercises(search: term)
-                        })
-                    ForEach(self.viewModel.searchedExercises) { exercise in
-                        Text("\(exercise.name)")
+                    NavigationLink(
+                        destination: SearchExerciseView()
+                            .environmentObject(self.viewModel)) {
+                        VStack(alignment: .leading) {
+                            HStack(alignment: .lastTextBaseline) {
+                                Text("Exercise: ")
+                                    .font(.headline)
+                                Spacer()
+                                Text(self.viewModel.selectedExercise?.name ?? "No Exercise Selected")
+                                    .font(.headline)
+                            }
+                            Text("Find Exercise")
+                                .font(.body)
+                        }
                     }
-                }.padding()
-            }
-            VStack(alignment: .center) {
-                Divider()
-                Button("Submit", action: addExerciseToWorkoutDay)
-                    .buttonStyle(PrimaryButtonStyle())
-            }
+                    NumberOfSetsView()
+                    IsRepeatingView()
+                }
+                VStack(alignment: .center) {
+                    Divider()
+                    Button("Submit", action: addExerciseToWorkoutDay)
+                        .buttonStyle(PrimaryButtonStyle())
+                }
+            }.navigationTitle("Add Workout Day")
         }
     }
 

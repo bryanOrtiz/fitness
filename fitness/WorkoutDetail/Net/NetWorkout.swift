@@ -124,7 +124,6 @@ extension Net: NetWorkout {
             .validate()
             .publishDecodable(type: Search<SearchExercise>.self)
             .value()
-            .print()
             .map { search in
                 return search.suggestions?.compactMap { $0.data } ?? []
             }

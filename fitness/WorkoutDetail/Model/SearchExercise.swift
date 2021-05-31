@@ -12,11 +12,11 @@ struct Search<T: Codable>: Codable {
     let suggestions: [T]?
 }
 
-struct SearchExercise: Codable {
+struct SearchExercise: Codable, Hashable, Identifiable {
 
     // MARK: - SearchExercise.Data
 
-    struct Data: Codable, Identifiable {
+    struct Data: Codable, Identifiable, Hashable {
 
         // MARK: - Properties
 
@@ -39,6 +39,7 @@ struct SearchExercise: Codable {
 
     // MARK: - Properties
 
+    let id = UUID()
     let name: String
     let data: SearchExercise.Data
 
