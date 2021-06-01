@@ -15,6 +15,11 @@ struct AddExerciseToWorkoutDayView: View {
     @EnvironmentObject private var viewModel: WorkoutDetailViewModel
     @Environment(\.presentationMode) var presentationMode
 
+    @State private var numberOfSets = 1
+    @State private var setsRepeating = SetsRepeating.repeating
+    @State private var numberOfReps = 1
+    @State private var selectedIndex = 0
+
     // MARK: - UI
 
     var body: some View {
@@ -23,36 +28,44 @@ struct AddExerciseToWorkoutDayView: View {
                 List {
                     Text("This is will be a description.")
                         .font(.body)
-                    NavigationLink(
-                        destination: SearchExerciseView()
-                            .environmentObject(self.viewModel)) {
-                        VStack(alignment: .leading) {
-                            HStack(alignment: .lastTextBaseline) {
-                                Text("Exercise: ")
-                                    .font(.headline)
-                                Spacer()
-                                Text(self.viewModel.selectedExercise?.name ?? "No Exercise Selected")
-                                    .font(.headline)
-                            }
-                            Text("Find Exercise")
-                                .font(.body)
-                        }
+                    ExerciseSettingRowView(
+                        title: "Exercise: ",
+                        description: "Find Exercise",
+                        selection: self.viewModel.selectedExercise?.name ?? "No Exercise Selected",
+                        destination: {
+                            return SearchExerciseView()
+                                .environmentObject(self.viewModel)
+                        })
+                    NumberOfSetsView(numberOfSets: $numberOfSets)
+                    IsRepeatingView(selection: $setsRepeating)
+                    ExerciseSettingRowView(title: "Reps",
+                                           description: "Select you repititions",
+                                           selection: "Some value") {
+                        RepititionsView(numberOfSets: $numberOfSets,
+                                        setsRepating: $setsRepeating,
+                                        numberOfRepitions: $numberOfReps,
+                                        selectedIndex: $selectedIndex)
+                            .environmentObject(self.viewModel)
                     }
-                    NumberOfSetsView()
-                    IsRepeatingView()
                 }
                 VStack(alignment: .center) {
                     Divider()
                     Button("Submit", action: addExerciseToWorkoutDay)
                         .buttonStyle(PrimaryButtonStyle())
                 }
-            }.navigationTitle("Add Workout Day")
+            }
+            .navigationTitle("Add Workout Day")
+            .onAppear(perform: getSettingRepitionsUnit)
         }
     }
 
     // MARK: - Actions
     func addExerciseToWorkoutDay() {
 
+    }
+
+    func getSettingRepitionsUnit() {
+        self.viewModel.getSettingRepitionsUnit()
     }
 }
 

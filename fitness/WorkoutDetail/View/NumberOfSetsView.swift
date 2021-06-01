@@ -12,16 +12,16 @@ struct NumberOfSetsView: View {
 
     // MARK: - Properties
 
-    @State private var value = 1
+    @Binding var numberOfSets: Int
     let step = 1
     let range = 1...10
 
     // MARK: - UI
     var body: some View {
-        Stepper(value: $value,
+        Stepper(value: $numberOfSets,
                 in: range,
                 step: step) {
-            Text("Sets: \(value)")
+            Text("Sets: \(numberOfSets)")
         }
     }
 }

@@ -38,7 +38,6 @@ struct WeightView: View {
                     pounds = Measurement(value: val,
                                          unit: UnitMass.pounds)
                     let weightKilograms = pounds.converted(to: UnitMass.kilograms)
-//                    weightCalculated(weightKilograms.value)
                     weight = weightKilograms.value
                 })
         } else {
@@ -48,7 +47,6 @@ struct WeightView: View {
                     guard !measurementStr.isEmpty, let val = Double(measurementStr) else { return }
                     kilograms = Measurement(value: val,
                                          unit: UnitMass.pounds)
-//                    weightCalculated(kilograms.value)
                     weight = kilograms.value
                 })
         }

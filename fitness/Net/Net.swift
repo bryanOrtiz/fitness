@@ -147,20 +147,6 @@ extension Net: NetLicense {
     }
 }
 
-// MARK: - Repition Unit
-
-protocol NetSettingRepetitionUnit {
-    func getSettingRepetitioUnit() -> DataResponsePublisher<Page<SettingsRepetitionUnit>>
-}
-
-extension Net: NetSettingRepetitionUnit {
-    func getSettingRepetitioUnit() -> DataResponsePublisher<Page<SettingsRepetitionUnit>> {
-        return AF.request(Router.getSettingRepetitionUnit)
-            .validate()
-            .publishDecodable(type: Page<SettingsRepetitionUnit>.self)
-    }
-}
-
 // MARK: - Weight Unit
 
 protocol NetSettingWeightUnit {

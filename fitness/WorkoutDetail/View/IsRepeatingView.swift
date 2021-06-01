@@ -17,7 +17,7 @@ enum SetsRepeating: String, CaseIterable, Identifiable {
 
 struct IsRepeatingView: View {
 
-    @State private var selection = SetsRepeating.repeating
+    @Binding var selection: SetsRepeating
 
     var body: some View {
         HStack {
@@ -31,11 +31,5 @@ struct IsRepeatingView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
         }
-    }
-}
-
-struct IsRepeatingView_Previews: PreviewProvider {
-    static var previews: some View {
-        IsRepeatingView()
     }
 }
