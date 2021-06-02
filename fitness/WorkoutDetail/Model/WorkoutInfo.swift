@@ -53,7 +53,7 @@ struct WorkoutInfoDaysOfWeek: Codable {
 struct WorkoutInfoSet: Codable, Identifiable {
     let id = UUID()
 
-    let set: ExcerciseSet
+    let set: ExerciseSet
     let exercises: [WorkoutInfoExercise]
     let isSuperset: Bool
 

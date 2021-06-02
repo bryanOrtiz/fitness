@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ExcerciseSet: Codable {
+struct ExerciseSet: Codable {
     let id: Int
     let exerciseDay: Int
     let sets: Int

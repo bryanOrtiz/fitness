@@ -26,6 +26,7 @@ struct WorkoutDetailView: View {
             } else {
                 WorkoutDetailGridView()
                     .environmentObject(self.viewModel)
+                    .environmentObject(self.deps)
             }
         }
         .navigationBarTitle(viewModel.workout?.workout.name ?? "No Title")

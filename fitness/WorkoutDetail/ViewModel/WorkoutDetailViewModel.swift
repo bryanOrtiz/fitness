@@ -15,12 +15,10 @@ class WorkoutDetailViewModel: ObservableObject {
 
     @Published private(set) var workout: WorkoutInfo?
     @Published var daysOfTheWeek = [BindingDayOfTheWeek]()
-    @Published var searchedExercises = [SearchExercise.Data]()
-    @Published var selectedExercise: SearchExercise.Data?
-    @Published var settingRepUnits = [SettingsRepetitionUnit]()
-    @Published var initialSettingRepUnits: SettingsRepetitionUnit?
 
     @Published var net: (NetWorkoutInfo & NetWorkout)!
+
+    var selectedExerciseDay: WorkoutDay!
 
     private var cancellableSet: Set<AnyCancellable> = []
 
@@ -115,25 +113,6 @@ class WorkoutDetailViewModel: ObservableObject {
             })
             .receive(on: RunLoop.main)
             .sink { _ in completion() }
-            .store(in: &cancellableSet)
-    }
-
-    func searchExercises(search: String) {
-        net.getExercise(by: search)
-            .receive(on: RunLoop.main)
-            .assertNoFailure()
-            .assign(to: \.searchedExercises, on: self)
-            .store(in: &cancellableSet)
-    }
-
-    func getSettingRepitionsUnit() {
-        net.getSettingRepetitioUnit()
-            .receive(on: RunLoop.main)
-            .assertNoFailure()
-            .sink(receiveValue: { value in
-                self.settingRepUnits = value
-                self.initialSettingRepUnits = value.first
-            })
             .store(in: &cancellableSet)
     }
 }

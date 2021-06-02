@@ -11,9 +11,11 @@ import SwiftUI
 struct WorkoutDetailGridView: View {
 
     // MARK: - Properties
-
+    @EnvironmentObject private var appDeps: AppDeps
     @EnvironmentObject private var viewModel: WorkoutDetailViewModel
     @State private var isPresented = false
+
+    @State private var selectedExerciseDay: WorkoutDay!
 
     var body: some View {
         ScrollView {
@@ -23,7 +25,8 @@ struct WorkoutDetailGridView: View {
                       pinnedViews: [.sectionHeaders, .sectionFooters]) {
                 ForEach(viewModel.workout?.days ?? []) { day in
                     Section(header: Text(day.daysOfTheWeek.day),
-                            footer: Button("Add Exercises", action: addExerciseToWorkoutDay)
+                            footer: Button("Add Exercises",
+                                           action: { addExerciseToWorkoutDay(exerciseDay: day.day) })
                                 .buttonStyle(SecondaryButtonStyle())) {
                         ForEach(day.sets) { set in
                             ForEach(set.exercises) { exerciseInfo in
@@ -36,12 +39,16 @@ struct WorkoutDetailGridView: View {
             }
             .padding(.horizontal)
         }.sheet(isPresented: $isPresented, content: {
-            AddExerciseToWorkoutDayView()
+            CreateWorkoutSettingView(
+                viewModel: CreateWorkoutSettingViewModel(net: self.appDeps.net,
+                                                         exerciseDay: self.viewModel.selectedExerciseDay))
+                .environmentObject(self.appDeps)
         })
     }
 
     // MARK: - Actions
-    func addExerciseToWorkoutDay() {
+    func addExerciseToWorkoutDay(exerciseDay: WorkoutDay) {
+        self.viewModel.selectedExerciseDay = exerciseDay
         isPresented.toggle()
     }
 }

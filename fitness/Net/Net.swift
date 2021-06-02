@@ -55,22 +55,22 @@ class Net: NetBase, ObservableObject {
 // MARK: - Set
 
 protocol NetSet {
-    func getSet() -> DataResponsePublisher<Page<ExcerciseSet>>
+    func getSet() -> DataResponsePublisher<Page<ExerciseSet>>
     // requires WorkoutDay
-    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExcerciseSet>
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExerciseSet>
 }
 
 extension Net: NetSet {
-    func getSet() -> DataResponsePublisher<Page<ExcerciseSet>> {
+    func getSet() -> DataResponsePublisher<Page<ExerciseSet>> {
         return AF.request(Router.getSet)
             .validate()
-            .publishDecodable(type: Page<ExcerciseSet>.self)
+            .publishDecodable(type: Page<ExerciseSet>.self)
     }
 
-    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExcerciseSet> {
+    func createSet(exerciseDay: DayOfTheWeek) -> DataResponsePublisher<ExerciseSet> {
         return AF.request(Router.createSet(day: exerciseDay))
             .validate()
-            .publishDecodable(type: ExcerciseSet.self)
+            .publishDecodable(type: ExerciseSet.self)
     }
 }
 
@@ -79,7 +79,7 @@ extension Net: NetSet {
 protocol NetSetting {
     func getSetting() -> DataResponsePublisher<Page<Setting>>
     // requires set, exercise, reps
-    func createSetting(set: ExcerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting>
+    func createSetting(set: ExerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting>
 }
 
 extension Net: NetSetting {
@@ -88,7 +88,7 @@ extension Net: NetSetting {
             .validate()
             .publishDecodable(type: Page<Setting>.self)
     }
-    func createSetting(set: ExcerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting> {
+    func createSetting(set: ExerciseSet, exercise: Exercise, reps: Int) -> DataResponsePublisher<Setting> {
         return AF.request(Router.createSetting(set: set, exercise: exercise, reps: reps))
             .validate()
             .publishDecodable(type: Setting.self)

@@ -1,24 +1,41 @@
 //
-//  AddExerciseToWorkoutDayView.swift
+//  CreateWorkoutSettingView.swift
 //  fitness
 //
 //  Created by Bryan Ortiz on 5/28/21.
 //  Copyright © 2021 Ortiz. All rights reserved.
 //
 
+/**
+ 1. Create Workout day/ exercise day
+ 2. Find Exercise
+ 3. Set Exercise, Set reps, Set Weight, Set Weight unit, set rep unit in UI
+ 4. Hit Submit
+ 5. Create Set with workoutDay and numOfSets
+ 6. Create Settings model
+ 5. Make network request for creating Workout Settings
+ 6. Success Dismiss
+ 7. Error ??
+ */
+
 import SwiftUI
 
-struct AddExerciseToWorkoutDayView: View {
+struct CreateWorkoutSettingView: View {
 
     // MARK: - Properties
-
-    @EnvironmentObject private var viewModel: WorkoutDetailViewModel
+    @EnvironmentObject private var appDeps: AppDeps
+    @ObservedObject var viewModel: CreateWorkoutSettingViewModel
     @Environment(\.presentationMode) var presentationMode
 
     @State private var numberOfSets = 1
     @State private var setsRepeating = SetsRepeating.repeating
     @State private var numberOfReps = 1
+    @State private var weight: Double = 1
     @State private var selectedIndex = 0
+
+    init(viewModel: CreateWorkoutSettingViewModel) {
+        self.viewModel = viewModel
+    }
 
     // MARK: - UI
 
@@ -38,15 +55,12 @@ struct AddExerciseToWorkoutDayView: View {
                         })
                     NumberOfSetsView(numberOfSets: $numberOfSets)
                     IsRepeatingView(selection: $setsRepeating)
-                    ExerciseSettingRowView(title: "Reps",
-                                           description: "Select you repititions",
-                                           selection: "Some value") {
-                        RepititionsView(numberOfSets: $numberOfSets,
-                                        setsRepating: $setsRepeating,
-                                        numberOfRepitions: $numberOfReps,
-                                        selectedIndex: $selectedIndex)
-                            .environmentObject(self.viewModel)
-                    }
+                    RepititionsView(numberOfSets: $numberOfSets,
+                                    setsRepating: $setsRepeating,
+                                    numberOfRepitions: $numberOfReps,
+                                    weight: self.$weight,
+                                    selectedIndex: $selectedIndex)
+                        .environmentObject(self.viewModel)
                 }
                 VStack(alignment: .center) {
                     Divider()
@@ -55,22 +69,23 @@ struct AddExerciseToWorkoutDayView: View {
                 }
             }
             .navigationTitle("Add Workout Day")
-            .onAppear(perform: getSettingRepitionsUnit)
+            .onReceive(self.viewModel.$didMakeSetting, perform: { didFinish in
+                guard didFinish else { return }
+                self.presentationMode.wrappedValue.dismiss()
+            })
         }
     }
 
     // MARK: - Actions
     func addExerciseToWorkoutDay() {
-
-    }
-
-    func getSettingRepitionsUnit() {
-        self.viewModel.getSettingRepitionsUnit()
+        self.viewModel.onSubmit(numberOfSets: numberOfSets,
+                                reps: numberOfReps,
+                                weight: weight)
     }
 }
 
-struct AddExerciseToWorkoutDayView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddExerciseToWorkoutDayView()
-    }
-}
+// struct AddExerciseToWorkoutDayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateWorkoutSettingView()
+//    }
+// }

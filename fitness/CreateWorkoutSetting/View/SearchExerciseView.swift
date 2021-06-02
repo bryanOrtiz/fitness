@@ -11,7 +11,7 @@ import SwiftUI
 struct SearchExerciseView: View {
 
     // MARK: - UI
-    @EnvironmentObject private var viewModel: WorkoutDetailViewModel
+    @EnvironmentObject private var viewModel: CreateWorkoutSettingViewModel
     @State private var search = ""
     @Environment(\.presentationMode) var presentationMode
 

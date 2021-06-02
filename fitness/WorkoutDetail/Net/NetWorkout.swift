@@ -40,13 +40,6 @@ protocol NetWorkout {
     ///   - day: REST documentation shows that we need to pass in the index of the day of the week
     ///    (i.e. Monday = 1, Tuesday = 2, ..., Sunday = 7)
     func createWorkoutDay(workoutId: Int, description: String, days: [Int]) -> DataResponsePublisher<WorkoutDay>
-
-    // MARK: - Exercise
-
-    func getExercise(by term: String) -> AnyPublisher<[SearchExercise.Data], AFError>
-
-    // MARK: - Setting Repition Unit
-    func getSettingRepetitioUnit() -> AnyPublisher<[SettingsRepetitionUnit], AFError>
 }
 
 extension Net: NetWorkout {
@@ -115,36 +108,5 @@ extension Net: NetWorkout {
                                encoder: JSONParameterEncoder.default)
             .validate()
             .publishDecodable(type: WorkoutDay.self)
-    }
-
-    // MARK: - Exercise
-
-    var exerciseURL: String { "\(self.baseURL)/exercise/" }
-
-    func getExercise(by term: String) -> AnyPublisher<[SearchExercise.Data], AFError> {
-        return session.request("\(self.exerciseURL)/search/",
-                               parameters: ["term": term])
-            .validate()
-            .publishDecodable(type: Search<SearchExercise>.self)
-            .value()
-            .map { search in
-                return search.suggestions?.compactMap { $0.data } ?? []
-            }
-            .eraseToAnyPublisher()
-    }
-
-    // MARK: - Setting Repition Unit
-
-    var settingRepitionUnitURL: String { "\(self.baseURL)/setting-repetitionunit/" }
-
-    func getSettingRepetitioUnit() -> AnyPublisher<[SettingsRepetitionUnit], AFError> {
-        return session.request(self.settingRepitionUnitURL)
-            .validate()
-            .publishDecodable(type: Page<SettingsRepetitionUnit>.self)
-            .value()
-            .map { page in
-                return page.results.map { $0 }
-            }
-            .eraseToAnyPublisher()
     }
 }

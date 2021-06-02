@@ -45,7 +45,7 @@ enum Router: URLRequestConvertible {
     case createWeightEntry
     case createDay(description: String, day: DayOfTheWeek)
     case createSet(day: DayOfTheWeek)
-    case createSetting(set: ExcerciseSet, exercise: Exercise, reps: Int)
+    case createSetting(set: ExerciseSet, exercise: Exercise, reps: Int)
     case createWorkout
 
     var baseURL: URL {
