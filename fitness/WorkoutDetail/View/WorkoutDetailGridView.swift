@@ -42,7 +42,6 @@ struct WorkoutDetailGridView: View {
             CreateWorkoutSettingView(
                 viewModel: CreateWorkoutSettingViewModel(net: self.appDeps.net,
                                                          exerciseDay: self.viewModel.selectedExerciseDay))
-                .environmentObject(self.appDeps)
         })
     }
 

@@ -8,17 +8,23 @@
 
 import Foundation
 import Combine
+import Alamofire
 
 final class CreateWorkoutSettingViewModel: ObservableObject {
 
     // MARK: - Properties
 
-    @Published var searchedExercises = [SearchExercise.Data]()
+    @Published var selectedExerciseName = "No Exercise Selected"
+
+    @Published var setsRepeating = SetsRepeating.repeating
+    @Published var set: ExerciseSet
+    @Published var exerciseSettings: [Setting]
+
     @Published var selectedExercise: SearchExercise.Data?
+    @Published var searchedExercises = [SearchExercise.Data]()
     @Published var settingRepUnits = [SettingsRepetitionUnit]()
     @Published var initialSettingRepUnits: SettingsRepetitionUnit?
     @Published var settingWeightUnits = [SettingsWeightUnit]()
-    @Published var selectedSettingWeightUnits: SettingsWeightUnit!
 
     @Published var didMakeSetting = false
 
@@ -32,8 +38,22 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
     init(net: CreateWorkoutSettingNet, exerciseDay: WorkoutDay) {
         self.net = net
         self.exerciseDay = exerciseDay
+        self.set = ExerciseSet(id: 0, exerciseDay: exerciseDay.id, sets: 1, order: 1)
+        self.exerciseSettings = [
+            Setting(id: 0,
+                    set: 1,
+                    exercise: 1,
+                    repitionUnit: 1,
+                    reps: 1,
+                    weight: "1.0",
+                    weightUnit: 1,
+                    rir: nil,
+                    order: 1,
+                    comment: "")
+        ]
 
         self.getInitialStates()
+        self.registerChanges()
     }
 
     // MARK: - Net
@@ -67,31 +87,25 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
             .assertNoFailure()
             .sink(receiveValue: { value in
                 self.settingWeightUnits = value
-                guard self.selectedSettingWeightUnits == nil else { return }
-                self.selectedSettingWeightUnits = value.first
+                self.exerciseSettings = self.exerciseSettings.map { setting -> Setting in
+                    guard let unitId = value.first?.id else { return setting }
+                    return setting.weightUnit(weightUnit: unitId)
+                }
             })
             .store(in: &cancellableSet)
     }
 
-    func onSubmit(numberOfSets: Int,
-                  repititionUnit: Int = 1,
-                  reps: Int,
-                  weight: Double) {
-        self.net.createExerciseSet(set: ExerciseSet(id: 0,
-                                                    exerciseDay: self.exerciseDay.id,
-                                                    sets: numberOfSets,
-                                                    order: 0))
-            .flatMap { set in
-                return self.net.createExerciseSetting(setting: Setting(id: 0,
-                                                                       set: set.id,
-                                                                       exercise: self.selectedExercise!.id,
-                                                                       repitionUnit: repititionUnit,
-                                                                       reps: reps,
-                                                                       weight: "\(weight)",
-                                                                       weightUnit: self.selectedSettingWeightUnits.id,
-                                                                       rir: nil,
-                                                                       order: 0,
-                                                                       comment: ""))
+    func onSubmit(repititionUnit: Int = 1) {
+        self.net.createExerciseSet(set: self.set)
+            .flatMap { set -> AnyPublisher<[Setting], AFError> in
+                let publishers = self.exerciseSettings.map { setting in
+                    return self.net.createExerciseSetting(setting: setting
+                                                            .set(set: set.id)
+                                                            .exercise(exercise: self.selectedExercise!.id))
+                }
+                return Publishers.MergeMany(publishers)
+                    .collect()
+                    .eraseToAnyPublisher()
             }
             .sink { completion in
                 switch completion {
@@ -106,6 +120,73 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
                 debugPrint("setting: \(setting)")
                 return
             }
+            .store(in: &cancellableSet)
+    }
+
+    // MARK: - Changes
+    private func registerChanges() {
+        self.setsChange()
+        self.selectedExerciseNameChange()
+    }
+
+    private func setsChange() {
+        self.$set
+            .combineLatest(self.$setsRepeating)
+            .map { output -> [Setting] in
+                let exerciseSet: ExerciseSet = output.0
+                let repeating: SetsRepeating = output.1
+                if repeating == .repeating, self.exerciseSettings.count > 1 {
+                    self.exerciseSettings.removeSubrange(1...self.exerciseSettings.count-1)
+                } else if repeating == .custom {
+                    let difference = abs(exerciseSet.sets - self.exerciseSettings.count)
+                    if exerciseSet.sets < self.exerciseSettings.count {
+                        self.exerciseSettings.removeSubrange(exerciseSet.sets...self.exerciseSettings.count-1)
+                    } else if difference > 0, let last = self.exerciseSettings.last {
+                        let newArray = Array(1...difference).map { _ in
+                            return Setting(id: Int.random(in: 1...10000),
+                                           set: last.set,
+                                           exercise: last.exercise,
+                                           repitionUnit: last.repitionUnit,
+                                           reps: last.reps,
+                                           weight: last.weight,
+                                           weightUnit: last.weightUnit,
+                                           rir: last.rir,
+                                           order: last.order,
+                                           comment: last.comment)
+                        }
+                        self.exerciseSettings.append(contentsOf: newArray)
+                    }
+                }
+                return self.exerciseSettings
+            }
+            .receive(on: RunLoop.main)
+            .assign(to: \.exerciseSettings, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    func updateSettings(with newSetting: Setting) {
+        guard let index = self.exerciseSettings.firstIndex(where: { $0.id == newSetting.id }) else { return }
+        self.exerciseSettings[index] = newSetting
+    }
+
+    func getWeightUnitName(setting: Setting) -> String {
+        return self.settingWeightUnits.first(where: { $0.id == setting.weightUnit })?.name ?? ""
+    }
+
+    func setWeightUnitName(name: String, setting: Setting) {
+        guard let newUnit = self.settingWeightUnits.first(where: { $0.name == name }),
+              let index = self.exerciseSettings.firstIndex(where: { $0 == setting }) else { return }
+
+        let new = self.exerciseSettings[index].weightUnit(weightUnit: newUnit.id)
+        self.exerciseSettings[index] = new
+    }
+
+    func selectedExerciseNameChange() {
+        self.$selectedExercise
+            .map { selectedExercise in
+                return selectedExercise?.name ?? "No Exercise Selected"
+            }
+            .assign(to: \.selectedExerciseName, on: self)
             .store(in: &cancellableSet)
     }
 }

@@ -27,12 +27,6 @@ struct CreateWorkoutSettingView: View {
     @ObservedObject var viewModel: CreateWorkoutSettingViewModel
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var numberOfSets = 1
-    @State private var setsRepeating = SetsRepeating.repeating
-    @State private var numberOfReps = 1
-    @State private var weight: Double = 1
-    @State private var selectedIndex = 0
-
     init(viewModel: CreateWorkoutSettingViewModel) {
         self.viewModel = viewModel
     }
@@ -48,18 +42,16 @@ struct CreateWorkoutSettingView: View {
                     ExerciseSettingRowView(
                         title: "Exercise: ",
                         description: "Find Exercise",
-                        selection: self.viewModel.selectedExercise?.name ?? "No Exercise Selected",
+                        selection: self.$viewModel.selectedExerciseName,
                         destination: {
                             return SearchExerciseView()
                                 .environmentObject(self.viewModel)
                         })
-                    NumberOfSetsView(numberOfSets: $numberOfSets)
-                    IsRepeatingView(selection: $setsRepeating)
-                    RepititionsView(numberOfSets: $numberOfSets,
-                                    setsRepating: $setsRepeating,
-                                    numberOfRepitions: $numberOfReps,
-                                    weight: self.$weight,
-                                    selectedIndex: $selectedIndex)
+                    NumberOfSetsView()
+                        .environmentObject(self.viewModel)
+                    IsRepeatingView()
+                        .environmentObject(self.viewModel)
+                    RepititionsView()
                         .environmentObject(self.viewModel)
                 }
                 VStack(alignment: .center) {
@@ -78,9 +70,7 @@ struct CreateWorkoutSettingView: View {
 
     // MARK: - Actions
     func addExerciseToWorkoutDay() {
-        self.viewModel.onSubmit(numberOfSets: numberOfSets,
-                                reps: numberOfReps,
-                                weight: weight)
+        self.viewModel.onSubmit()
     }
 }
 

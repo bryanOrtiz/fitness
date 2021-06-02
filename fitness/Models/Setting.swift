@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Setting: Codable {
+struct Setting: Codable, Identifiable, Hashable {
     let id: Int
     let set: Int
     let exercise: Int
@@ -31,5 +31,85 @@ struct Setting: Codable {
         case rir
         case order
         case comment
+    }
+
+    // MARK: - Changes
+
+    func set(set: Int) -> Setting {
+        return Setting(id: self.id,
+                       set: set,
+                       exercise: self.exercise,
+                       repitionUnit: self.repitionUnit,
+                       reps: self.reps,
+                       weight: self.weight,
+                       weightUnit: self.weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
+    }
+
+    func exercise(exercise: Int) -> Setting {
+        return Setting(id: self.id,
+                       set: self.set,
+                       exercise: exercise,
+                       repitionUnit: self.repitionUnit,
+                       reps: self.reps,
+                       weight: self.weight,
+                       weightUnit: self.weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
+    }
+
+    func repitionUnit(repitionUnit: Int) -> Setting {
+        return Setting(id: self.id,
+                       set: self.set,
+                       exercise: self.exercise,
+                       repitionUnit: repitionUnit,
+                       reps: self.reps,
+                       weight: self.weight,
+                       weightUnit: self.weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
+    }
+
+    func reps(reps: Int) -> Setting {
+        return Setting(id: self.id,
+                       set: self.set,
+                       exercise: self.exercise,
+                       repitionUnit: self.repitionUnit,
+                       reps: reps,
+                       weight: self.weight,
+                       weightUnit: self.weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
+    }
+
+    func weight(weight: String) -> Setting {
+        return Setting(id: self.id,
+                       set: self.set,
+                       exercise: self.exercise,
+                       repitionUnit: self.repitionUnit,
+                       reps: self.reps,
+                       weight: weight,
+                       weightUnit: self.weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
+    }
+
+    func weightUnit(weightUnit: Int) -> Setting {
+        return Setting(id: self.id,
+                       set: self.set,
+                       exercise: self.exercise,
+                       repitionUnit: self.repitionUnit,
+                       reps: self.reps,
+                       weight: self.weight,
+                       weightUnit: weightUnit,
+                       rir: self.rir,
+                       order: self.order,
+                       comment: self.comment)
     }
 }

@@ -14,41 +14,26 @@ struct RepititionsView: View {
 
     @EnvironmentObject private var viewModel: CreateWorkoutSettingViewModel
 
-    @Binding var numberOfSets: Int
-    @Binding var setsRepating: SetsRepeating
-    @Binding var numberOfRepitions: Int
-    @Binding var weight: Double
-    @Binding var selectedIndex: Int
-
-    private let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 0
-        return formatter
-    }()
-
-    private let decimalFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-
     // MARK: - UI
 
     var body: some View {
 
         if !self.viewModel.settingWeightUnits.isEmpty {
             VStack(alignment: .leading) {
-                let range = 1...(self.setsRepating == .repeating ? 1 : self.numberOfSets)
-                ForEach(range, id: \.self) { int in
-                    Section(header: Text("Set \(int)")
+                ForEach(self.viewModel.exerciseSettings) { setting in
+                    Section(header: Text("Set")
                                 .font(.headline)) {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Reps")
                                     .font(.subheadline)
                                 TextField("Enter number of reps",
-                                          value: $numberOfRepitions,
-                                          formatter: self.formatter)
+                                          text: Binding<String>(get: {
+                                            return "\(setting.reps)"
+                                          }, set: { newVal in
+                                            let new = setting.reps(reps: Int(newVal)!)
+                                            self.viewModel.updateSettings(with: new)
+                                          }))
                                     .keyboardType(.numberPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
@@ -57,23 +42,33 @@ struct RepititionsView: View {
                                 Text("Weight")
                                     .font(.subheadline)
                                 TextField("Enter weight",
-                                          value: $weight,
-                                          formatter: self.decimalFormatter)
+                                          text: Binding<String>(get: {
+                                            return setting.weight
+                                          }, set: { newVal in
+                                            let new = setting.weight(weight: newVal)
+                                            self.viewModel.updateSettings(with: new)
+                                          }))
                                     .keyboardType(.decimalPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
                             .frame(minWidth: 0, maxWidth: .infinity)
                             Menu {
                                 ForEach(self.viewModel.settingWeightUnits) { unit in
-                                    Button(unit.name, action: { self.viewModel.selectedSettingWeightUnits = unit })
+                                    Button(unit.name,
+                                           action: { self.viewModel.setWeightUnitName(name: unit.name,
+                                                                                      setting: setting) })
                                 }
                             } label: {
                                 VStack(alignment: .leading) {
                                     Text("Unit")
                                         .font(.subheadline)
                                     TextField("", text: Binding<String>(
-                                                get: { self.viewModel.selectedSettingWeightUnits.name },
-                                                set: { _ in }))
+                                                get: {
+                                                    self.viewModel.getWeightUnitName(setting: setting)
+                                                },
+                                                set: { newVal in
+                                                    self.viewModel.setWeightUnitName(name: newVal, setting: setting)
+                                                }))
                                         .keyboardType(.decimalPad)
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                 }
@@ -83,13 +78,7 @@ struct RepititionsView: View {
                         }
                     }
                 }
-//                Picker(selection: $selectedIndex,
-//                       label: Text("")) {
-//                    ForEach(self.viewModel.settingRepUnits.indices) {
-//                        Text(self.viewModel.settingRepUnits[$0].name)
-//                    }
-//                }
-            }// .padding()
+            }
         } else {
             EmptyView()
         }

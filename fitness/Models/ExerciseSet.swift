@@ -20,4 +20,9 @@ struct ExerciseSet: Codable {
         case sets
         case order
     }
+
+    // MARK: - Changes
+    func sets(sets: Int) -> ExerciseSet {
+        return ExerciseSet(id: self.id, exerciseDay: self.exerciseDay, sets: sets, order: self.order)
+    }
 }

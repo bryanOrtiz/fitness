@@ -24,7 +24,8 @@ struct WorkoutDetailView: View {
                 EmptyWorkoutDaysView()
                     .environmentObject(self.viewModel)
             } else {
-                WorkoutDetailGridView()
+//                WorkoutDetailGridView()
+                WorkoutDetailListView()
                     .environmentObject(self.viewModel)
                     .environmentObject(self.deps)
             }

@@ -32,6 +32,7 @@
 		7822D021265E9EF600A7A47F /* BasicAuthenticationCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822D020265E9EF600A7A47F /* BasicAuthenticationCredential.swift */; };
 		7827AAC02666A6FB00E280CB /* CreateWorkoutSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7827AABF2666A6FB00E280CB /* CreateWorkoutSettingViewModel.swift */; };
 		7827AAC32666A73500E280CB /* CreateWorkoutSettingNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7827AAC22666A73500E280CB /* CreateWorkoutSettingNet.swift */; };
+		7827AAC52667ECA400E280CB /* WorkoutDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7827AAC42667ECA400E280CB /* WorkoutDetailListView.swift */; };
 		783522CE264AF4C8000D79AF /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CD264AF4C8000D79AF /* Ingredient.swift */; };
 		783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522CF264AF779000D79AF /* IngredientInfo.swift */; };
 		783522D2264AF8C3000D79AF /* WeightUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783522D1264AF8C3000D79AF /* WeightUnit.swift */; };
@@ -136,6 +137,7 @@
 		7822D020265E9EF600A7A47F /* BasicAuthenticationCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAuthenticationCredential.swift; sourceTree = "<group>"; };
 		7827AABF2666A6FB00E280CB /* CreateWorkoutSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSettingViewModel.swift; sourceTree = "<group>"; };
 		7827AAC22666A73500E280CB /* CreateWorkoutSettingNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutSettingNet.swift; sourceTree = "<group>"; };
+		7827AAC42667ECA400E280CB /* WorkoutDetailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailListView.swift; sourceTree = "<group>"; };
 		783522CD264AF4C8000D79AF /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		783522CF264AF779000D79AF /* IngredientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientInfo.swift; sourceTree = "<group>"; };
 		783522D1264AF8C3000D79AF /* WeightUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightUnit.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				783E6F7F26616884009FE21A /* WorkoutDaysSelectionView.swift */,
 				783B19EE26541F0D008C1B45 /* WorkoutDetailView.swift */,
 				783E6F8B2661EE58009FE21A /* WorkoutDetailGridView.swift */,
+				7827AAC42667ECA400E280CB /* WorkoutDetailListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				783672302648DA1F0067B917 /* ExerciseComment.swift in Sources */,
 				783522D0264AF779000D79AF /* IngredientInfo.swift in Sources */,
 				783B19D826520A37008C1B45 /* DetailRowView.swift in Sources */,
+				7827AAC52667ECA400E280CB /* WorkoutDetailListView.swift in Sources */,
 				783B19F82654C0F2008C1B45 /* NetImage.swift in Sources */,
 				787012F62644EEB5007D5694 /* Page.swift in Sources */,
 				783B19C526503900008C1B45 /* ExerciseListView.swift in Sources */,

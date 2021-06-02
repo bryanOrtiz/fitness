@@ -17,17 +17,20 @@ enum SetsRepeating: String, CaseIterable, Identifiable {
 
 struct IsRepeatingView: View {
 
-    @Binding var selection: SetsRepeating
+    // MARK: - Properties
+
+    @EnvironmentObject var viewModel: CreateWorkoutSettingViewModel
+
+    // MARK: - UI
 
     var body: some View {
         HStack {
             Text("Are your sets the same?")
             Spacer()
-            Picker("", selection: $selection) {
+            Picker("", selection: self.$viewModel.setsRepeating) {
                 ForEach(SetsRepeating.allCases, id: \.self) { repeating in
                     Text(repeating.rawValue)
                 }
-
             }
             .pickerStyle(SegmentedPickerStyle())
         }

@@ -10,18 +10,23 @@ import SwiftUI
 
 struct NumberOfSetsView: View {
 
+    @EnvironmentObject var viewModel: CreateWorkoutSettingViewModel
+
     // MARK: - Properties
 
-    @Binding var numberOfSets: Int
     let step = 1
     let range = 1...10
 
     // MARK: - UI
     var body: some View {
-        Stepper(value: $numberOfSets,
+        Stepper(value: Binding<Int>(get: {
+            self.viewModel.set.sets
+        }, set: { newVal in
+            self.viewModel.set = self.viewModel.set.sets(sets: newVal)
+        }),
                 in: range,
                 step: step) {
-            Text("Sets: \(numberOfSets)")
+            Text("Sets: \(self.viewModel.set.sets)")
         }
     }
 }

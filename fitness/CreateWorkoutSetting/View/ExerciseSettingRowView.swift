@@ -14,7 +14,7 @@ struct ExerciseSettingRowView<Destination: View>: View {
 
     let title: String
     let description: String
-    @State var selection: String
+    @Binding var selection: String
     @ViewBuilder let destination: Destination
 
     // MARK: - UI
