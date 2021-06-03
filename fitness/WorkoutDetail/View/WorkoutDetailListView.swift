@@ -28,13 +28,19 @@ struct WorkoutDetailListView: View {
                             .buttonStyle(SecondaryButtonStyle())) {
                     ForEach(day.sets) { set in
                         ForEach(set.exercises) { exerciseInfo in
-                            HStack {
-                                Image(uiImage: #imageLiteral(resourceName: "exercise_placeholder"))
-                                Text(exerciseInfo.exercise.name)
-                            }
-
-//                            CardView(title: exerciseInfo.exercise.name,
-//                                     imgURLString: exerciseInfo.images[0].image)
+                            NavigationLink(
+                                destination:
+                                    ExerciseSettingDetailView(
+                                        viewModel:
+                                            ExerciseSettingDetailViewModel(net: self.appDeps.net,
+                                                                           exerciseSetting: exerciseInfo)
+                                    ),
+                                label: {
+                                    HStack {
+                                        Image(uiImage: #imageLiteral(resourceName: "exercise_placeholder"))
+                                        Text(exerciseInfo.exercise.name)
+                                    }
+                                })
                         }
                     }
                 }

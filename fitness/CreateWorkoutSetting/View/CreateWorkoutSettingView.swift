@@ -6,18 +6,6 @@
 //  Copyright © 2021 Ortiz. All rights reserved.
 //
 
-/**
- 1. Create Workout day/ exercise day
- 2. Find Exercise
- 3. Set Exercise, Set reps, Set Weight, Set Weight unit, set rep unit in UI
- 4. Hit Submit
- 5. Create Set with workoutDay and numOfSets
- 6. Create Settings model
- 5. Make network request for creating Workout Settings
- 6. Success Dismiss
- 7. Error ??
- */
-
 import SwiftUI
 
 struct CreateWorkoutSettingView: View {

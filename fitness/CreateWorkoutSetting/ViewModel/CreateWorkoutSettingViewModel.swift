@@ -18,9 +18,9 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
 
     @Published var setsRepeating = SetsRepeating.repeating
     @Published var set: ExerciseSet
+    @Published var selectedExercise: SearchExercise.Data?
     @Published var exerciseSettings: [Setting]
 
-    @Published var selectedExercise: SearchExercise.Data?
     @Published var searchedExercises = [SearchExercise.Data]()
     @Published var settingRepUnits = [SettingsRepetitionUnit]()
     @Published var initialSettingRepUnits: SettingsRepetitionUnit?
@@ -95,6 +95,11 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
             .store(in: &cancellableSet)
     }
 
+    /// Main network call for creating a WorkoutSetting.
+    /// This should iterate over the the `exerciseSettings` property and create a WorkoutSetting for each item
+    ///  in the array.
+    /// - Parameter repititionUnit: By default we are setting all repition units to be of type `Repitions`.
+    /// We are not sure yet why we would need the other rep units.
     func onSubmit(repititionUnit: Int = 1) {
         self.net.createExerciseSet(set: self.set)
             .flatMap { set -> AnyPublisher<[Setting], AFError> in
@@ -181,7 +186,7 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
         self.exerciseSettings[index] = new
     }
 
-    func selectedExerciseNameChange() {
+    private func selectedExerciseNameChange() {
         self.$selectedExercise
             .map { selectedExercise in
                 return selectedExercise?.name ?? "No Exercise Selected"
