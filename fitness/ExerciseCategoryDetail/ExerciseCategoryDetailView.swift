@@ -29,7 +29,8 @@ struct ExerciseCategoryDetailView: View {
                             //                    }) ).font(.subheadline)
                         }
                     })
-            }.navigationBarTitle(Text(viewModel.category.name))
+            }
+            .navigationBarTitle(Text(viewModel.category.name))
         }
     }
 }

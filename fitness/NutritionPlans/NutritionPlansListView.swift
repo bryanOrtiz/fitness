@@ -11,26 +11,40 @@ import SwiftUI
 struct NutritionPlansListView: View {
 
     // MARK: - Properties
-
-    @StateObject private var viewModel = NutritionPlansViewModel()
+    @EnvironmentObject private var deps: AppDeps
+    @StateObject var viewModel: NutritionPlansViewModel
 
     // MARK: - UI
 
     var body: some View {
-        List {
-            ForEach(viewModel.plans) {
-                RowView(title: $0.creationDate, detail: $0.description)
+        NavigationView {
+            List {
+                ForEach(viewModel.plans) { plan in
+                    NavigationLink(
+                        destination: NutritionPlanDetailView(viewModel: NutritionPlanDetailViewModel(net: self.deps.net,
+                                                                                                     plan: plan)),
+                        label: {
+                            RowView(title: plan.creationDate, detail: plan.description)
+                        })
+                }
+                .onDelete { set in
+                    print("delete at set: \(set)")
+                }
             }
+            .navigationBarItems(trailing: EditButton())
+//            .toolbar(content: {
+//                EditButton()
+//            })
+            .navigationBarTitle(Text("Nutrition Plans"))
+            .onAppear(perform: {
+                viewModel.getPlans()
+            })
         }
-        .navigationBarTitle(Text("Nutrition Plans"))
-        .onAppear(perform: {
-            viewModel.getPlans()
-        })
     }
 }
 
 struct NutritionPlansListView_Previews: PreviewProvider {
     static var previews: some View {
-        NutritionPlansListView()
+        NutritionPlansListView(viewModel: NutritionPlansViewModel(net: Net()))
     }
 }

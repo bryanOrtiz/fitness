@@ -16,12 +16,18 @@ class NutritionPlansViewModel: ObservableObject {
 
     private var cancellableSet: Set<AnyCancellable> = []
 
-    private let net: NetNutritionPlan = Net()
+    let net: NetNutritionPlan
+
+    // MARK: - Initializers
+
+    init(net: NetNutritionPlan) {
+        self.net = net
+    }
 
     // MARK: - NET
 
     func getPlans() {
-        net.getNutritionPlan()
+        net.getNutritionPlans()
             .result()
             .map({ result in
                 switch result {

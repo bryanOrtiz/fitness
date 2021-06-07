@@ -19,10 +19,14 @@ struct App: View {
         Group {
             if deps.isLoggedIn {
                 TabView {
-                    ExerciseListView().tabItem { Text("Exercises") }
-                    WorkoutsView().tabItem { Text("Workouts") }
-                    NutritionPlansListView().tabItem { Text("Nutrition") }
-                    ProfileView().tabItem { Text("Profile") }
+                    ExerciseListView()
+                        .tabItem { Text("Exercises") }
+                    WorkoutsView()
+                        .tabItem { Text("Workouts") }
+                    NutritionPlansListView(viewModel: NutritionPlansViewModel(net: self.deps.net))
+                        .tabItem { Image("nutrition_tab") }
+                    ProfileView()
+                        .tabItem { Text("Profile") }
                 }
             } else {
                 LoginView()

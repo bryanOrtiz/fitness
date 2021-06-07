@@ -25,19 +25,20 @@ struct ExerciseListView: View {
     // MARK: - UI
 
     var body: some View {
-        List {
-            Section(header:
-                        Picker("Filter", selection: $selectedFilter) {
-                            ForEach(ExerciseFilter.allCases, id: \.self) { filter in
-                                Text(filter.rawValue)
+        NavigationView {
+            List {
+                Section(header:
+                            Picker("Filter", selection: $selectedFilter) {
+                                ForEach(ExerciseFilter.allCases, id: \.self) { filter in
+                                    Text(filter.rawValue)
+                                }
                             }
-
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-            ) {
-                ExerciseListFilteredView(filter: selectedFilter)
-            }
-        }.navigationBarTitle(Text("Exercises"))
+                            .pickerStyle(SegmentedPickerStyle())
+                ) {
+                    ExerciseListFilteredView(filter: selectedFilter)
+                }
+            }.navigationBarTitle(Text("Exercises"))
+        }
     }
 }
 

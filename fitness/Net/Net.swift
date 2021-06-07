@@ -311,29 +311,6 @@ extension Net: NetIngredientWeightUnit {
     }
 }
 
-// MARK: - Nutrition Plan Info
-
-protocol NetNutritionPlanInfo {
-    func getNutritionPlanInfo() -> DataResponsePublisher<Page<NutritionPlanInfo>>
-    // requires meals
-    func createNutritionPlanInfo() -> DataResponsePublisher<NutritionPlanInfo>
-}
-
-extension Net: NetNutritionPlanInfo {
-    func getNutritionPlanInfo() -> DataResponsePublisher<Page<NutritionPlanInfo>> {
-        return AF.request(Router.getNutritionPlanInfo)
-            .validate()
-            .publishDecodable(type: Page<NutritionPlanInfo>.self)
-    }
-
-    // requires meals
-    func createNutritionPlanInfo() -> DataResponsePublisher<NutritionPlanInfo> {
-        return AF.request(Router.createNutritionPlanInfo)
-            .validate()
-            .publishDecodable(type: NutritionPlanInfo.self)
-    }
-}
-
 // MARK: - Nutrition Diary
 
 protocol NetNutritionDiary {
