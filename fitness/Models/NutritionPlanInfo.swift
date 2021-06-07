@@ -10,6 +10,14 @@ import Foundation
 
 struct NutritionPlanInfo: Codable, Identifiable {
 
+    // MARK: - Language
+
+    struct Language: Codable, Identifiable {
+        let id: Int
+        let shortName: String
+        let fullName: String
+    }
+
     // MARK: - NutritionalValues
 
     struct NutritionalValues: Codable {
@@ -35,7 +43,7 @@ struct NutritionPlanInfo: Codable, Identifiable {
     let creationDate: String
     let description: String
     let nutritionalValues: NutritionalValues
-//    let language: Language
+    let language: NutritionPlanInfo.Language
     let meals: [NutritionPlanInfo.Meal]
 
     // MARK: - Coding Keys
@@ -43,7 +51,7 @@ struct NutritionPlanInfo: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id
         case description
-//        case language
+        case language
 
         case creationDate = "creation_date"
         case meals
@@ -157,7 +165,7 @@ extension NutritionPlanInfo.Meal.Item {
         let sodium: String
         let license: License
         let licenseAuthor: String
-        let language: NutritionPlanInfo.Meal.Item.Ingredient.Language
+        let language: NutritionPlanInfo.Language
     }
 
     // MARK: - Item CodingKeys
@@ -175,14 +183,6 @@ extension NutritionPlanInfo.Meal.Item {
 }
 
 extension NutritionPlanInfo.Meal.Item.Ingredient {
-
-    // MARK: - Language
-
-    struct Language: Codable, Identifiable {
-        let id: Int
-        let shortName: String
-        let fullName: String
-    }
 
     // MARK: - Ingredient CodingKeys
 
@@ -206,7 +206,7 @@ extension NutritionPlanInfo.Meal.Item.Ingredient {
     }
 }
 
-extension NutritionPlanInfo.Meal.Item.Ingredient.Language {
+extension NutritionPlanInfo.Language {
 
     // MARK: - Language CodingKeys
 

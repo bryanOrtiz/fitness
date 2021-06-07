@@ -30,9 +30,6 @@ extension Net: NutritionPlanDetailNet {
 
     func getDetailedNutritionPlan(plan: NutritionPlan) -> DataResponsePublisher<NutritionPlanInfo> {
         return session.request(self.detailedNutritionPlanURL + "\(plan.id)/")
-//            .responseJSON(completionHandler: { response in
-//                debugPrint("response: \(response)")
-//            })
             .validate()
             .publishDecodable(type: NutritionPlanInfo.self)
     }

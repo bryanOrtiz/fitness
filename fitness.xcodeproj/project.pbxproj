@@ -101,6 +101,11 @@
 		783FAE3C266C4C4500544753 /* NutritionPlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE3B266C4C4500544753 /* NutritionPlanDetailView.swift */; };
 		783FAE3E266C4C7200544753 /* NutrionPlanDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE3D266C4C7200544753 /* NutrionPlanDetailViewModel.swift */; };
 		783FAE40266C4C8400544753 /* NutritionPlanDetailNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE3F266C4C8400544753 /* NutritionPlanDetailNet.swift */; };
+		783FAE42266E72C300544753 /* FitnessEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE41266E72C300544753 /* FitnessEmptyView.swift */; };
+		783FAE45266E76C500544753 /* NutritionPlanValuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE44266E76C500544753 /* NutritionPlanValuesView.swift */; };
+		783FAE47266E776000544753 /* HRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE46266E776000544753 /* HRowView.swift */; };
+		783FAE49266E7F4D00544753 /* NutritionPlanMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE48266E7F4D00544753 /* NutritionPlanMealsView.swift */; };
+		783FAE4B266E817E00544753 /* NutritionPlanMealItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE4A266E817E00544753 /* NutritionPlanMealItemView.swift */; };
 		784E2F6C266875EC00638E05 /* ExerciseSettingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F6B266875EC00638E05 /* ExerciseSettingDetailView.swift */; };
 		784E2F7026687C0E00638E05 /* ExerciseSettingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F6F26687C0E00638E05 /* ExerciseSettingDetailViewModel.swift */; };
 		784E2F7426687D8E00638E05 /* ExerciseSettingDetailNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F7326687D8E00638E05 /* ExerciseSettingDetailNet.swift */; };
@@ -214,6 +219,11 @@
 		783FAE3B266C4C4500544753 /* NutritionPlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanDetailView.swift; sourceTree = "<group>"; };
 		783FAE3D266C4C7200544753 /* NutrionPlanDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrionPlanDetailViewModel.swift; sourceTree = "<group>"; };
 		783FAE3F266C4C8400544753 /* NutritionPlanDetailNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanDetailNet.swift; sourceTree = "<group>"; };
+		783FAE41266E72C300544753 /* FitnessEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessEmptyView.swift; sourceTree = "<group>"; };
+		783FAE44266E76C500544753 /* NutritionPlanValuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanValuesView.swift; sourceTree = "<group>"; };
+		783FAE46266E776000544753 /* HRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRowView.swift; sourceTree = "<group>"; };
+		783FAE48266E7F4D00544753 /* NutritionPlanMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanMealsView.swift; sourceTree = "<group>"; };
+		783FAE4A266E817E00544753 /* NutritionPlanMealItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionPlanMealItemView.swift; sourceTree = "<group>"; };
 		784E2F6B266875EC00638E05 /* ExerciseSettingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailView.swift; sourceTree = "<group>"; };
 		784E2F6F26687C0E00638E05 /* ExerciseSettingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailViewModel.swift; sourceTree = "<group>"; };
 		784E2F7326687D8E00638E05 /* ExerciseSettingDetailNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailNet.swift; sourceTree = "<group>"; };
@@ -395,6 +405,8 @@
 				783E6F832661ADAA009FE21A /* MultilineTextView.swift */,
 				783E6F7D26616697009FE21A /* MultipleSelectionViewItem.swift */,
 				783B19DF2652CF43008C1B45 /* RowView.swift */,
+				783FAE41266E72C300544753 /* FitnessEmptyView.swift */,
+				783FAE46266E776000544753 /* HRowView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -494,11 +506,22 @@
 		783FAE3A266C4C2C00544753 /* NutritionPlanDetail */ = {
 			isa = PBXGroup;
 			children = (
-				783FAE3B266C4C4500544753 /* NutritionPlanDetailView.swift */,
+				783FAE43266E768F00544753 /* View */,
 				783FAE3D266C4C7200544753 /* NutrionPlanDetailViewModel.swift */,
 				783FAE3F266C4C8400544753 /* NutritionPlanDetailNet.swift */,
 			);
 			path = NutritionPlanDetail;
+			sourceTree = "<group>";
+		};
+		783FAE43266E768F00544753 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				783FAE3B266C4C4500544753 /* NutritionPlanDetailView.swift */,
+				783FAE44266E76C500544753 /* NutritionPlanValuesView.swift */,
+				783FAE48266E7F4D00544753 /* NutritionPlanMealsView.swift */,
+				783FAE4A266E817E00544753 /* NutritionPlanMealItemView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		784E2F6A2668759D00638E05 /* ExerciseSettingDetail */ = {
@@ -746,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				783672242648CFBA0067B917 /* SettingsRepetitionUnit.swift in Sources */,
+				783FAE42266E72C300544753 /* FitnessEmptyView.swift in Sources */,
 				783B19D22652047C008C1B45 /* ExerciseDetailView.swift in Sources */,
 				7836722A2648D75F0067B917 /* Exercise.swift in Sources */,
 				783E6F8026616884009FE21A /* WorkoutDaysSelectionView.swift in Sources */,
@@ -807,6 +831,7 @@
 				7809D6D9266567FA005843B1 /* IsRepeatingView.swift in Sources */,
 				7822CFFD265821EC00A7A47F /* NutritionPlanNet.swift in Sources */,
 				784E2F7026687C0E00638E05 /* ExerciseSettingDetailViewModel.swift in Sources */,
+				783FAE4B266E817E00544753 /* NutritionPlanMealItemView.swift in Sources */,
 				783B19EC26540DE6008C1B45 /* WorkoutInfo.swift in Sources */,
 				783522DC264B0BC3000D79AF /* Meal.swift in Sources */,
 				783E6F6E26601EBF009FE21A /* NetProfile.swift in Sources */,
@@ -817,9 +842,11 @@
 				783B19EA26540D86008C1B45 /* NetWorkoutInfo.swift in Sources */,
 				783522E6264CCE2C000D79AF /* ExerciseSet.swift in Sources */,
 				787012F82644EF84007D5694 /* DayOfTheWeek.swift in Sources */,
+				783FAE47266E776000544753 /* HRowView.swift in Sources */,
 				783B19F126541F24008C1B45 /* WorkoutDetailViewModel.swift in Sources */,
 				787012F42640EDA6007D5694 /* UserProfile.swift in Sources */,
 				7822D002265967E000A7A47F /* HeightView.swift in Sources */,
+				783FAE49266E7F4D00544753 /* NutritionPlanMealsView.swift in Sources */,
 				7822D00E265B4F9D00A7A47F /* ActivityFactorItemView.swift in Sources */,
 				783E6F64265ED483009FE21A /* KeychainService.swift in Sources */,
 				783522EA264CD30E000D79AF /* Workout.swift in Sources */,
@@ -838,6 +865,7 @@
 				783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */,
 				784E2F77266883CA00638E05 /* DeleteButtonStyle.swift in Sources */,
 				7822CFF1265602FE00A7A47F /* ImageURLView.swift in Sources */,
+				783FAE45266E76C500544753 /* NutritionPlanValuesView.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,
 				787012FC26458A5A007D5694 /* License.swift in Sources */,
 				783B19E82653800D008C1B45 /* NetWorkout.swift in Sources */,
