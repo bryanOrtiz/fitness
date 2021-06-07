@@ -33,8 +33,8 @@ struct NutritionPlanInfo: Codable, Identifiable {
         let plan: Int
         let order: Int
         let time: String?
-        let items: [NutritionPlanInfo.Meal.Item]
-        let total: NutritionalValues.Total
+        let items: [NutritionPlanInfo.Meal.Item]!
+        let total: NutritionalValues.Total!
     }
 
     // MARK: - Properties
@@ -143,6 +143,16 @@ extension NutritionPlanInfo.Meal {
         case time
         case items = "meal_items"
         case total = "get_nutritional_values"
+    }
+
+    // MARK: - Changes
+    func time(time: String) -> NutritionPlanInfo.Meal {
+        NutritionPlanInfo.Meal(id: self.id,
+                               plan: self.plan,
+                               order: self.order,
+                               time: time,
+                               items: self.items,
+                               total: self.total)
     }
 }
 

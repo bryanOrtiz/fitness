@@ -16,10 +16,6 @@ protocol NutritionPlanDetailNet {
     func getDetailedNutritionPlan(plan: NutritionPlan) -> DataResponsePublisher<NutritionPlanInfo>
     //    func updateNutritionPlan(plan: NutritionPlanInfo) -> DataResponsePublisher<NutritionPlanInfo>
     func deleteDetailedNutritionPlan(plan: NutritionPlanInfo) -> DataResponsePublisher<Data>
-
-    // MARK: - Meal
-
-    func createMealTime(meal: Meal) -> DataResponsePublisher<Meal>
 }
 
 extension Net: NutritionPlanDetailNet {
@@ -49,18 +45,5 @@ extension Net: NutritionPlanDetailNet {
                                method: .delete)
             .validate()
             .publishData()
-    }
-
-    // MARK: - Meals
-
-    var mealTimeURL: String { "\(self.baseURL)meal/" }
-
-    func createMealTime(meal: Meal) -> DataResponsePublisher<Meal> {
-        return session.request(self.mealTimeURL,
-                               method: .post,
-                               parameters: meal,
-                               encoder: JSONParameterEncoder.default)
-            .validate()
-            .publishDecodable(type: Meal.self)
     }
 }

@@ -12,6 +12,7 @@ struct NutritionPlanDetailView: View {
 
     // MARK: - Properties
 
+    @EnvironmentObject private var deps: AppDeps
     @StateObject var viewModel: NutritionPlanDetailViewModel
     @State private var isPresented = false
 
@@ -38,7 +39,8 @@ struct NutritionPlanDetailView: View {
             }
         }
         .sheet(isPresented: self.$isPresented) {
-            EmptyView()
+            CreateMealView(viewModel: CreateMealViewModel(net: self.deps.net,
+                                                          planId: self.viewModel.detailedPlan!.id))
         }
         .onAppear(perform: {
             self.getDetail()
