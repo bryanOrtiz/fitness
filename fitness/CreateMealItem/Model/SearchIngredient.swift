@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct SearchIngredient: Codable, Identifiable {
+struct SearchIngredient: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
 }

@@ -127,10 +127,10 @@ extension NutritionPlanInfo.Meal {
         let id: Int
         let mealId: Int
         let ingredientId: Int
-        let ingredient: NutritionPlanInfo.Meal.Item.Ingredient
+        let ingredient: NutritionPlanInfo.Meal.Item.Ingredient?
         let weightUnit: String?
         let weightUnitObj: String?
-        let order: Int
+        let order: Int?
         let amount: String
     }
 
@@ -189,6 +189,29 @@ extension NutritionPlanInfo.Meal.Item {
         case weightUnitObj = "weight_unit_obj"
         case order
         case amount
+    }
+
+    // MARK: - Item Changes
+    func ingredientId(_ ingredientId: Int) -> NutritionPlanInfo.Meal.Item {
+        NutritionPlanInfo.Meal.Item(id: self.id,
+                                    mealId: self.mealId,
+                                    ingredientId: ingredientId,
+                                    ingredient: self.ingredient,
+                                    weightUnit: self.weightUnit,
+                                    weightUnitObj: self.weightUnitObj,
+                                    order: self.order,
+                                    amount: self.amount)
+    }
+
+    func amount(_ amount: String) -> NutritionPlanInfo.Meal.Item {
+        NutritionPlanInfo.Meal.Item(id: self.id,
+                                    mealId: self.mealId,
+                                    ingredientId: self.ingredientId,
+                                    ingredient: self.ingredient,
+                                    weightUnit: self.weightUnit,
+                                    weightUnitObj: self.weightUnitObj,
+                                    order: self.order,
+                                    amount: amount)
     }
 }
 

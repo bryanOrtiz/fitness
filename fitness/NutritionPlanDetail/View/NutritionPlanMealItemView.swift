@@ -15,14 +15,16 @@ struct NutritionPlanMealItemView: View {
     // MARK: - UI
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(self.mealItem.ingredient.name)
-                .font(.title2)
-            HRowView(title: "Amount:", detail: self.mealItem.amount)
-            Divider()
-            HRowView(title: "Protein:", detail: self.mealItem.ingredient.protein)
-            HRowView(title: "Carbs:", detail: self.mealItem.ingredient.carbohydrates)
-            HRowView(title: "Fat:", detail: self.mealItem.ingredient.fat)
+        if let ingredient = self.mealItem.ingredient {
+            VStack(alignment: .leading) {
+                Text(ingredient.name)
+                    .font(.title2)
+                HRowView(title: "Amount:", detail: self.mealItem.amount)
+                Divider()
+                HRowView(title: "Protein:", detail: ingredient.protein)
+                HRowView(title: "Carbs:", detail: ingredient.carbohydrates)
+                HRowView(title: "Fat:", detail: ingredient.fat)
+            }
         }
     }
 }

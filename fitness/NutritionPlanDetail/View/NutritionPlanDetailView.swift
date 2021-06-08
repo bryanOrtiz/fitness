@@ -16,6 +16,7 @@ struct NutritionPlanDetailView: View {
     @StateObject var viewModel: NutritionPlanDetailViewModel
     @State private var isPresented = false
     @State private var addItemIsPresent = false
+    @State private var mealId: Int = 0
 
     // MARK: - UI
 
@@ -45,7 +46,8 @@ struct NutritionPlanDetailView: View {
 //                                                          planId: self.viewModel.detailedPlan!.id))
 //        }
         .sheet(isPresented: self.$addItemIsPresent, content: {
-            SearchIngredientView(viewModel: SearchIngredientViewModel(net: self.deps.net))
+            CreateMealItemView(createMealItemViewModel: CreateMealItemViewModel(net: self.deps.net,
+                                                                                mealId: self.mealId))
         })
         .onAppear(perform: {
             self.getDetail()
@@ -61,8 +63,8 @@ struct NutritionPlanDetailView: View {
         self.isPresented.toggle()
     }
 
-    private func addItemAction() {
-        debugPrint("adding item")
+    private func addItemAction(mealId: Int) {
+        self.mealId = mealId
         self.addItemIsPresent.toggle()
     }
 }

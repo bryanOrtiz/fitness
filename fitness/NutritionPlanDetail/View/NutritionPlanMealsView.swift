@@ -14,7 +14,7 @@ struct NutritionPlanMealsView: View {
 
     @EnvironmentObject private var viewModel: NutritionPlanDetailViewModel
     let action: () -> Void
-    let addItemAction: () -> Void
+    let addItemAction: (_ mealId: Int) -> Void
 
     // MARK: - UI
 
@@ -27,13 +27,14 @@ struct NutritionPlanMealsView: View {
                                                                                                  set: { _ in }))
                     }
                 } else {
-                    Button(action: self.addItemAction) {
-                        HStack {
-                            Spacer()
-                            Text("Add item to meal")
-                            Spacer()
-                        }
-                    }
+                    Button(action: { self.addItemAction(meal.id) },
+                           label: {
+                            HStack {
+                                Spacer()
+                                Text("Add item to meal")
+                                Spacer()
+                            }
+                    })
                     .buttonStyle(SecondaryButtonStyle())
                 }
             }
