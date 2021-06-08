@@ -18,10 +18,10 @@ final class CreateWorkoutSettingViewModel: ObservableObject {
 
     @Published var setsRepeating = SetsRepeating.repeating
     @Published var set: ExerciseSet
-    @Published var selectedExercise: SearchExercise.Data?
+    @Published var selectedExercise: SearchExercise?
     @Published var exerciseSettings: [Setting]
 
-    @Published var searchedExercises = [SearchExercise.Data]()
+    @Published var searchedExercises = [SearchExercise]()
     @Published var settingRepUnits = [SettingsRepetitionUnit]()
     @Published var initialSettingRepUnits: SettingsRepetitionUnit?
     @Published var settingWeightUnits = [SettingsWeightUnit]()

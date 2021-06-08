@@ -15,6 +15,7 @@ struct NutritionPlanDetailView: View {
     @EnvironmentObject private var deps: AppDeps
     @StateObject var viewModel: NutritionPlanDetailViewModel
     @State private var isPresented = false
+    @State private var addItemIsPresent = false
 
     // MARK: - UI
 
@@ -29,7 +30,8 @@ struct NutritionPlanDetailView: View {
                         EmptyView()
                     }
                     NutritionPlanValuesView(values: self.$viewModel.values)
-                    NutritionPlanMealsView(action: presentationAction)
+                    NutritionPlanMealsView(action: self.presentationAction,
+                                           addItemAction: self.addItemAction)
                         .environmentObject(self.viewModel)
                 }
             } else {
@@ -38,10 +40,13 @@ struct NutritionPlanDetailView: View {
                           buttonAction: { self.getDetail() })
             }
         }
-        .sheet(isPresented: self.$isPresented) {
-            CreateMealView(viewModel: CreateMealViewModel(net: self.deps.net,
-                                                          planId: self.viewModel.detailedPlan!.id))
-        }
+//        .sheet(isPresented: self.$isPresented) {
+//            CreateMealView(viewModel: CreateMealViewModel(net: self.deps.net,
+//                                                          planId: self.viewModel.detailedPlan!.id))
+//        }
+        .sheet(isPresented: self.$addItemIsPresent, content: {
+            SearchIngredientView(viewModel: SearchIngredientViewModel(net: self.deps.net))
+        })
         .onAppear(perform: {
             self.getDetail()
         })
@@ -52,8 +57,12 @@ struct NutritionPlanDetailView: View {
         self.viewModel.getDetail()
     }
 
-    // MARK: - Actions
     private func presentationAction() {
         self.isPresented.toggle()
+    }
+
+    private func addItemAction() {
+        debugPrint("adding item")
+        self.addItemIsPresent.toggle()
     }
 }

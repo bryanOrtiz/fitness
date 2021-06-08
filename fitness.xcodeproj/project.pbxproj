@@ -109,6 +109,11 @@
 		783FAE4E266E91AB00544753 /* CreateMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE4D266E91AB00544753 /* CreateMealView.swift */; };
 		783FAE50266E929900544753 /* CreateMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE4F266E929900544753 /* CreateMealViewModel.swift */; };
 		783FAE52266E96D700544753 /* CreateMealNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE51266E96D700544753 /* CreateMealNet.swift */; };
+		783FAE57266EE06200544753 /* SearchIngredientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE56266EE06200544753 /* SearchIngredientView.swift */; };
+		783FAE59266F04E700544753 /* SearchIngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE58266F04E700544753 /* SearchIngredientViewModel.swift */; };
+		783FAE5B266F053F00544753 /* SearchIngredientNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE5A266F053F00544753 /* SearchIngredientNet.swift */; };
+		783FAE5D266F227800544753 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE5C266F227800544753 /* Suggestions.swift */; };
+		783FAE5F266F24DD00544753 /* SearchIngredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FAE5E266F24DD00544753 /* SearchIngredient.swift */; };
 		784E2F6C266875EC00638E05 /* ExerciseSettingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F6B266875EC00638E05 /* ExerciseSettingDetailView.swift */; };
 		784E2F7026687C0E00638E05 /* ExerciseSettingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F6F26687C0E00638E05 /* ExerciseSettingDetailViewModel.swift */; };
 		784E2F7426687D8E00638E05 /* ExerciseSettingDetailNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E2F7326687D8E00638E05 /* ExerciseSettingDetailNet.swift */; };
@@ -230,6 +235,11 @@
 		783FAE4D266E91AB00544753 /* CreateMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMealView.swift; sourceTree = "<group>"; };
 		783FAE4F266E929900544753 /* CreateMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMealViewModel.swift; sourceTree = "<group>"; };
 		783FAE51266E96D700544753 /* CreateMealNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMealNet.swift; sourceTree = "<group>"; };
+		783FAE56266EE06200544753 /* SearchIngredientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIngredientView.swift; sourceTree = "<group>"; };
+		783FAE58266F04E700544753 /* SearchIngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIngredientViewModel.swift; sourceTree = "<group>"; };
+		783FAE5A266F053F00544753 /* SearchIngredientNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIngredientNet.swift; sourceTree = "<group>"; };
+		783FAE5C266F227800544753 /* Suggestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestions.swift; sourceTree = "<group>"; };
+		783FAE5E266F24DD00544753 /* SearchIngredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchIngredient.swift; sourceTree = "<group>"; };
 		784E2F6B266875EC00638E05 /* ExerciseSettingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailView.swift; sourceTree = "<group>"; };
 		784E2F6F26687C0E00638E05 /* ExerciseSettingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailViewModel.swift; sourceTree = "<group>"; };
 		784E2F7326687D8E00638E05 /* ExerciseSettingDetailNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettingDetailNet.swift; sourceTree = "<group>"; };
@@ -540,6 +550,17 @@
 			path = CreateMeal;
 			sourceTree = "<group>";
 		};
+		783FAE53266EE02400544753 /* SearchIngredient */ = {
+			isa = PBXGroup;
+			children = (
+				783FAE56266EE06200544753 /* SearchIngredientView.swift */,
+				783FAE58266F04E700544753 /* SearchIngredientViewModel.swift */,
+				783FAE5A266F053F00544753 /* SearchIngredientNet.swift */,
+				783FAE5E266F24DD00544753 /* SearchIngredient.swift */,
+			);
+			path = SearchIngredient;
+			sourceTree = "<group>";
+		};
 		784E2F6A2668759D00638E05 /* ExerciseSettingDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -603,6 +624,7 @@
 				787012F32640EDA6007D5694 /* UserProfile.swift */,
 				783522DF264B0E56000D79AF /* WeightEntry.swift */,
 				783522D1264AF8C3000D79AF /* WeightUnit.swift */,
+				783FAE5C266F227800544753 /* Suggestions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -636,6 +658,7 @@
 		B45F4AA0263F5FF30095AE10 /* fitness */ = {
 			isa = PBXGroup;
 			children = (
+				783FAE53266EE02400544753 /* SearchIngredient */,
 				783FAE4C266E919800544753 /* CreateMeal */,
 				783FAE3A266C4C2C00544753 /* NutritionPlanDetail */,
 				784E2F6A2668759D00638E05 /* ExerciseSettingDetail */,
@@ -802,6 +825,7 @@
 				7827AAC32666A73500E280CB /* CreateWorkoutSettingNet.swift in Sources */,
 				784E2F7426687D8E00638E05 /* ExerciseSettingDetailNet.swift in Sources */,
 				7822D014265DF03100A7A47F /* DailyCaloricIntakeLabelView.swift in Sources */,
+				783FAE5F266F24DD00544753 /* SearchIngredient.swift in Sources */,
 				7822D017265DF35200A7A47F /* LoginView.swift in Sources */,
 				7827AAC726686D9300E280CB /* RepitionsTextView.swift in Sources */,
 				7822CFFB26581F9700A7A47F /* NutrionPlansViewModel.swift in Sources */,
@@ -822,6 +846,7 @@
 				783E6F8E2661EFB1009FE21A /* CreateWorkoutSettingView.swift in Sources */,
 				7827AAC02666A6FB00E280CB /* CreateWorkoutSettingViewModel.swift in Sources */,
 				783E6F8C2661EE58009FE21A /* WorkoutDetailGridView.swift in Sources */,
+				783FAE5D266F227800544753 /* Suggestions.swift in Sources */,
 				7822D019265DF3EA00A7A47F /* SecondaryButtonStyle.swift in Sources */,
 				783522DE264B0D35000D79AF /* MealItem.swift in Sources */,
 				7822D01D265DFDEB00A7A47F /* LoginViewModel.swift in Sources */,
@@ -842,6 +867,7 @@
 				783B19E226533005008C1B45 /* OAuthCredential.swift in Sources */,
 				7822D0002658AF8B00A7A47F /* BasalMetabolicRate.swift in Sources */,
 				7809D6DB26656AFD005843B1 /* RepititionsView.swift in Sources */,
+				783FAE57266EE06200544753 /* SearchIngredientView.swift in Sources */,
 				7827AAC92668702800E280CB /* RepititionsMenuView.swift in Sources */,
 				783B19C826503BCA008C1B45 /* ExerciseCategoriesViewModel.swift in Sources */,
 				783FAE50266E929900544753 /* CreateMealViewModel.swift in Sources */,
@@ -876,6 +902,7 @@
 				783FAE52266E96D700544753 /* CreateMealNet.swift in Sources */,
 				787012FA2644F365007D5694 /* Language.swift in Sources */,
 				783E6F78266098DD009FE21A /* CreateWorkoutView.swift in Sources */,
+				783FAE5B266F053F00544753 /* SearchIngredientNet.swift in Sources */,
 				783B19CD26504DD3008C1B45 /* ExerciseCategoryDetailViewModel.swift in Sources */,
 				784E2F6C266875EC00638E05 /* ExerciseSettingDetailView.swift in Sources */,
 				7809D6DD2665E063005843B1 /* ExerciseSettingRowView.swift in Sources */,
@@ -884,6 +911,7 @@
 				7836722E2648D9210067B917 /* ExerciseCategory.swift in Sources */,
 				783522D6264AFA67000D79AF /* NutritionPlan.swift in Sources */,
 				784E2F77266883CA00638E05 /* DeleteButtonStyle.swift in Sources */,
+				783FAE59266F04E700544753 /* SearchIngredientViewModel.swift in Sources */,
 				7822CFF1265602FE00A7A47F /* ImageURLView.swift in Sources */,
 				783FAE45266E76C500544753 /* NutritionPlanValuesView.swift in Sources */,
 				787012F12640EC65007D5694 /* Net.swift in Sources */,

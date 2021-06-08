@@ -32,7 +32,7 @@ struct SearchExerciseView: View {
     }
 
     // MARK: - Action
-    func didSelectExercise(exercise: SearchExercise.Data) {
+    func didSelectExercise(exercise: SearchExercise) {
         self.viewModel.selectedExercise = exercise
         self.viewModel.searchedExercises = []
         self.presentationMode.wrappedValue.dismiss()

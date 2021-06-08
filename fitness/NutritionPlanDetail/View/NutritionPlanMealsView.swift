@@ -14,15 +14,27 @@ struct NutritionPlanMealsView: View {
 
     @EnvironmentObject private var viewModel: NutritionPlanDetailViewModel
     let action: () -> Void
+    let addItemAction: () -> Void
 
     // MARK: - UI
 
     var body: some View {
         ForEach(self.viewModel.meals) { meal in
             Section(header: HRowView(title: "Time:", detail: meal.time ?? "No Time Provided")) {
-                ForEach(meal.items) { item in
-                    NutritionPlanMealItemView(mealItem: Binding<NutritionPlanInfo.Meal.Item>(get: { item },
-                                                                                             set: { _ in }))
+                if !meal.items.isEmpty {
+                    ForEach(meal.items) { item in
+                        NutritionPlanMealItemView(mealItem: Binding<NutritionPlanInfo.Meal.Item>(get: { item },
+                                                                                                 set: { _ in }))
+                    }
+                } else {
+                    Button(action: self.addItemAction) {
+                        HStack {
+                            Spacer()
+                            Text("Add item to meal")
+                            Spacer()
+                        }
+                    }
+                    .buttonStyle(SecondaryButtonStyle())
                 }
             }
         }

@@ -16,7 +16,7 @@ protocol CreateWorkoutSettingNet {
 
     var exerciseURL: String { get }
 
-    func getExercise(by term: String) -> AnyPublisher<[SearchExercise.Data], AFError>
+    func getExercise(by term: String) -> AnyPublisher<[SearchExercise], AFError>
 
     // MARK: - ExerciseSet
 
@@ -49,11 +49,11 @@ extension Net: CreateWorkoutSettingNet {
 
     var exerciseURL: String { "\(self.baseURL)/exercise/" }
 
-    func getExercise(by term: String) -> AnyPublisher<[SearchExercise.Data], AFError> {
+    func getExercise(by term: String) -> AnyPublisher<[SearchExercise], AFError> {
         return session.request("\(self.exerciseURL)/search/",
                                parameters: ["term": term])
             .validate()
-            .publishDecodable(type: Search<SearchExercise>.self)
+            .publishDecodable(type: Suggestions<SearchExercise>.self)
             .value()
             .map { search in
                 return search.suggestions?.compactMap { $0.data } ?? []
