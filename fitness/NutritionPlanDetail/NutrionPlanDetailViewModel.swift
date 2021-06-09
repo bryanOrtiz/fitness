@@ -21,11 +21,15 @@ class NutritionPlanDetailViewModel: ObservableObject {
     private var cancellableSet: Set<AnyCancellable> = []
 
     let net: NutritionPlanDetailNet
+    let bus: PassthroughSubject<AppEvent, Never>
 
     // MARK: - Initilaizers
 
-    init(net: NutritionPlanDetailNet, plan: NutritionPlan) {
+    init(net: NutritionPlanDetailNet,
+         bus: PassthroughSubject<AppEvent, Never>,
+         plan: NutritionPlan) {
         self.net = net
+        self.bus = bus
         self.plan = plan
 
         self.registerUpdates()
@@ -53,10 +57,11 @@ class NutritionPlanDetailViewModel: ObservableObject {
 
     }
 
-    // MARK: - Publishers
+    // MARK: - Subscribers
     private func registerUpdates() {
         self.registerValueUpdates()
         self.registerMealsUpdates()
+        self.registerPlanUpdates()
     }
 
     private func registerValueUpdates() {
@@ -76,6 +81,27 @@ class NutritionPlanDetailViewModel: ObservableObject {
                 return plan.meals
             }
             .assign(to: \.meals, on: self)
+            .store(in: &cancellableSet)
+    }
+
+    private func registerPlanUpdates() {
+        self.bus
+            .removeDuplicates()
+            .compactMap { event -> Int? in
+                switch event {
+                case let .didUpdateDetailedNutritionPlan(id):
+                    return id
+                default:
+                    return nil
+                }
+            }
+            .map { [weak self] id in
+                guard let self = self else { return }
+                let reload = self.plan.id == id || self.meals.contains(where: { $0.id == id })
+                guard reload else { return }
+                return self.getDetail()
+            }
+            .sink(receiveValue: { _ in })
             .store(in: &cancellableSet)
     }
 }

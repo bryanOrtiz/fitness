@@ -173,9 +173,9 @@ extension NutritionPlanInfo.Meal.Item {
         let fatSaturated: String
         let fibres: String?
         let sodium: String
-        let license: License
+        let license: License?
         let licenseAuthor: String
-        let language: NutritionPlanInfo.Language
+        let language: NutritionPlanInfo.Language?
     }
 
     // MARK: - Item CodingKeys

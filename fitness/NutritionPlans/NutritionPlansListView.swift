@@ -22,6 +22,7 @@ struct NutritionPlansListView: View {
                 ForEach(viewModel.plans) { plan in
                     NavigationLink(
                         destination: NutritionPlanDetailView(viewModel: NutritionPlanDetailViewModel(net: self.deps.net,
+                                                                                                     bus: self.deps.bus,
                                                                                                      plan: plan))
                             .environmentObject(self.deps),
                         label: {

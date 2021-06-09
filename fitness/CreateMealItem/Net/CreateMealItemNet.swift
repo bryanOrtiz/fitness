@@ -14,6 +14,8 @@ protocol CreateMealItemNet {
     func createMealItem(item: NutritionPlanInfo.Meal.Item) -> DataResponsePublisher<NutritionPlanInfo.Meal.Item>
 
     func findIngredients(by term: String) -> AnyPublisher<[SearchIngredient], AFError>
+
+    func getDetailedIngredient(id: Int) -> DataResponsePublisher<Ingredient>
 }
 
 extension Net: CreateMealItemNet {
@@ -31,10 +33,10 @@ extension Net: CreateMealItemNet {
             .publishDecodable(type: NutritionPlanInfo.Meal.Item.self)
     }
 
-    var ingredientURL1: String { "\(self.baseURL)ingredient/" }
+    var ingredientURL: String { "\(self.baseURL)ingredient/" }
 
     func findIngredients(by term: String) -> AnyPublisher<[SearchIngredient], AFError> {
-        return session.request("\(self.ingredientURL1)search/",
+        return session.request("\(self.ingredientURL)search/",
                                parameters: ["term": term])
             .validate()
             .publishDecodable(type: Suggestions<SearchIngredient>.self)
@@ -43,5 +45,11 @@ extension Net: CreateMealItemNet {
                 return suggestions.suggestions?.compactMap({ $0.data }) ?? []
             }
             .eraseToAnyPublisher()
+    }
+
+    func getDetailedIngredient(id: Int) -> DataResponsePublisher<Ingredient> {
+        return session.request(self.ingredientURL + "\(id)/")
+            .validate()
+            .publishDecodable(type: Ingredient.self)
     }
 }

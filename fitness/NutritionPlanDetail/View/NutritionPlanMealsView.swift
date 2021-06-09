@@ -14,7 +14,7 @@ struct NutritionPlanMealsView: View {
 
     @EnvironmentObject private var viewModel: NutritionPlanDetailViewModel
     let action: () -> Void
-    let addItemAction: (_ mealId: Int) -> Void
+    @Binding var selectedMeal: NutritionPlanInfo.Meal?
 
     // MARK: - UI
 
@@ -27,7 +27,7 @@ struct NutritionPlanMealsView: View {
                                                                                                  set: { _ in }))
                     }
                 } else {
-                    Button(action: { self.addItemAction(meal.id) },
+                    Button(action: { self.selectedMeal = meal },
                            label: {
                             HStack {
                                 Spacer()

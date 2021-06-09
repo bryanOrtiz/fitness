@@ -12,23 +12,30 @@ import Combine
 class CreateMealItemViewModel: ObservableObject {
 
     // MARK: - Properties
+
     @Published var item: NutritionPlanInfo.Meal.Item
-    @Published var ingredientId: Int = 0
     @Published var amount: String = "1"
+    @Published var selectedItem: SearchIngredient?
 
     @Published var search = ""
     @Published var items = [SearchIngredient]()
-    @Published var selectedItem: SearchIngredient?
+    @Published var selectedIngredient: Ingredient?
     @Published var didSelectItem = false
+
+    @Published var didComplete = false
 
     private var cancellableSet: Set<AnyCancellable> = []
 
     let net: CreateMealItemNet
+    let bus: PassthroughSubject<AppEvent, Never>
 
     // MARK: - Initializers
 
-    init(net: CreateMealItemNet, mealId: Int) {
+    init(net: CreateMealItemNet,
+         bus: PassthroughSubject<AppEvent, Never>,
+         mealId: Int) {
         self.net = net
+        self.bus = bus
         self.item = NutritionPlanInfo.Meal.Item(id: 0,
                                                 mealId: mealId,
                                                 ingredientId: 0,
@@ -44,7 +51,19 @@ class CreateMealItemViewModel: ObservableObject {
     // MARK: - NET
 
     func createMealItem() {
-
+        self.net.createMealItem(item: self.item)
+            .result()
+            .sink { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case let .success(item):
+                    self.didComplete = true
+                    self.bus.send(AppEvent.didUpdateDetailedNutritionPlan(id: item.mealId))
+                case let .failure(error):
+                    debugPrint("error: \(error)")
+                }
+            }
+            .store(in: &cancellableSet)
     }
 
     // MARK: - Register Subscribers
@@ -57,8 +76,9 @@ class CreateMealItemViewModel: ObservableObject {
     }
 
     private func registerIngredientChange() {
-        self.$ingredientId
-            .map { self.item.ingredientId($0) }
+        self.$selectedIngredient
+            .compactMap { $0 }
+            .map { self.item.ingredientId($0.id) }
             .assign(to: \.item, on: self)
             .store(in: &cancellableSet)
     }
@@ -94,8 +114,20 @@ class CreateMealItemViewModel: ObservableObject {
         self.$selectedItem
             .compactMap { $0 }
             .removeDuplicates()
-            .map { _ in true }
-            .assign(to: \.didSelectItem, on: self)
+            .flatMap { searchIngredient in
+                return self.net.getDetailedIngredient(id: searchIngredient.id)
+                    .result()
+                    .map { result in
+                        switch result {
+                        case let .success(ingredient):
+                            return ingredient
+                        case let .failure(error):
+                            debugPrint("error: \(error)")
+                            return nil
+                        }
+                    }
+            }
+            .assign(to: \.selectedIngredient, on: self)
             .store(in: &cancellableSet)
     }
 }

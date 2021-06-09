@@ -9,7 +9,14 @@
 import Foundation
 import Combine
 
+enum AppEvent: Hashable {
+    case didUpdateDetailedNutritionPlan(id: Int)
+    case none
+}
+
 class AppDeps: ObservableObject {
+
+    // MARK: - Properties
 
     @Published var isLoggedIn = false
 
@@ -17,6 +24,8 @@ class AppDeps: ObservableObject {
     let keychainService = KeychainService()
 
     private var cancellableSet: Set<AnyCancellable> = []
+
+    let bus = PassthroughSubject<AppEvent, Never>()
 
     // MARK: - State Handlers
 

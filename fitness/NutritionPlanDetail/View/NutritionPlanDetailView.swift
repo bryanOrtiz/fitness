@@ -15,8 +15,7 @@ struct NutritionPlanDetailView: View {
     @EnvironmentObject private var deps: AppDeps
     @StateObject var viewModel: NutritionPlanDetailViewModel
     @State private var isPresented = false
-    @State private var addItemIsPresent = false
-    @State private var mealId: Int = 0
+    @State private var selectedMeal: NutritionPlanInfo.Meal?
 
     // MARK: - UI
 
@@ -32,7 +31,7 @@ struct NutritionPlanDetailView: View {
                     }
                     NutritionPlanValuesView(values: self.$viewModel.values)
                     NutritionPlanMealsView(action: self.presentationAction,
-                                           addItemAction: self.addItemAction)
+                                           selectedMeal: self.$selectedMeal)
                         .environmentObject(self.viewModel)
                 }
             } else {
@@ -45,9 +44,11 @@ struct NutritionPlanDetailView: View {
 //            CreateMealView(viewModel: CreateMealViewModel(net: self.deps.net,
 //                                                          planId: self.viewModel.detailedPlan!.id))
 //        }
-        .sheet(isPresented: self.$addItemIsPresent, content: {
-            CreateMealItemView(createMealItemViewModel: CreateMealItemViewModel(net: self.deps.net,
-                                                                                mealId: self.mealId))
+
+        .sheet(item: self.$selectedMeal, content: { selectedMeal in
+            CreateMealItemView(viewModel: CreateMealItemViewModel(net: self.deps.net,
+                                                                  bus: self.deps.bus,
+                                                                  mealId: selectedMeal.id))
         })
         .onAppear(perform: {
             self.getDetail()
@@ -61,10 +62,5 @@ struct NutritionPlanDetailView: View {
 
     private func presentationAction() {
         self.isPresented.toggle()
-    }
-
-    private func addItemAction(mealId: Int) {
-        self.mealId = mealId
-        self.addItemIsPresent.toggle()
     }
 }

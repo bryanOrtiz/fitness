@@ -14,13 +14,13 @@ struct Ingredient: Codable {
     let creationDate: String
     let updateDate: String
     let energy: Int
-    let protein: Double
-    let carbohydrates: Double
-    let carbohydratesSugar: Double
-    let fat: Double
-    let fatSaturated: Double
-    let fibres: Double?
-    let sodium: Double
+    let protein: String
+    let carbohydrates: String
+    let carbohydratesSugar: String
+    let fat: String
+    let fatSaturated: String
+    let fibres: String?
+    let sodium: String
     let license: Int
     let licenseAuthor: String
     let language: Int

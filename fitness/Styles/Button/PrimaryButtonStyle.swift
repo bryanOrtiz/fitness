@@ -10,10 +10,13 @@ import Foundation
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
+
+    @Environment(\.isEnabled) private var isEnabled
+
     func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .padding()
-                .background(Color.blue)
+                .background(isEnabled ? Color.blue : Color.gray)
                 .foregroundColor(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .scaleEffect(configuration.isPressed ? 1.2 : 1)
